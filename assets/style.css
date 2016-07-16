@@ -76,7 +76,15 @@ body {
 }
 
 .EventsCard-day-name {
-    margin-top: 10px;
+    font-weight: bold;
+}
+
+.EventsCard-day {
+	margin-bottom: 7px;
+}
+
+.eventname {
+    margin-right: 7px;
 }
 
 .roomlabel {
@@ -86,7 +94,7 @@ body {
     white-space: nowrap;
 }
 
-.roomlabel.cafe {
+.roomlabel.cafe, .roomlabel.café {
     background-color: brown;
 }
 
