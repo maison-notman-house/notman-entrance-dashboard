@@ -6,7 +6,7 @@ const SPONSORS = [
   'hydro-quebec.svg',
 ];
 
-const INTERVAL = 3000;
+const INTERVAL = 6000;
 
 export default class SponsorsPanel extends React.Component {
   constructor() {
@@ -34,7 +34,7 @@ export default class SponsorsPanel extends React.Component {
   
   render() {  
     return <div className="Panel SponsorsPanel">
-      <ReactCSSTransitionGroup transitionName="transition" transitionEnterTimeout={1000} transitionLeaveTimeout={1000}>
+      <ReactCSSTransitionGroup transitionName="transition" transitionEnterTimeout={800} transitionLeaveTimeout={800}>
         <img className="sponsor-image" src={this.getCurrentSponsorImageUrl()} key={this.getCurrentSponsorImageUrl()} />
       </ReactCSSTransitionGroup>
     </div>;
