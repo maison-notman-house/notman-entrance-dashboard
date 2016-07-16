@@ -42,7 +42,35 @@ body {
   max-height: 90px;
 }
 
+.SponsorsPanel {
+  height: 200px;
+}
+
+.sponsor-image {
+  height: 200px;
+  position: absolute;
+}
 
 .strong {
   font-weight: 700;
+}
+
+.transition-enter {
+  opacity: 0;
+  transition: opacity 500ms;
+}
+
+.transition-enter.transition-enter-active {
+  opacity: 1;
+  transition: opacity 500ms;
+}
+
+.transition-leave {
+  opacity: 1;
+  transition: opacity 500ms;
+}
+
+.transition-leave.transition-leave-active {
+  opacity: 0;
+  transition: opacity 500ms;
 }
