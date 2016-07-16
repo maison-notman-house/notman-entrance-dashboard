@@ -48,10 +48,6 @@ export default class Dashboard extends React.Component {
           <EventsCard events={this.state.context.events}/>
           <WeatherCard weatherData={this.state.context.weatherData}/>
           
-          <Panel className="footer">
-            <span className="strong">Sponsors</span>
-          </Panel>
-          
           <SponsorsPanel/>
           
         </div>
