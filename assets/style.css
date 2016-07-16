@@ -74,3 +74,25 @@ body {
   opacity: 0;
   transition: opacity 500ms;
 }
+
+.roomlabel {
+	padding: 3px 20px 3px 20px;
+    border-radius: 5px;
+    color: white;
+}
+
+.roomlabel.cafe {
+    background-color: brown
+}
+
+.roomlabel.terrace {
+    background-color: green
+}
+
+.roomlabel.bigroom {
+    background-color: purple
+}
+
+element.glassdoor {
+    background-color: blue
+}
