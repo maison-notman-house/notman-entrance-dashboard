@@ -5,6 +5,7 @@ import Panel from './panel';
 import LogoHeader from './logo-header';
 import EventsCard from './events-card';
 import WeatherCard from './weather-card';
+import SponsorsPanel from './sponsors-panel';
 
 export default class Dashboard extends React.Component {
   constructor(props) {
@@ -50,6 +51,8 @@ export default class Dashboard extends React.Component {
           <Panel className="footer">
             <span className="strong">Sponsors</span>
           </Panel>
+          
+          <SponsorsPanel/>
           
         </div>
       );
