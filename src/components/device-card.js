@@ -10,6 +10,6 @@ export default function DeviceCard({deviceData}) {
     return  <div className="DeviceCard Card">
         <div>
             <img className="DeviceCard--icon" src="/devices.png"/>
-            {deviceCount} device(s) located inside building.</div>
+            Current occupancy is {deviceCount}.</div>
     </div>;
 }
