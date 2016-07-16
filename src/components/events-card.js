@@ -18,21 +18,15 @@ function createTitle(title) {
 }
 
 function createDay(e) {
-//  let title = e.title;
-//   if (title && title.length > 60) {
-//      title = title.substring(0,60) + '...';
-//   }
-//   console.log('....... ' + e);
-//   console.log('....... ' + title);
 
   let items = e.items.map(e => {
-    return <div><span className="eventname">{createTitle(e.title)}</span> <span className={"roomlabel " + e.tags.join(', ').replace(' ','') } >{e.tags.join(', ') }</span></div>;
+    return <div> <span className={"roomlabel " + e.tags.join(', ').replace(' ','') } >{e.tags.join(', ') }</span> <span className="eventname">{createTitle(e.title)}</span></div>;
   });
 
   return <div className="EventsCard-day">
-    <div className="EventsCard-day-name">
+    <h3>
       {e.day}
-    </div>
+    </h3>
 
     {items}
   </div>;
