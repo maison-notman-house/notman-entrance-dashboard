@@ -43,7 +43,7 @@ body {
 }
 
 .SponsorsPanel {
-  height: 200px;
+  height: 280px;
 }
 
 .sponsor-image {
@@ -57,22 +57,22 @@ body {
 
 .transition-enter {
   opacity: 0;
-  transition: opacity 500ms;
+  transition: opacity 800ms;
 }
 
 .transition-enter.transition-enter-active {
   opacity: 1;
-  transition: opacity 500ms;
+  transition: opacity 800ms;
 }
 
 .transition-leave {
   opacity: 1;
-  transition: opacity 500ms;
+  transition: opacity 800ms;
 }
 
 .transition-leave.transition-leave-active {
   opacity: 0;
-  transition: opacity 500ms;
+  transition: opacity 800ms;
 }
 
 .roomlabel {
