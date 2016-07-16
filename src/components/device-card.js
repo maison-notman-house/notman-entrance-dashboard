@@ -8,6 +8,8 @@ export default function DeviceCard({deviceData}) {
     }
 
     return  <div className="DeviceCard Card">
-                <h3>{deviceCount} device(s) located inside building.</h3>
-            </div>;
+        <div>
+            <img className="DeviceCard--icon" src="/devices.png"/>
+            {deviceCount} device(s) located inside building.</div>
+    </div>;
 }

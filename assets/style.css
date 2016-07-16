@@ -101,3 +101,13 @@ body {
 .roomlabel.glassdoor {
     background-color: #1955c3;
 }
+
+element.glassdoor {
+    background-color: blue
+}
+
+.DeviceCard--icon {
+  height: 80px;
+  vertical-align: -22px;
+  margin-right: 46px;
+}
