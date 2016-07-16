@@ -75,24 +75,29 @@ body {
   transition: opacity 800ms;
 }
 
+.EventsCard-day-name {
+    margin-top: 10px;
+}
+
 .roomlabel {
 	padding: 3px 20px 3px 20px;
-    border-radius: 5px;
+    border-radius: 10px;
     color: white;
+    white-space: nowrap;
 }
 
 .roomlabel.cafe {
-    background-color: brown
+    background-color: brown;
 }
 
 .roomlabel.terrace {
-    background-color: green
+    background-color: green;
 }
 
 .roomlabel.bigroom {
-    background-color: purple
+    background-color: purple;
 }
 
-element.glassdoor {
-    background-color: blue
+.roomlabel.glassdoor {
+    background-color: #1955c3;
 }
