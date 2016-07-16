@@ -124,8 +124,32 @@ element.glassdoor {
     background-color: blue
 }
 
+.DeviceCard {
+	position: relative;
+}
+
 .DeviceCard--icon {
   height: 80px;
   vertical-align: -22px;
   margin-right: 46px;
+}
+
+.weatherImg {
+   display: inline-block;
+   vertical-align: middle;
+   margin-right: 7px;
+}
+
+.deviceVendor {
+    float: right;
+    width: 200px;
+    /* font-size: small; */
+    font-size: 20px;
+    position: absolute;
+    right: 10px;
+    top: 30px;
+}
+
+.vendorLogo {
+	height: 30px
 }
