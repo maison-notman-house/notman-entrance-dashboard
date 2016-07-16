@@ -5,6 +5,7 @@ import Panel from './panel';
 import LogoHeader from './logo-header';
 import EventsCard from './events-card';
 import WeatherCard from './weather-card';
+import DeviceCard from './device-card';
 import SponsorsPanel from './sponsors-panel';
 
 export default class Dashboard extends React.Component {
@@ -23,6 +24,11 @@ export default class Dashboard extends React.Component {
       this.state.context.weatherData = weatherData;
       this.setState({context: this.state.context})
     });
+
+    this.getDeviceData().then(deviceData => {
+      this.state.context.deviceData = deviceData;
+      this.setState({context: this.state.context})
+    });
   }
   
   getEvents() {
@@ -32,6 +38,11 @@ export default class Dashboard extends React.Component {
   
   getWeatherData() {
     return fetch('http://api.openweathermap.org/data/2.5/forecast/city?id=6077243&APPID=dc252e41ccdd53d06d044cde8f15dedb&units=metric')
+      .then(response => response.json());
+  }
+  
+  getDeviceData() {
+    return fetch('http://www.hyperlocalcontext.com/contextat/directory/notman')
       .then(response => response.json());
   }
   
@@ -47,6 +58,7 @@ export default class Dashboard extends React.Component {
 
           <EventsCard events={this.state.context.events}/>
           <WeatherCard weatherData={this.state.context.weatherData}/>
+          <DeviceCard deviceData={this.state.context.deviceData}/>
           
           <Panel className="footer">
             <span className="strong">Sponsors</span>
