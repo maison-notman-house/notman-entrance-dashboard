@@ -1,11 +1,12 @@
 import React from 'react';
+import Moment from 'moment';
 
 export default function WeatherCard({weatherData}) {
     var cityName ='N/A';
     var cityData = 'No data!';
 
     if (typeof weatherData !== 'undefined') {
-        cityName = weatherData.city.name + ' (5 day / 3 hour forecast data)';
+        cityName = weatherData.city.name;
         cityData = weatherData.list.map(displayData);
     }
 
@@ -18,25 +19,13 @@ export default function WeatherCard({weatherData}) {
 function displayData(data) {
     var imageUri = 'http://openweathermap.org/img/w/' + data.weather[0].icon + '.png';
     var imageDesc = data.weather[0].description;
-    var date = formatDate(new Date(data.dt * 1000));
+    var date = Moment(data.dt_txt).calendar();
+    var temp = Math.round(data.main.temp);
 
     return  <div className="WeatherCard-day">
                 <div className="WeatherCard-day-name">
                     <img alt={imageDesc} src={imageUri} />
-                    Datetime: {date}, Humidity: {data.main.humidity}%, Tempeture: {data.main.temp}&#8451;
+                    {date}, Humidity: {data.main.humidity}%, Temperature: {temp}&#8451;
                 </div>
             </div>;
-}
-
-function formatDate(date) {
-    var hours = date.getHours();
-    var minutes = date.getMinutes();
-    var ampm = hours >= 12 ? 'pm' : 'am';
-
-    hours = hours % 12;
-    hours = hours ? hours : 12; // the hour '0' should be '12'
-    minutes = minutes < 10 ? '0'+minutes : minutes;
-
-    var strTime = hours + ':' + minutes + ' ' + ampm;
-    return date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear() + "  " + strTime;
 }

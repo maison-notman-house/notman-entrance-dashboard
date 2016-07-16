@@ -37,7 +37,7 @@ export default class Dashboard extends React.Component {
   }
   
   getWeatherData() {
-    return fetch('http://api.openweathermap.org/data/2.5/forecast/city?id=6077243&APPID=dc252e41ccdd53d06d044cde8f15dedb&units=metric')
+    return fetch('http://api.openweathermap.org/data/2.5/forecast/city?id=6077243&APPID=dc252e41ccdd53d06d044cde8f15dedb&units=metric&cnt=3')
       .then(response => response.json());
   }
   
