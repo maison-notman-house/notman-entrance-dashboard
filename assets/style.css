@@ -44,11 +44,16 @@ body {
 
 .SponsorsPanel {
   height: 280px;
+  position: relative;
+}
+
+.SponsorsPanel--container { 
+  position: absolute;
+  text-align: center;
 }
 
 .sponsor-image {
   height: 200px;
-  position: absolute;
 }
 
 .strong {
@@ -67,12 +72,12 @@ body {
 
 .transition-leave {
   opacity: 1;
-  transition: opacity 800ms;
+  transition: opacity 1500ms;
 }
 
 .transition-leave.transition-leave-active {
   opacity: 0;
-  transition: opacity 800ms;
+  transition: opacity 1500ms;
 }
 
 .EventsCard-day-name {
