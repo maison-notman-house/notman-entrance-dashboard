@@ -3,11 +3,11 @@ import React from 'react';
 export default function DeviceCard({deviceData}) {
     var deviceCount = 0;
 
-    var style = {
-        float: 'right',
-        width: '100px',
-        fontSize: 'small'
-    };
+//     var style = {
+//         float: 'right',
+//         width: '100px',
+//         fontSize: 'small'
+//     };
 
     if (typeof deviceData !== 'undefined') {
         deviceCount = Object.keys(deviceData.devices).length;
@@ -17,9 +17,9 @@ export default function DeviceCard({deviceData}) {
                 <div>
                     <img className="DeviceCard--icon" src="/devices.png"/>
                     Current occupancy is {deviceCount}.
-                    <div style={style}>
-                        <br /><br /><br /><br />
-                        Data provided by <img src="/logos/reelyactive.png" width="50%" height="50%" />
+                    <div className="deviceVendor">
+
+                        Data provided by <img className="vendorLogo" src="/logos/reelyactive.png" />
                     </div>
                 </div>
             </div>;

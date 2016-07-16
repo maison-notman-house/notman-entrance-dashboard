@@ -24,8 +24,10 @@ function displayData(data) {
 
     return  <div className="WeatherCard-day">
                 <div className="WeatherCard-day-name">
-                    <img alt={imageDesc} src={imageUri} />
-                    {date}, Humidity: <b>{data.main.humidity}%</b>, Temperature: <b>{temp}</b>&#8451;
+                    <div className="weatherImg"><img alt={imageDesc} src={imageUri} /></div>
+                    <span className="date">{date}</span>,
+                    <span className="humidity"> Humidity: <b>{data.main.humidity}%</b></span>,
+                    <span className="temperature"> Temperature: <b>{temp}</b></span>&#8451;
                 </div>
             </div>;
 }
