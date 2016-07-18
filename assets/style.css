@@ -44,6 +44,14 @@ body {
 
 .SponsorsCard {
   height: 280px;
+<<<<<<< HEAD
+  position: relative;
+}
+
+.SponsorsPanel--container { 
+  position: absolute;
+  text-align: center;
+=======
   text-align: center;
   vertical-align: middle;
   position: relative;
@@ -57,13 +65,17 @@ body {
    width: 500px;
    height: 200px;
    text-align: middle;
+>>>>>>> bbc55dfde568a08dcfe26595a5d32e3025bd2413
 }
 
 .sponsor-image {
   height: 200px;
+<<<<<<< HEAD
+=======
   position: absolute;
   left: -50%;
   top: -50%;
+>>>>>>> bbc55dfde568a08dcfe26595a5d32e3025bd2413
 }
 
 .strong {
@@ -82,12 +94,12 @@ body {
 
 .transition-leave {
   opacity: 1;
-  transition: opacity 800ms;
+  transition: opacity 1500ms;
 }
 
 .transition-leave.transition-leave-active {
   opacity: 0;
-  transition: opacity 800ms;
+  transition: opacity 1500ms;
 }
 
 .EventsCard-day-name {
@@ -172,6 +184,17 @@ h3 {
 
 .vendorLogo {
 	height: 30px
+}
+
+.clearfix:after {
+    content:"";
+    display:table;
+    clear:both;
+}
+
+.Columns-column {
+  float: right;
+  width: 50%;
 }
 
 #timenow {

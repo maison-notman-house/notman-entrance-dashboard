@@ -10,7 +10,7 @@ const SPONSORS = [
   'videotron.svg'
 ];
 
-const INTERVAL = 6000;
+const INTERVAL = 9000;
 
 export default class SponsorsPanel extends React.Component {
   constructor() {
@@ -36,11 +36,13 @@ export default class SponsorsPanel extends React.Component {
     this.setState({index});
   }
 
-  render() {
-    return <div className="SponsorsCard Card">
-      <ReactCSSTransitionGroup transitionName="transition" transitionEnterTimeout={800} transitionLeaveTimeout={800}>
-        <img className="sponsor-image" src={this.getCurrentSponsorImageUrl()} key={this.getCurrentSponsorImageUrl()} />
-      </ReactCSSTransitionGroup>
+  render() {  
+    return <div className="Card SponsorsPanel">
+        <ReactCSSTransitionGroup transitionName="transition" transitionEnterTimeout={1500} transitionLeaveTimeout={1500}>
+          <div className="SponsorsPanel--container" key={this.getCurrentSponsorImageUrl()}>
+            <img className="sponsor-image" src={this.getCurrentSponsorImageUrl()}/>
+          </div>
+        </ReactCSSTransitionGroup>
     </div>;
   }
 }

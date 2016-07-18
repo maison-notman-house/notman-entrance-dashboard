@@ -8,6 +8,7 @@ import CurrentWeatherCard from './currentweather-card';
 import ForecastWeatherCard from './forecastweather-card';
 import DeviceCard from './device-card';
 import SponsorsPanel from './sponsors-panel';
+import Columns from './columns';
 
 export default class Dashboard extends React.Component {
   constructor(props) {
@@ -17,8 +18,7 @@ export default class Dashboard extends React.Component {
 
   componentDidMount () {
     this.getEvents().then(events => {
-      this.state.context.events = events;
-      this.setState({context: this.state.context})
+      this.setState({events})
     });
 
     this.getCurrentWeatherData().then(weatherData => {
@@ -32,8 +32,7 @@ export default class Dashboard extends React.Component {
     });
 
     this.getDeviceData().then(deviceData => {
-      this.state.context.deviceData = deviceData;
-      this.setState({context: this.state.context})
+      this.setState({deviceData})
     });
   }
 
@@ -52,7 +51,6 @@ export default class Dashboard extends React.Component {
       .then(response => response.json());
   }
 
-
   getDeviceData() {
     return fetch('http://www.hyperlocalcontext.com/contextat/directory/notman')
       .then(response => response.json());
@@ -68,12 +66,15 @@ export default class Dashboard extends React.Component {
             <span className="strong">Événements Maison Notman</span> &bull; Notman House Events
           </Panel>
 
-          <EventsCard events={this.state.context.events}/>
+          <Columns>
+            <SponsorsPanel/>
+            <DeviceCard deviceData={this.state.deviceData}/>
+          </Columns>
+
+          <EventsCard events={this.state.events}/>
+
           <CurrentWeatherCard weatherData={this.state.context.currentWeatherData}/>
           <ForecastWeatherCard weatherData={this.state.context.forecastWeatherData}/>
-          <DeviceCard deviceData={this.state.context.deviceData}/>
-
-          <SponsorsPanel/>
 
         </div>
       );
