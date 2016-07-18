@@ -42,13 +42,28 @@ body {
   max-height: 90px;
 }
 
-.SponsorsPanel {
+.SponsorsCard {
   height: 280px;
+  text-align: center;
+  vertical-align: middle;
+  position: relative;
+}
+
+.SponsorsCard span {
+   position: absolute;
+   left: 50%;  
+   top: 50%;
+   display: block;
+   width: 500px;
+   height: 200px;
+   text-align: middle;
 }
 
 .sponsor-image {
   height: 200px;
   position: absolute;
+  left: -50%;
+  top: -50%;
 }
 
 .strong {
@@ -154,3 +169,10 @@ element.glassdoor {
 .vendorLogo {
 	height: 30px
 }
+
+#timenow {
+    position: absolute;
+    right: 40px;
+    font-size: 64px;
+}
+
