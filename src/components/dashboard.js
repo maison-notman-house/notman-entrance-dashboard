@@ -17,18 +17,15 @@ export default class Dashboard extends React.Component {
 
   componentDidMount () {
     this.getEvents().then(events => {
-      this.state.context.events = events;
-      this.setState({context: this.state.context})
+      this.setState({events})
     });
 
     this.getWeatherData().then(weatherData => {
-      this.state.context.weatherData = weatherData;
-      this.setState({context: this.state.context})
+      this.setState({weatherData});
     });
 
     this.getDeviceData().then(deviceData => {
-      this.state.context.deviceData = deviceData;
-      this.setState({context: this.state.context})
+      this.setState({deviceData})
     });
   }
 
@@ -59,12 +56,12 @@ export default class Dashboard extends React.Component {
 
           <Columns>
             <SponsorsPanel/>
-            <DeviceCard deviceData={this.state.context.deviceData}/>
+            <DeviceCard deviceData={this.state.deviceData}/>
           </Columns>
 
-          <EventsCard events={this.state.context.events}/>
+          <EventsCard events={this.state.events}/>
 
-          <WeatherCard weatherData={this.state.context.weatherData}/>
+          <WeatherCard weatherData={this.state.weatherData}/>
 
         </div>
       );
