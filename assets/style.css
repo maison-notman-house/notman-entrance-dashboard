@@ -159,3 +159,14 @@ element.glassdoor {
 .vendorLogo {
 	height: 30px
 }
+
+.clearfix:after {
+    content:"";
+    display:table;
+    clear:both;
+}
+
+.Columns-column {
+  float: right;
+  width: 50%;
+}

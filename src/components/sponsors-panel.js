@@ -33,7 +33,7 @@ export default class SponsorsPanel extends React.Component {
   }
   
   render() {  
-    return <div className="Panel SponsorsPanel">
+    return <div className="Card SponsorsPanel">
         <ReactCSSTransitionGroup transitionName="transition" transitionEnterTimeout={1500} transitionLeaveTimeout={1500}>
           <div className="SponsorsPanel--container" key={this.getCurrentSponsorImageUrl()}>
             <img className="sponsor-image" src={this.getCurrentSponsorImageUrl()}/>
