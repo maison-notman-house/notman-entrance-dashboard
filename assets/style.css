@@ -42,18 +42,40 @@ body {
   max-height: 90px;
 }
 
-.SponsorsPanel {
+.SponsorsCard {
   height: 280px;
+<<<<<<< HEAD
   position: relative;
 }
 
 .SponsorsPanel--container { 
   position: absolute;
   text-align: center;
+=======
+  text-align: center;
+  vertical-align: middle;
+  position: relative;
+}
+
+.SponsorsCard span {
+   position: absolute;
+   left: 50%;  
+   top: 50%;
+   display: block;
+   width: 500px;
+   height: 200px;
+   text-align: middle;
+>>>>>>> bbc55dfde568a08dcfe26595a5d32e3025bd2413
 }
 
 .sponsor-image {
   height: 200px;
+<<<<<<< HEAD
+=======
+  position: absolute;
+  left: -50%;
+  top: -50%;
+>>>>>>> bbc55dfde568a08dcfe26595a5d32e3025bd2413
 }
 
 .strong {
@@ -170,3 +192,10 @@ element.glassdoor {
   float: right;
   width: 50%;
 }
+
+#timenow {
+    position: absolute;
+    right: 40px;
+    font-size: 64px;
+}
+
