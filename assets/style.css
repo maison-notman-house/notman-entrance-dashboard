@@ -132,11 +132,15 @@ h3 {
 }
 
 .roomlabel.glassdoor {
-    background-color: #1955c3;
+    background-color: #009688;
 }
 
-element.glassdoor {
-    background-color: blue
+.roomlabel.videotron {
+    background-color: #feda52;
+}
+
+.roomlabel.cisco {
+    background-color: #007fab;
 }
 
 .DeviceCard {

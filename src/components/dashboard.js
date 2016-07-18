@@ -4,7 +4,8 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Panel from './panel';
 import LogoHeader from './logo-header';
 import EventsCard from './events-card';
-import WeatherCard from './weather-card';
+import CurrentWeatherCard from './currentweather-card';
+import ForecastWeatherCard from './forecastweather-card';
 import DeviceCard from './device-card';
 import SponsorsPanel from './sponsors-panel';
 
@@ -13,15 +14,20 @@ export default class Dashboard extends React.Component {
     super(props);
     this.state = { context : {} }
   }
-  
+
   componentDidMount () {
     this.getEvents().then(events => {
       this.state.context.events = events;
       this.setState({context: this.state.context})
     });
 
-    this.getWeatherData().then(weatherData => {
-      this.state.context.weatherData = weatherData;
+    this.getCurrentWeatherData().then(weatherData => {
+      this.state.context.currentWeatherData = weatherData;
+      this.setState({context: this.state.context})
+    });
+
+    this.getForecastWeatherData().then(weatherData => {
+      this.state.context.forecastWeatherData = weatherData;
       this.setState({context: this.state.context})
     });
 
@@ -30,38 +36,45 @@ export default class Dashboard extends React.Component {
       this.setState({context: this.state.context})
     });
   }
-  
+
   getEvents() {
     return fetch('https://notman.herokuapp.com/api/events')
       .then(response => response.json());
   }
-  
-  getWeatherData() {
-    return fetch('http://api.openweathermap.org/data/2.5/forecast/city?id=6077243&APPID=dc252e41ccdd53d06d044cde8f15dedb&units=metric&cnt=3')
+
+  getCurrentWeatherData() {
+    return fetch('http://api.openweathermap.org/data/2.5/weather?id=6077243&APPID=dc252e41ccdd53d06d044cde8f15dedb&units=metric&lang=en')
       .then(response => response.json());
   }
-  
+
+  getForecastWeatherData() {
+    return fetch('http://api.openweathermap.org/data/2.5/forecast?id=6077243&units=metric&appid=dc252e41ccdd53d06d044cde8f15dedb')
+      .then(response => response.json());
+  }
+
+
   getDeviceData() {
     return fetch('http://www.hyperlocalcontext.com/contextat/directory/notman')
       .then(response => response.json());
   }
-  
+
   render() {
       return (
         <div>
-        
+
           <LogoHeader/>
-          
+
           <Panel>
             <span className="strong">Événements Maison Notman</span> &bull; Notman House Events
           </Panel>
 
           <EventsCard events={this.state.context.events}/>
-          <WeatherCard weatherData={this.state.context.weatherData}/>
+          <CurrentWeatherCard weatherData={this.state.context.currentWeatherData}/>
+          <ForecastWeatherCard weatherData={this.state.context.forecastWeatherData}/>
           <DeviceCard deviceData={this.state.context.deviceData}/>
-          
+
           <SponsorsPanel/>
-          
+
         </div>
       );
   }
