@@ -33,11 +33,11 @@ function locationForDisplay (room) {
 
 function createDay(e) {
 
-  let items = e.items.map(e => {
-    return <div> <span className={"roomlabel " + e.tags.join(', ').replace(' ','') } >{locationForDisplay(e.tags.join(', ')) }</span> <span className="eventname">{createTitle(e.title)}</span></div>;
+  let items = e.items.map((e,idx) => {
+    return <div className="event" key={e.date + '-' + idx}> <span className={"roomlabel " + e.tags.join(', ').replace(' ','') } >{locationForDisplay(e.tags.join(', ')) }</span> <span className="eventtime">{e.start}</span> <span className="eventname">{createTitle(e.title)}</span></div>;
   });
 
-  return <div className="EventsCard-day">
+  return <div className="EventsCard-day" key={e.date}>
     <h3>
       {e.day}
     </h3>

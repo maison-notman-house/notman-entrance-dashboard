@@ -37,7 +37,7 @@ export default class Dashboard extends React.Component {
   }
 
   getEvents() {
-    return fetch('https://notman.herokuapp.com/api/events')
+    return fetch('https://notman.herokuapp.com/api/events?24hour=1')
       .then(response => response.json());
   }
 

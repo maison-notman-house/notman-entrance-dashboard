@@ -5,10 +5,7 @@ export default function ForecastWeatherCard({weatherData}) {
     var cityName ='N/A';
     var cityData = 'No data!';
 
-    console.log('nn', weatherData);
-
     if (typeof weatherData !== 'undefined') {
-        console.log(weatherData);
         cityName = weatherData.city.name;
         cityData = weatherData.list.splice(0,3).map(displayData);
     }
@@ -22,10 +19,10 @@ export default function ForecastWeatherCard({weatherData}) {
 function displayData(data) {
     var imageUri = 'http://openweathermap.org/img/w/' + data.weather[0].icon + '.png';
     var imageDesc = data.weather[0].description;
-    var date = Moment(data.dt_txt).lang("en").calendar();
+    var date = Moment(data.dt_txt).locale("en").calendar();
     var temp = Math.round(data.main.temp);
 
-    return  <div className="WeatherCard-day">
+    return  <div className="WeatherCard-day" key={data.dt}>
                 <div className="WeatherCard-day-name">
                     <div className="weatherImg"><img alt={imageDesc} src={imageUri} /></div>
                     <span className="date">{date}</span>:

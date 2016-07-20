@@ -6,7 +6,6 @@ export default function CurrentWeatherCard({weatherData}) {
     var cityData = 'No data!';
 
     if (typeof weatherData !== 'undefined') {
-        console.log(weatherData);
         cityName = weatherData.name;
         cityData = displayData(weatherData);
     }
@@ -20,7 +19,7 @@ export default function CurrentWeatherCard({weatherData}) {
 function displayData(data) {
     var imageUri = 'http://openweathermap.org/img/w/' + data.weather[0].icon + '.png';
     var imageDesc = data.weather[0].description;
-    var date = Moment(data.dt_txt).lang("en").fromNow(false);
+    var date = Moment(data.dt_txt).locale("en").fromNow(false);
     var temp = Math.round(data.main.temp);
 
     return  <div className="WeatherCard-day">
