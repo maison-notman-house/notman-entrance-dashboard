@@ -43,42 +43,31 @@ body {
 }
 
 .Card.SponsorsPanel {
-  height: 280px;
-  max-height: 280px;
+  height: 260px;
   position: relative;
   overflow-y: hidden;
   overflow-x: hidden; 
   vertical-align: middle;
 }
 
-.SponsorsPanel--container { 
-  position: absolute;
-  text-align: center;
-  vertical-align: middle;
-  position: absolute;
-
-  left: -50%;  
-  top: -50%;
-
-  height: 100%;
-}
 
 .SponsorsPanel > span {
    position: relative;
    display: block;
-   margin: 20px auto;
+   margin: 10px auto;
    height: 200px; 
    padding: 0px;
 }
 
-.SponsorsPanel > span > span{
+.SponsorsPanel > span img:nth-child(1){
+	z-index: 4;
+}
+
+.SponsorsPanel > span > div {
    position: absolute;
    left: 50%;
    top: 50%;
-   display: block;
-   height: 50%;
-   width: 50%;
-   
+   display: block;   
 }
 
 .sponsor-image {
@@ -86,6 +75,7 @@ body {
   left: -50%;
   top: -50%;
 }
+ 
 
 .strong {
   font-weight: 700;

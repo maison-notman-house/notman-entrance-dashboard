@@ -56,11 +56,12 @@ export default class SponsorsPanel extends React.Component {
      }
 
     return <div className="Card SponsorsPanel">
-        <span>
-        <ReactCSSTransitionGroup transitionName="transition" transitionEnterTimeout={1500} transitionLeaveTimeout={1500} style={spanStyle}>
-            <img className="sponsor-image " id={"sponsor-image-" + this.state.index} key={this.getCurrentSponsorImageUrl()} src={this.getCurrentSponsorImageUrl()} style={style}/>
+
+        <ReactCSSTransitionGroup transitionName="transition" transitionEnterTimeout={1500} transitionLeaveTimeout={1500}>
+            <div style={spanStyle} id={"sponsor-image-" + this.state.index} key={this.getCurrentSponsorImageUrl()}>
+            <img className="sponsor-image " src={this.getCurrentSponsorImageUrl()} style={style}/>
+            </div>
         </ReactCSSTransitionGroup>
-        </span>
     </div>;
   }
 }
