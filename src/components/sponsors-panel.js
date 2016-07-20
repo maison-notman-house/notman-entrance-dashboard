@@ -2,12 +2,16 @@ import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const SPONSORS = [
+  ['password_box.png', [1193,1199]],
+  ['dan_robichaud.png', [1074,300]],
+  ['government.png', [4066,700]],
   ['bdc.jpg', [641,427]],
   ['hydro-quebec.svg', [745,237]],
   ['google-for-partner.png', [937,936]],
   ['quickbooks_intuit.png', [1400,381]],
   ['FTQ.jpg', [639,174]],
-  ['videotron.svg', [400,80]]
+  ['videotron.svg', [400,80]],
+  ['Banque_nationale_du_Canada_Logo.png', [1703,444]]
 ];
 
 const INTERVAL = 9000;
