@@ -42,40 +42,49 @@ body {
   max-height: 90px;
 }
 
-.SponsorsCard {
+.Card.SponsorsPanel {
   height: 280px;
-<<<<<<< HEAD
+  max-height: 280px;
   position: relative;
+  overflow-y: hidden;
+  overflow-x: hidden; 
+  vertical-align: middle;
 }
 
 .SponsorsPanel--container { 
   position: absolute;
   text-align: center;
-=======
-  text-align: center;
   vertical-align: middle;
-  position: relative;
+  position: absolute;
+
+  left: -50%;  
+  top: -50%;
+
+  height: 100%;
 }
 
-.SponsorsCard span {
+.SponsorsPanel > span {
+   position: relative;
+   display: block;
+   margin: 20px auto;
+   height: 200px; 
+   padding: 0px;
+}
+
+.SponsorsPanel > span > span{
    position: absolute;
-   left: 50%;  
+   left: 50%;
    top: 50%;
    display: block;
-   width: 500px;
-   height: 200px;
-   text-align: middle;
->>>>>>> bbc55dfde568a08dcfe26595a5d32e3025bd2413
+   height: 50%;
+   width: 50%;
+   
 }
 
 .sponsor-image {
-  height: 200px;
-<<<<<<< HEAD
-=======
-  position: absolute;
+  position: absolute;  
   left: -50%;
   top: -50%;
->>>>>>> bbc55dfde568a08dcfe26595a5d32e3025bd2413
 }
 
 .strong {

@@ -66,10 +66,10 @@ export default class Dashboard extends React.Component {
             <span className="strong">Événements Maison Notman</span> &bull; Notman House Events
           </Panel>
 
-          <Columns>
+
             <SponsorsPanel/>
             <DeviceCard deviceData={this.state.deviceData}/>
-          </Columns>
+
 
           <EventsCard events={this.state.events}/>
 

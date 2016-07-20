@@ -2,12 +2,12 @@ import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const SPONSORS = [
-  'bdc.jpg',
-  'hydro-quebec.svg',
-  'google-for-partner.png',
-  'quickbooks_intuit.png',
-  'FTQ.jpg',
-  'videotron.svg'
+  ['bdc.jpg', [641,427]],
+  ['hydro-quebec.svg', [745,237]],
+  ['google-for-partner.png', [937,936]],
+  ['quickbooks_intuit.png', [1400,381]],
+  ['FTQ.jpg', [639,174]],
+  ['videotron.svg', [400,80]]
 ];
 
 const INTERVAL = 9000;
@@ -27,7 +27,11 @@ export default class SponsorsPanel extends React.Component {
   }
 
   getCurrentSponsorImageUrl() {
-    return '/logos/' + SPONSORS[this.state.index];
+    return '/logos/' + SPONSORS[this.state.index][0];
+  }
+
+  getCurrentSponsorImageDimensions() {
+    return SPONSORS[this.state.index][1];
   }
 
   update() {
@@ -36,13 +40,27 @@ export default class SponsorsPanel extends React.Component {
     this.setState({index});
   }
 
-  render() {  
+  render() {
+
+     var dimensions = this.getCurrentSponsorImageDimensions();
+     var ratio = 200 / dimensions[1];
+
+     var style = {
+        width: Math.round(dimensions[0] * ratio)+ 'px',
+        height: Math.round(dimensions[1] * ratio) + 'px'
+     };
+
+     var spanStyle = {
+        width: Math.round(dimensions[0] * ratio)+ 'px',
+        height: Math.round(dimensions[1] * ratio) + 'px'
+     }
+
     return <div className="Card SponsorsPanel">
-        <ReactCSSTransitionGroup transitionName="transition" transitionEnterTimeout={1500} transitionLeaveTimeout={1500}>
-          <div className="SponsorsPanel--container" key={this.getCurrentSponsorImageUrl()}>
-            <img className="sponsor-image" src={this.getCurrentSponsorImageUrl()}/>
-          </div>
+        <span>
+        <ReactCSSTransitionGroup transitionName="transition" transitionEnterTimeout={1500} transitionLeaveTimeout={1500} style={spanStyle}>
+            <img className="sponsor-image " id={"sponsor-image-" + this.state.index} key={this.getCurrentSponsorImageUrl()} src={this.getCurrentSponsorImageUrl()} style={style}/>
         </ReactCSSTransitionGroup>
+        </span>
     </div>;
   }
 }
