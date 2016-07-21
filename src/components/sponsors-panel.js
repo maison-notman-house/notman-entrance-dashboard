@@ -11,7 +11,8 @@ const SPONSORS = [
   ['quickbooks_intuit.png', [1400,381]],
   ['FTQ.jpg', [639,174]],
   ['videotron.svg', [400,80]],
-  ['Banque_nationale_du_Canada_Logo.png', [1703,444]]
+  ['Banque_nationale_du_Canada_Logo.png', [1703,444],
+  ['investissement-quebec.jpg', [2552,1037]]
 ];
 
 const INTERVAL = 9000;
