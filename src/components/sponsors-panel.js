@@ -2,6 +2,10 @@ import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const SPONSORS = [
+  ['5000.png', [5038,850]],
+  ['1000.png',[3983,800]],
+  ['caisse.png', [1756,438]],
+  ['videotron-service.png', [1626,317]],
   ['password_box.png', [1193,1199]],
   ['dan_robichaud.png', [1074,300]],
   ['government.png', [4066,700]],
@@ -11,11 +15,11 @@ const SPONSORS = [
   ['quickbooks_intuit.png', [1400,381]],
   ['FTQ.jpg', [639,174]],
   ['videotron.svg', [400,80]],
-  ['Banque_nationale_du_Canada_Logo.png', [1703,444],
+  ['Banque_nationale_du_Canada_Logo.png', [1703,444]],
   ['investissement-quebec.jpg', [2552,1037]]
 ];
 
-const INTERVAL = 9000;
+const INTERVAL = 3500;
 
 export default class SponsorsPanel extends React.Component {
   constructor() {
