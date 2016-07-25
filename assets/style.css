@@ -244,3 +244,8 @@ h3 {
    background-color: rgba(255,255,255, 0.0);
    margin: 90px;
 }
+
+.VideoPanel iframe {
+   border: none;
+   background-color: transparent;
+}

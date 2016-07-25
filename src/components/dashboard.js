@@ -81,6 +81,7 @@ export default class Dashboard extends React.Component {
           <CurrentWeatherCard weatherData={this.state.context.currentWeatherData}/>
 
           <VideoPanel/>
+
         </div>
       );
   }
