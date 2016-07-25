@@ -210,3 +210,9 @@ h3 {
 .eventtime {
     font-weight: bold;
 }
+
+.event {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+}
