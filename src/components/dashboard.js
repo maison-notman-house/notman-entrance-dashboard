@@ -77,7 +77,6 @@ export default class Dashboard extends React.Component {
           <EventsCard events={this.state.events}/>
 
           <CurrentWeatherCard weatherData={this.state.context.currentWeatherData}/>
-          <ForecastWeatherCard weatherData={this.state.context.forecastWeatherData}/>
 
         </div>
       );
