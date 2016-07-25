@@ -10,6 +10,8 @@ import DeviceCard from './device-card';
 import SponsorsPanel from './sponsors-panel';
 import Columns from './columns';
 import CurrentDate from './current-date';
+import VideoPanel from './video-panel';
+
 
 export default class Dashboard extends React.Component {
   constructor(props) {
@@ -78,6 +80,7 @@ export default class Dashboard extends React.Component {
 
           <CurrentWeatherCard weatherData={this.state.context.currentWeatherData}/>
 
+          <VideoPanel/>
         </div>
       );
   }

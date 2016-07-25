@@ -79,6 +79,7 @@ body {
   position: absolute;  
   left: -50%;
   top: -50%;
+  -x-webkit-image-rendering: crisp-edges;
 }
  
 
@@ -221,4 +222,10 @@ h3 {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow-x: hidden;
+}
+
+.VideoPanel {
+   text-align: center;
+   background-color: rgba(255,255,255, 0.0);
+   margin: 60px;
 }
