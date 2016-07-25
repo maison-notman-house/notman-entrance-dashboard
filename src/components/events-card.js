@@ -9,14 +9,6 @@ export default function EventsCard({events}) {
     </div>;
 }
 
-
-function createTitle(title) {
-   if (title && title.length > 50) {
-     title = title.substring(0,50) + '...';
-   }
-   return title;
-}
-
 function locationForDisplay (room) {
    const locationMap = {
       'cafe': 'osmo café',
@@ -34,13 +26,13 @@ function locationForDisplay (room) {
 function createDay(e) {
 
   let items = e.items.map((e,idx) => {
-    return <div className="event" key={e.date + '-' + idx}> <span className={"roomlabel " + e.tags.join(', ').replace(' ','') } >{locationForDisplay(e.tags.join(', ')) }</span> <span className="eventtime">{e.start}</span> <span className="eventname">{createTitle(e.title)}</span></div>;
+    return <div className="event" key={e.date + '-' + idx}> <span className={"roomlabel " + e.tags.join(', ').replace(' ','') } >{locationForDisplay(e.tags.join(', ')) }</span> <span className="eventtime">{e.start}</span> <span className="eventname">{e.title}</span></div>;
   });
 
   return <div className="EventsCard-day" key={e.date}>
-    <h3>
+    <div className="EventsCard-day-name">
       {e.day}
-    </h3>
+    </div>
 
     {items}
   </div>;
