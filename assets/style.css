@@ -22,6 +22,8 @@ body {
   margin: 0;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  position: relative;
+  height: 1900px;
 }
 
 /* CSS Transition group */
@@ -248,4 +250,10 @@ h3 {
 .VideoPanel iframe {
    border: none;
    background-color: transparent;
+}
+
+footer {
+    position: absolute;
+    bottom: 0px;
+    left: 5px;
 }
