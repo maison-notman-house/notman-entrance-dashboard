@@ -216,3 +216,9 @@ h3 {
     margin: 0 auto;
     display: block;
 }
+
+.event {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+}
