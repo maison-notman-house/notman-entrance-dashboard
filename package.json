@@ -1,9 +1,10 @@
 {
-  "name": "cafe-screen",
+  "name": "notman-entrance-dashboard",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "deploy": "npm run build && s3-website deploy build/ -d notman-entrance-dashboard",
     "build": "webpack && cp -r assets/* build/",
     "dev-server": "webpack-dev-server --port ${PORT:-8080} --host 0.0.0.0 --inline --content-base assets --no-info",
     "start": "npm run dev-server"
@@ -21,6 +22,7 @@
     "react": "^15.1.0",
     "react-addons-css-transition-group": "^15.2.1",
     "react-dom": "^15.1.0",
+    "s3-website": "^2.0.0",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
   }
