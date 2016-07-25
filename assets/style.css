@@ -14,14 +14,14 @@ body {
   margin: 0;
   font-size: 44px;
   font-weight: 300;
-  
+
   font-family: 'Roboto Condensed', sans-serif;
   color: #606060;
-  
+
   background-image: linear-gradient(-21deg, #6959b1, #dacde5);
   margin: 0;
   background-repeat: no-repeat;
-  background-attachment: fixed;  
+  background-attachment: fixed;
 }
 
 /* CSS Transition group */
@@ -51,7 +51,7 @@ body {
   height: 260px;
   position: relative;
   overflow-y: hidden;
-  overflow-x: hidden; 
+  overflow-x: hidden;
   vertical-align: middle;
 }
 
@@ -60,7 +60,7 @@ body {
    position: relative;
    display: block;
    margin: 10px auto;
-   height: 200px; 
+   height: 200px;
    padding: 0px;
 }
 
@@ -72,15 +72,15 @@ body {
    position: absolute;
    left: 50%;
    top: 50%;
-   display: block;   
+   display: block;
 }
 
 .sponsor-image {
-  position: absolute;  
+  position: absolute;
   left: -50%;
   top: -50%;
 }
- 
+
 
 .strong {
   font-weight: 700;
@@ -106,17 +106,25 @@ body {
   transition: opacity 1500ms;
 }
 
-.EventsCard-day-name {
-    font-weight: bold;
+.EventsCard {
+  font-size: 36px;
 }
 
-.EventsCard-day {
-	margin-bottom: 7px;
+.EventsCard-day-name {
+  font-weight: 700;
+  margin-top: 30px;
+  font-size: 40px;
+}
+
+.EventsCard-day:first-child .EventsCard-day-name{
+  margin-top: 0;
 }
 
 h3 {
-    margin-top: 0px;
-    font-weight: bold;
+  margin: 0;
+}
+
+.EventsCard-day {
 	margin-bottom: 7px;
 }
 
@@ -124,15 +132,22 @@ h3 {
     margin-right: 7px;
 }
 
+.event {
+  margin: 10px 0;
+}
+
 .roomlabel {
-	padding: 3px 15px 3px 15px;
-    border-radius: 10px;
-    color: white;
-    white-space: nowrap;
-    display: inline-block;
-    width: 230px;
-    text-align: center; 
-    margin-bottom: 5px;   
+  vertical-align: 3px;
+  padding: 5px 0;
+  font-size: 24px;
+  font-weight: 400;
+  border-radius: 10px;
+  color: white;
+  white-space: nowrap;
+  display: inline-block;
+  width: 170px;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .roomlabel.cafe, .roomlabel.café {
