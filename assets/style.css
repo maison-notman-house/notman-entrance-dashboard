@@ -10,6 +10,7 @@ html {
 }
 
 body {
+  cursor: none;
   margin: 0;
   font-size: 44px;
   font-weight: 300;
@@ -18,7 +19,6 @@ body {
   color: #606060;
   
   background-image: linear-gradient(-21deg, #6959b1, #dacde5);
-  height: 100%;
   margin: 0;
   background-repeat: no-repeat;
   background-attachment: fixed;  
