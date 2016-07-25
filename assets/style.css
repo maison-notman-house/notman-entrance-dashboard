@@ -36,7 +36,7 @@ body {
 
 .Panel {
   background-color: white;
-  padding: 40px; 
+  padding: 20px; 
 }
 
 .LogoHeader {
@@ -209,4 +209,10 @@ h3 {
 
 .eventtime {
     font-weight: bold;
+}
+
+#datenow {
+    text-align: center;
+    margin: 0 auto;
+    display: block;
 }

@@ -9,6 +9,7 @@ import ForecastWeatherCard from './forecastweather-card';
 import DeviceCard from './device-card';
 import SponsorsPanel from './sponsors-panel';
 import Columns from './columns';
+import CurrentDate from './current-date';
 
 export default class Dashboard extends React.Component {
   constructor(props) {
@@ -57,13 +58,15 @@ export default class Dashboard extends React.Component {
   }
 
   render() {
+      var lang = 'en';
+
       return (
-        <div>
+        <div lang={lang}>
 
           <LogoHeader/>
 
           <Panel>
-            <span className="strong">Événements Maison Notman</span> &bull; Notman House Events
+            <CurrentDate/>
           </Panel>
 
 

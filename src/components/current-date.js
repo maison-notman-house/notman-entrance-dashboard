@@ -7,12 +7,12 @@ import Moment from 'moment';
 // }
 
 
-export default class CurrentTimeComponent  extends React.Component {
+export default class CurrentDateComponent  extends React.Component {
 
   setTime() {
      var lang = 'en';
      this.setState({
-        time: Moment(new Date()).locale(lang).format('HH:mm')
+        time: Moment(new Date()).locale(lang).format('dddd, DD MMMM YYYY')
      });
   }
 
@@ -27,11 +27,11 @@ export default class CurrentTimeComponent  extends React.Component {
   componentDidMount() {
   	 window.setInterval(function () {
       this.setTime();
-    }.bind(this), 1000);
+    }.bind(this), 60000);
   }
 
   render() {
-   return <span id="timenow">{this.state.time}</span>
+    return <span id="datenow">{this.state.time}</span>
   }
 
 }
