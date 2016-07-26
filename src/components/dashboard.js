@@ -34,9 +34,6 @@ export default class Dashboard extends React.Component {
       this.setState({context: this.state.context})
     });
 
-    this.getDeviceData().then(deviceData => {
-      this.setState({deviceData})
-    });
   }
 
   getEvents() {
@@ -54,11 +51,6 @@ export default class Dashboard extends React.Component {
       .then(response => response.json());
   }
 
-  getDeviceData() {
-    return fetch('http://www.hyperlocalcontext.com/contextat/directory/notman')
-      .then(response => response.json());
-  }
-
   render() {
       var lang = 'en';
 
@@ -73,7 +65,7 @@ export default class Dashboard extends React.Component {
 
 
             <SponsorsPanel/>
-            <DeviceCard deviceData={this.state.deviceData}/>
+            <DeviceCard />
 
 
           <EventsCard events={this.state.events}/>
@@ -81,6 +73,7 @@ export default class Dashboard extends React.Component {
           <CurrentWeatherCard weatherData={this.state.context.currentWeatherData}/>
 
           <VideoPanel/>
+
         </div>
       );
   }

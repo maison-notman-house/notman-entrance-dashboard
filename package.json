@@ -19,9 +19,9 @@
     "babel-preset-stage-0": "^6.5.0",
     "classnames": "^2.2.5",
     "moment": "^2.14.1",
-    "react": "^15.1.0",
+    "react": "^15.2.1",
     "react-addons-css-transition-group": "^15.2.1",
-    "react-dom": "^15.1.0",
+    "react-dom": "^15.2.1",
     "s3-website": "^2.0.0",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
