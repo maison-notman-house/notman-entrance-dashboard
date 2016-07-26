@@ -38,7 +38,7 @@ export default class DeviceCardComponent  extends React.Component {
   	   name:'Reely Active',
   	   logo: '/logos/reelyactive.png',
   	   url: 'https://www.hyperlocalcontext.com/contextat/directory/notman',
-  	   text: 'Current building occupancy is ',
+  	   text: value => `Current building occupancy is ${value}`,
   	   value: function(deviceData) {
             var deviceCount = 0;
             if (typeof deviceData !== 'undefined') {
@@ -67,7 +67,7 @@ export default class DeviceCardComponent  extends React.Component {
     return  <div className="DeviceCard Card">
                 <div>
                     <img className="DeviceCard--icon" src="/house-emojis/hackthehouse-smiling.gif"/>
-                    {this.state.device.text} {this.state.device.value(this.state.data)}.
+                    {this.state.device.text(this.state.device.value(this.state.data))}.
                     <div className="deviceVendor">
 
                         Data provided by <img className="vendorLogo" src={this.state.device.logo} />
