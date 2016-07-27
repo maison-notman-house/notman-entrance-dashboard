@@ -9,7 +9,7 @@ const SPONSORS = [
   ['password_box.png', [1193,1199]],
   ['dan_robichaud.png', [1074,300]],
   ['government.png', [4066,800]],
-  ['bdc.jpg', [641,427]],
+  ['bdc_logo.png', [644,325]],
   ['hydro-quebec.svg', [745,237]],
   ['google-for-partner.png', [937,936]],
   ['quickbooks_intuit.png', [1400,381]],
@@ -45,7 +45,6 @@ export default class SponsorsPanel extends React.Component {
 
   update() {
     let index = (this.state.index + 1) % SPONSORS.length;
-    console.log('Changed index to', index);
     this.setState({index});
   }
 
