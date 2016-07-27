@@ -16,22 +16,17 @@ import VideoPanel from './video-panel';
 export default class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { context : {} }
+    this.state = { context: {} }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.getEvents().then(events => {
-      this.setState({events})
-    });
-
-    this.getCurrentWeatherData().then(weatherData => {
-      this.state.context.currentWeatherData = weatherData;
-      this.setState({context: this.state.context})
+      this.setState({ events })
     });
 
     this.getForecastWeatherData().then(weatherData => {
       this.state.context.forecastWeatherData = weatherData;
-      this.setState({context: this.state.context})
+      this.setState({ context: this.state.context })
     });
 
   }
@@ -41,40 +36,33 @@ export default class Dashboard extends React.Component {
       .then(response => response.json());
   }
 
-  getCurrentWeatherData() {
-    return fetch('http://api.openweathermap.org/data/2.5/weather?id=6077243&APPID=dc252e41ccdd53d06d044cde8f15dedb&units=metric&lang=en')
-      .then(response => response.json());
-  }
-
   getForecastWeatherData() {
     return fetch('http://api.openweathermap.org/data/2.5/forecast?id=6077243&units=metric&appid=dc252e41ccdd53d06d044cde8f15dedb')
       .then(response => response.json());
   }
 
   render() {
-      var lang = 'en';
+    var lang = 'en';
 
-      return (
-        <div lang={lang}>
+    return (
+      <div lang={lang}>
 
-          <LogoHeader/>
+        <LogoHeader/>
 
-          <Panel>
-            <CurrentDate/>
-          </Panel>
+        <Panel>
+          <CurrentDate/>
+        </Panel>
 
+        <SponsorsPanel/>
+        <DeviceCard />
 
-            <SponsorsPanel/>
-            <DeviceCard />
+        <EventsCard events={this.state.events}/>
 
+        <CurrentWeatherCard weatherData={this.state.context.currentWeatherData}/>
 
-          <EventsCard events={this.state.events}/>
+        <VideoPanel/>
 
-          <CurrentWeatherCard weatherData={this.state.context.currentWeatherData}/>
-
-          <VideoPanel/>
-
-        </div>
-      );
+      </div>
+    );
   }
 }

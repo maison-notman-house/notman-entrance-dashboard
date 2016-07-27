@@ -30,9 +30,6 @@ export default class DeviceCardComponent  extends React.Component {
 
   componentWillMount() {
 
-     // TODO ideally we should be able to do something like:
-     //    'Current building occupancy is ${value}'
-
   	this.sourceIdx = 0;
   	this.sources = [{
   	   name:'Reely Active',
