@@ -1,39 +1,72 @@
 import React from 'react';
 
-export default function EventsCard({events}) {
+export default class EventsCardComponent extends React.Component {
 
-    events = events || [];
+  updateEventsData() {
 
-    return <div className="EventsCard Card">
-      {events.map(createDay)}
-    </div>;
-}
+    var scope = this;
+    var data = fetch(this.fetchUrl).then(response => response.json()).then(function (data) {
+      return data;
+    }).then(function (data) {
+      scope.setState({
+        events: data
+      });
+    });
 
-function locationForDisplay (room) {
-   const locationMap = {
+  }
+
+  locationForDisplay(room) {
+    const locationMap = {
       'cafe': 'osmo café',
       'big room': 'big room',
       'glass door room': 'glass door',
       'glass door': 'glass door'
-   };
-   if (locationMap[room]) {
-       return locationMap[room];
-   }
+    };
+    if (locationMap[room]) {
+      return locationMap[room];
+    }
 
-   return room;
-}
+    return room;
+  }
 
-function createDay(e) {
+  createDay(e) {
+    var scope = this;
 
-  let items = e.items.map((e,idx) => {
-    return <div className="event" key={e.date + '-' + idx}> <span className={"roomlabel " + e.tags.join(', ').replace(' ','') } >{locationForDisplay(e.tags.join(', ')) }</span> <span className="eventtime">{e.start}</span> <span className="eventname">{e.title}</span></div>;
-  });
+    let items = e.items.map((e, idx) => {
+      return <div className="event" key={e.date + '-' + idx}> <span className={"roomlabel " + e.tags.join(', ').replace(' ', '') } >{this.locationForDisplay(e.tags.join(', ')) }</span> <span className="eventtime">{e.start}</span> <span className="eventname">{e.title}</span></div>;
+    });
 
-  return <div className="EventsCard-day" key={e.date}>
-    <div className="EventsCard-day-name">
-      {e.day}
-    </div>
+    return <div className="EventsCard-day" key={e.date}>
+      <div className="EventsCard-day-name">
+        {e.day}
+      </div>
 
-    {items}
-  </div>;
+      {items}
+    </div>;
+  }
+
+  componentWillMount() {
+    this.fetchUrl = 'https://notman.herokuapp.com/api/events?24hour=1';
+    this.updateEventsData();
+  }
+
+
+  componentDidMount() {
+    window.setInterval(function () {
+      this.updateEventsData();
+    }.bind(this), (30 * 60 * 1000));
+  }
+
+  render() {
+
+    let events = [];
+    if (this.state && this.state.events) {
+      events = this.state.events;
+    }
+
+    return <div className="EventsCard Card">
+      {events.map(e => { return this.createDay(e) }) }
+    </div>;
+  }
+
 }
