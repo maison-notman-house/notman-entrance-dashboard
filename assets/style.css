@@ -200,7 +200,7 @@ h3 {
     font-size: 20px;
     position: absolute;
     right: 10px;
-    top: 25px;
+    top: 15px;
     line-height: 28px;
 }
 
@@ -256,4 +256,8 @@ footer {
     position: absolute;
     bottom: 0px;
     left: 5px;
+}
+
+.DeviceCard .lastUpdated {
+   font-size: 12px;
 }

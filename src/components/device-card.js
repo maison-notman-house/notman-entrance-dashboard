@@ -1,4 +1,5 @@
 import React from 'react';
+import Moment from 'moment';
 
 export default class DeviceCardComponent  extends React.Component {
 
@@ -18,7 +19,8 @@ export default class DeviceCardComponent  extends React.Component {
      }).then(function(data) {
          scope.setState({
             device:  scope.sources[idx],
-            data: data
+            data: data,
+            lastUpdated: new Date()
          });
      });
 
@@ -57,6 +59,16 @@ export default class DeviceCardComponent  extends React.Component {
 
   render() {
 
+    var lastUpdated = '';
+    var lang = 'en';
+
+    if (this.state && this.state.lastUpdated) {
+        var time = Moment(this.state.lastUpdated).locale(lang).format('HH:mm');
+        var date = Moment(this.state.lastUpdated).locale(lang).format('DD MMMM YYYY');
+
+        lastUpdated = `Last updated at: ${time} on ${date}`;
+    }
+
     if (!this.state) {
         return  <div className="DeviceCard Card"><div></div></div>;
     }
@@ -65,9 +77,11 @@ export default class DeviceCardComponent  extends React.Component {
                 <div>
                     <img className="DeviceCard--icon" src="/house-emojis/hackthehouse-smiling.gif"/>
                     {this.state.device.text(this.state.device.value(this.state.data))}.
+                    
                     <div className="deviceVendor">
 
                         Data provided by <img className="vendorLogo" src={this.state.device.logo} />
+                        <div className="lastUpdated">{lastUpdated}</div>
                     </div>
                 </div>
             </div>;
