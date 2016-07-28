@@ -31,12 +31,13 @@ export default class CurrentWeatherCardComponent extends React.Component {
   componentWillMount() {
     this.fetchUrl = 'http://api.openweathermap.org/data/2.5/weather?id=6077243&APPID=dc252e41ccdd53d06d044cde8f15dedb&units=metric&lang=en';
     this.updateWeatherData();
+    this.refreshIntervalMinutes = 15;
   }
 
   componentDidMount() {
     window.setInterval(function () {
       this.updateWeatherData();
-    }.bind(this), 15000);
+    }.bind(this), (this.refreshIntervalMinutes  * 60 * 1000)); // referesh every 15 min
   }
 
   render() {
