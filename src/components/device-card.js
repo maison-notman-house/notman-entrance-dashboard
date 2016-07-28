@@ -32,6 +32,7 @@ export default class DeviceCardComponent  extends React.Component {
 
   componentWillMount() {
 
+    this.refreshIntervalMinutes = 1;
   	this.sourceIdx = 0;
   	this.sources = [{
   	   name:'Reely Active',
@@ -40,8 +41,17 @@ export default class DeviceCardComponent  extends React.Component {
   	   text: value => `Current building occupancy is ${value}`,
   	   value: function(deviceData) {
             var deviceCount = 0;
+            var i=0;        
+
             if (typeof deviceData !== 'undefined') {
-                deviceCount = Object.keys(deviceData.devices).length;
+                var devices = deviceData.devices;
+                var key;
+                for (key in devices) {
+                    var device = devices[key];
+                    if (device.nearest && device.url !== 'http://reelyactive.com/products/ra-r436/') {
+                        deviceCount++;  
+                    }
+                }
             }
             return deviceCount;
   	   }
@@ -54,7 +64,7 @@ export default class DeviceCardComponent  extends React.Component {
   componentDidMount() {
          window.setInterval(function () {
           this.setDeviceData();
-        }.bind(this), 30000);
+        }.bind(this), (this.refreshIntervalMinutes * 60 * 1000));
   }
 
   render() {

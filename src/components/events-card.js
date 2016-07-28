@@ -46,6 +46,7 @@ export default class EventsCardComponent extends React.Component {
   }
 
   componentWillMount() {
+    this.refreshIntervalMinutes = 15;
     this.fetchUrl = 'https://notman.herokuapp.com/api/events?24hour=1';
     this.updateEventsData();
   }
@@ -54,7 +55,7 @@ export default class EventsCardComponent extends React.Component {
   componentDidMount() {
     window.setInterval(function () {
       this.updateEventsData();
-    }.bind(this), (30 * 60 * 1000));
+    }.bind(this), (this.refreshIntervalMinutes * 60 * 1000));
   }
 
   render() {
