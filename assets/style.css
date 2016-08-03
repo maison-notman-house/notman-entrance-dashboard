@@ -18,12 +18,27 @@ body {
   font-family: 'Roboto Condensed', sans-serif;
   color: #606060;
 
-  background-image: linear-gradient(-21deg, #6959b1, #dacde5);
+/*   background-image: linear-gradient(-21deg, #6959b1, #dacde5); */
   margin: 0;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background: transparent;
   position: relative;
   height: 1900px;
+}
+
+.backgroundvideo {
+    transform: rotate(90deg) scaleX(2) scaleY(2);
+    
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    right: 0;
+    z-index: -4;
+
+    height: 1080px%;
+    width: 1920px%;
 }
 
 /* CSS Transition group */
@@ -261,3 +276,5 @@ footer {
 .DeviceCard .lastUpdated {
    font-size: 12px;
 }
+
+
