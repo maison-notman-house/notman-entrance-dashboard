@@ -38,7 +38,7 @@ export default class DeviceCardComponent  extends React.Component {
   	   name:'Reely Active',
   	   logo: '/logos/reelyactive.png',
   	   url: 'https://www.hyperlocalcontext.com/contextat/directory/notman',
-  	   text: value => `Current building occupancy is ${value}`,
+  	   text: value => `Occupants detected via Bluetooth ${value}`,
   	   value: function(deviceData) {
             var deviceCount = 0;
             var i=0;        
