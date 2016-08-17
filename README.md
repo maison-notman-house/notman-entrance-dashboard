@@ -1,11 +1,15 @@
+
 # Notman Entrance Dashboard Prototype
 
 This project contains only the front-end of the dashboard. It's intended to run full-screen on a vertical (1080x1920) screen.
 
+## Screenshot
+
+![screenshot](screenshot.png)
+
 ## Components
 
 The top-level component is [`src/components/dashboard.js`](src/components/dashboard.js).
-
 
 ## Contributing
 
