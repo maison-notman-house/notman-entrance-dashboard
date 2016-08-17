@@ -33,15 +33,15 @@ export default class DeviceCardComponent  extends React.Component {
   componentWillMount() {
 
     this.refreshIntervalMinutes = 1;
-  	this.sourceIdx = 0;
-  	this.sources = [{
-  	   name:'Reely Active',
-  	   logo: '/logos/reelyactive.png',
-  	   url: 'https://www.hyperlocalcontext.com/contextat/directory/notman',
-  	   text: value => `Occupants detected via Bluetooth ${value}`,
-  	   value: function(deviceData) {
+    this.sourceIdx = 0;
+    this.sources = [{
+       name:'Reely Active',
+       logo: '/logos/reelyactive.png',
+       url: 'https://www.hyperlocalcontext.com/contextat/directory/notman',
+       text: value => `${value} occupant${value == 1 ? '' : 's'} detected via Bluetooth`,
+       value: function(deviceData) {
             var deviceCount = 0;
-            var i=0;        
+            var i=0;
 
             if (typeof deviceData !== 'undefined') {
                 var devices = deviceData.devices;
@@ -49,13 +49,13 @@ export default class DeviceCardComponent  extends React.Component {
                 for (key in devices) {
                     var device = devices[key];
                     if (device.nearest && device.url !== 'http://reelyactive.com/products/ra-r436/') {
-                        deviceCount++;  
+                        deviceCount++;
                     }
                 }
             }
             return deviceCount;
-  	   }
-  	   }];
+       }
+       }];
 
        this.setDeviceData();
   }
@@ -87,7 +87,7 @@ export default class DeviceCardComponent  extends React.Component {
                 <div>
                     <img className="DeviceCard--icon" src="/house-emojis/hackthehouse-smiling.gif"/>
                     {this.state.device.text(this.state.device.value(this.state.data))}.
-                    
+
                     <div className="deviceVendor">
 
                         Data provided by <img className="vendorLogo" src={this.state.device.logo} />
