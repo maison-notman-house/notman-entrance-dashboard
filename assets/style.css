@@ -151,7 +151,11 @@ h3 {
   width: 170px;
   text-align: center;
   text-transform: uppercase;
+
+  /* default color */
+  background-color: #909090;
 }
+
 
 .roomlabel.cafe, .roomlabel.café {
     background-color: brown;
