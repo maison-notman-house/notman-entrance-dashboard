@@ -253,9 +253,11 @@ h3 {
 }
 
 footer {
-    position: absolute;
+    position: fixed;
     bottom: 0px;
-    left: 5px;
+    padding: 5px 12px;
+    font-size: 30px;
+    color: #d3d3d3;
 }
 
 .DeviceCard .lastUpdated {
