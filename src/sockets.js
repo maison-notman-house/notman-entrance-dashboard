@@ -1,15 +1,11 @@
 export default class MessageClient {
   constructor(url) {
     this.url = url;
-
     this.connect(url);
-    
-    console.log('MessageClient constructed');
   }
   
   connect(url) {
     if (this.isOpen()) {
-      console.log('existing socket', this.socket);
       this.socket.close();
     }
     
@@ -19,7 +15,7 @@ export default class MessageClient {
     this.socket.onclose = this.handleClose.bind(this);
     this.socket.onerror = this.handleError.bind(this);
     
-    console.log('freshly created socket:', this.socket);
+    console.log('Connecting to socket');
   }
   
   isOpen() {
@@ -45,7 +41,6 @@ export default class MessageClient {
   handleOpen(event) {
     this.socket.send(JSON.stringify({message: 'ping', count: 0}))
     console.log('open', event);
-    this.isOpen = true;
   }
   
   handleClose(event) {
