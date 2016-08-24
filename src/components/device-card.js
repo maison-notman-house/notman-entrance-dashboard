@@ -32,7 +32,7 @@ export default class DeviceCardComponent  extends React.Component {
 
   componentWillMount() {
 
-    this.refreshIntervalMinutes = 1;
+    this.refreshIntervalSeconds = 15;
     this.sourceIdx = 0;
     this.sources = [{
        name:'Reely Active',
@@ -88,7 +88,7 @@ export default class DeviceCardComponent  extends React.Component {
   componentDidMount() {
          window.setInterval(function () {
           this.setDeviceData();
-        }.bind(this), (this.refreshIntervalMinutes * 60 * 1000));
+        }.bind(this), (this.refreshIntervalSeconds * 1000));
   }
 
   render() {
