@@ -55,7 +55,31 @@ export default class DeviceCardComponent  extends React.Component {
             }
             return deviceCount;
        }
-       }];
+       }, {
+  	   name:'mySeat',
+  	   logo: '/logos/myseat.png',
+  	   // TODO fetch key from somewhere
+  	   url: ' https://apiv3.myseat.fr/Request/GetChairs/key/INSERT KEY HERE',
+  	   text: value => `${value} Seated in Osmo Café`,
+  	   value: function(deviceData) {
+  	        console.log(deviceData);
+            var seated = 0;
+            try {
+                if (deviceData && deviceData.Error.length === 0) {
+                    var i, chairs = deviceData.Content.Chairs;
+                    for (i=0; i<chairs.length; i++) {
+                        if (chairs[i].id_geometry !== 0 && chairs[i].status === 1) {
+                            seated++;
+                        }
+                    }
+                }
+            } catch (err) {
+                console.error(err);
+            }
+
+            return seated;
+  	   }
+  	   }];
 
        this.setDeviceData();
   }
