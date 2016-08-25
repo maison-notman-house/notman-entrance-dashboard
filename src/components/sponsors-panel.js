@@ -10,7 +10,7 @@ const SPONSORS = [
   ['dan_robichaud.png', [1074,300]],
   ['government.png', [4066,800]],
   ['bdc_logo.png', [644,325]],
-  ['hydro-quebec.svg', [745,237]],
+  ['hydro-quebec-2016.svg', [745,237]],
   ['google-techhub.svg', [937,936]],
   ['quickbooks_intuit.png', [1400,381]],
   ['FTQ.jpg', [639,174]],
