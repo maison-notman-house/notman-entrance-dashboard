@@ -15,12 +15,7 @@ export default class DeviceCardComponent  extends React.Component {
 
      var scope = this;
 
-     var url = scope.sources[idx].url;
-     if( this.apiKeys && this.apiKeys[scope.sources[idx].id] ) {
-         url = url.replace('API_KEY_HERE', this.apiKeys[scope.sources[idx].id]);
-     }
-
-     var data = fetch(url).then(response => response.json()).then(function(data) {
+     var data = fetch(scope.sources[idx].url).then(response => response.json()).then(function(data) {
         return data;
      }).then(function(data) {
          scope.setState({
@@ -78,7 +73,7 @@ export default class DeviceCardComponent  extends React.Component {
   	   name:'mySeat',
   	   logo: '/logos/myseat.png',
   	   // TODO fetch key from somewhere
-  	   url: ' https://apiv3.myseat.fr/Request/GetChairs/key/API_KEY_HERE',
+  	   url: 'https://notman.herokuapp.com/api/myseat/chairs',
   	   text: value => `${value} Seated in Osmo Café`,
   	   value: function(deviceData) {
   	        // Note that id_geometry = 0 should not be ignored. It simply means the
@@ -111,17 +106,10 @@ export default class DeviceCardComponent  extends React.Component {
 
 
   componentDidMount() {
-      var scope = this;
-      var data = fetch(this.apiKeysUrl).then(response => response.json()).then(function(data) {
-        return data;
-     }).then(function(data) {
-         scope.apiKeys = data;
-         window.setInterval(function () {
-            this.setDeviceData();
-        }.bind(scope), (scope.refreshIntervalSeconds * 1000));
-     }).catch(function (error) {
-        console.log('unable to fetch api keys ', error);
-     });
+      window.setInterval(function () {
+         this.setDeviceData();
+      }.bind(this), (this.refreshIntervalSeconds * 1000));
+
   }
 
   render() {
