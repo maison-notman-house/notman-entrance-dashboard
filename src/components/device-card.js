@@ -3,23 +3,35 @@ import Moment from 'moment';
 
 export default class DeviceCardComponent  extends React.Component {
 
-  setDeviceData() {
+  setDeviceData(idx) {
 
-     this.sourceIdx++;
-     if (this.sourceIdx >= this.sources.length) {
-         this.sourceIdx = 0;
+     if (idx === undefined) {
+         this.sourceIdx++;
+         if (this.sourceIdx >= this.sources.length) {
+             this.sourceIdx = 0;
+         }
+         idx = this.sourceIdx;
      }
 
-     // TODO improve this promise code
-
      var scope = this;
-     var idx = this.sourceIdx;
-     var data = fetch(scope.sources[idx].url).then(response => response.json()).then(function(data) {
+
+     var url = scope.sources[idx].url;
+     if( this.apiKeys && this.apiKeys[scope.sources[idx].id] ) {
+         url = url.replace('API_KEY_HERE', this.apiKeys[scope.sources[idx].id]);
+     }
+
+     var data = fetch(url).then(response => response.json()).then(function(data) {
         return data;
      }).then(function(data) {
          scope.setState({
             device:  scope.sources[idx],
             data: data,
+            lastUpdated: new Date()
+         });
+     }).catch(function(error) {
+         scope.setState({
+            device:  scope.sources[idx],
+            data: undefined,
             lastUpdated: new Date()
          });
      });
@@ -32,9 +44,13 @@ export default class DeviceCardComponent  extends React.Component {
 
   componentWillMount() {
 
+//    this.refreshIntervalMinutes = 1;
+    this.apiKeysUrl = 'http://localhost:3000/api/keys';//'https://notman.herokuapp.com/api/keys';
+
     this.refreshIntervalSeconds = 15;
     this.sourceIdx = 0;
     this.sources = [{
+       id: 'reelyactive',
        name:'Reely Active',
        logo: '/logos/reelyactive.png',
        url: 'https://www.hyperlocalcontext.com/contextat/directory/notman',
@@ -52,43 +68,60 @@ export default class DeviceCardComponent  extends React.Component {
                         deviceCount++;
                     }
                 }
+            } else {
+                deviceCount = -1;
             }
             return deviceCount;
        }
        }, {
+       id: 'myseat',
   	   name:'mySeat',
   	   logo: '/logos/myseat.png',
   	   // TODO fetch key from somewhere
-  	   url: ' https://apiv3.myseat.fr/Request/GetChairs/key/INSERT KEY HERE',
+  	   url: ' https://apiv3.myseat.fr/Request/GetChairs/key/API_KEY_HERE',
   	   text: value => `${value} Seated in Osmo Café`,
   	   value: function(deviceData) {
-  	        console.log(deviceData);
+  	        // Note that id_geometry = 0 should not be ignored. It simply means the
+  	        // device has not been linked to the map. Which was indicated as
+  	        // being the case for the sensors in the Osmo Café
             var seated = 0;
-            try {
-                if (deviceData && deviceData.Error.length === 0) {
-                    var i, chairs = deviceData.Content.Chairs;
-                    for (i=0; i<chairs.length; i++) {
-                        if (chairs[i].id_geometry !== 0 && chairs[i].status === 1) {
-                            seated++;
+            if (typeof deviceData !== 'undefined') {
+                try {
+                    if (deviceData && deviceData.Error.length === 0) {
+                        var i, chairs = deviceData.Content.Chairs;
+                        for (i=0; i<chairs.length; i++) {
+                            if (chairs[i].status === 1) {
+                                seated++;
+                            }
                         }
                     }
+                } catch (err) {
+                    console.error(err);
                 }
-            } catch (err) {
-                console.error(err);
+            } else {
+                seated = '??';
             }
 
             return seated;
   	   }
   	   }];
 
-       this.setDeviceData();
+       this.setDeviceData(0);
   }
 
 
   componentDidMount() {
+      var scope = this;
+      var data = fetch(this.apiKeysUrl).then(response => response.json()).then(function(data) {
+        return data;
+     }).then(function(data) {
+         scope.apiKeys = data;
          window.setInterval(function () {
-          this.setDeviceData();
-        }.bind(this), (this.refreshIntervalSeconds * 1000));
+            this.setDeviceData();
+        }.bind(scope), (scope.refreshIntervalSeconds * 1000));
+     }).catch(function (error) {
+        console.log('unable to fetch api keys ', error);
+     });
   }
 
   render() {
