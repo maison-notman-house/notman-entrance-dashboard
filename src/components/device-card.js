@@ -45,7 +45,7 @@ export default class DeviceCardComponent  extends React.Component {
   componentWillMount() {
 
 //    this.refreshIntervalMinutes = 1;
-    this.apiKeysUrl = 'http://localhost:3000/api/keys';//'https://notman.herokuapp.com/api/keys';
+    this.apiKeysUrl = 'https://notman.herokuapp.com/api/keys';
 
     this.refreshIntervalSeconds = 15;
     this.sourceIdx = 0;
