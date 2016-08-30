@@ -36,7 +36,7 @@ export default class SponsorsPanel extends React.Component {
   }
 
   getCurrentSponsorImageUrl() {
-    return '/logos/' + SPONSORS[this.state.index][0];
+    return 'images/logos/' + SPONSORS[this.state.index][0];
   }
 
   getCurrentSponsorImageDimensions() {
