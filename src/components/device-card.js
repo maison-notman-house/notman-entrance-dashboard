@@ -68,39 +68,39 @@ export default class DeviceCardComponent  extends React.Component {
             }
             return deviceCount;
        }
-       }]
-//        , {
-//        id: 'myseat',
-//   	   name:'mySeat',
-//   	   logo: '/logos/myseat.png',
-//   	   // TODO fetch key from somewhere
-//   	   url: 'https://notman.herokuapp.com/api/myseat/chairs',
-//   	   text: value => `${value} Seated in Osmo Café`,
-//   	   value: function(deviceData) {
-//   	        // Note that id_geometry = 0 should not be ignored. It simply means the
-//   	        // device has not been linked to the map. Which was indicated as
-//   	        // being the case for the sensors in the Osmo Café
-//             var seated = 0;
-//             if (typeof deviceData !== 'undefined') {
-//                 try {
-//                     if (deviceData && deviceData.Error.length === 0) {
-//                         var i, chairs = deviceData.Content.Chairs;
-//                         for (i=0; i<chairs.length; i++) {
-//                             if (chairs[i].status === 1) {
-//                                 seated++;
-//                             }
-//                         }
-//                     }
-//                 } catch (err) {
-//                     console.error(err);
-//                 }
-//             } else {
-//                 seated = '??';
-//             }
-//
-//             return seated;
-//   	   }
-//   	   }];
+       }
+       , {
+       id: 'myseat',
+  	   name:'mySeat',
+  	   logo: '/logos/myseat.png',
+  	   // TODO fetch key from somewhere
+  	   url: 'https://notman.herokuapp.com/api/myseat/chairs',
+  	   text: value => `${value} Seated in Osmo Café`,
+  	   value: function(deviceData) {
+  	        // Note that id_geometry = 0 should not be ignored. It simply means the
+  	        // device has not been linked to the map. Which was indicated as
+  	        // being the case for the sensors in the Osmo Café
+            var seated = 0;
+            if (typeof deviceData !== 'undefined') {
+                try {
+                    if (deviceData && deviceData.Error.length === 0) {
+                        var i, chairs = deviceData.Content.Chairs;
+                        for (i=0; i<chairs.length; i++) {
+                            if (chairs[i].status === 1) {
+                                seated++;
+                            }
+                        }
+                    }
+                } catch (err) {
+                    console.error(err);
+                }
+            } else {
+                seated = '??';
+            }
+
+            return seated;
+  	   }
+  	   }];
 
        this.setDeviceData(0);
   }
