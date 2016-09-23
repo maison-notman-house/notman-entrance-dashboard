@@ -6,7 +6,7 @@
   "scripts": {
     "deploy": "npm run build && s3-website deploy build/ -d notman-entrance-dashboard",
     "build": "webpack && cp -r assets/* build/",
-    "dev-server": "webpack-dev-server --port ${PORT:-8080} --host 0.0.0.0 --inline --content-base assets --no-info",
+    "dev-server": "webpack-dev-server --inline --content-base assets",
     "start": "npm run dev-server"
   },
   "author": "",
@@ -21,6 +21,7 @@
     "es6-promise": "^3.2.1",
     "exports-loader": "^0.6.3",
     "fetch": "^1.1.0",
+    "fetch-jsonp": "^1.0.1",
     "imports-loader": "^0.6.5",
     "moment": "^2.14.1",
     "react": "^15.2.1",

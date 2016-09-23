@@ -10,6 +10,7 @@ import SponsorsPanel from './sponsors-panel';
 import Columns from './columns';
 import CurrentDate from './current-date';
 import VideoPanel from './video-panel';
+import STMCard from './stm-card'
 
 
 export default class Dashboard extends React.Component {
@@ -36,6 +37,8 @@ export default class Dashboard extends React.Component {
         <EventsCard/>
 
         <WeatherCard/>
+
+        <STMCard/>
 
         <VideoPanel/>
 
