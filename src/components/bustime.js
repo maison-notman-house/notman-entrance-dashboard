@@ -31,7 +31,7 @@ export default class Bustime extends React.Component {
       var nextBusTime = scope.calculateNextBusFromNow(allBusTimes);
 
       scope.setState({
-        nextBusTime: nextBusTime.join(" and ")
+        nextBusTime: nextBusTime.join(" \u2022 ")
       })
 
     })
