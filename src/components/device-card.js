@@ -47,7 +47,7 @@ export default class DeviceCardComponent  extends React.Component {
     this.sources = [{
        id: 'reelyactive',
        name:'Reely Active',
-       logo: '/logos/reelyactive.png',
+       logo: 'images/logos/reelyactive.png',
        url: 'https://www.hyperlocalcontext.com/contextat/directory/notman',
        text: value => `${value} occupant${value == 1 ? '' : 's'} detected via Bluetooth`,
        value: function(deviceData) {
@@ -72,7 +72,7 @@ export default class DeviceCardComponent  extends React.Component {
        , {
        id: 'myseat',
   	   name:'mySeat',
-  	   logo: '/logos/myseat.png',
+  	   logo: 'images/logos/myseat.png',
   	   // TODO fetch key from somewhere
   	   url: 'https://notman.herokuapp.com/api/myseat/chairs',
   	   text: value => `${value} Seated in Osmo Café`,
@@ -131,7 +131,7 @@ export default class DeviceCardComponent  extends React.Component {
 
     return  <div className="DeviceCard Card">
                 <div>
-                    <img className="DeviceCard--icon" src="/house-emojis/hackthehouse-smiling.gif"/>
+                    <img className="DeviceCard--icon" src="images/house-emojis/hackthehouse-smiling.gif"/>
                     {this.state.device.text(this.state.device.value(this.state.data))}.
 
                     <div className="deviceVendor">
