@@ -298,19 +298,22 @@ footer {
 
 .bus-card-title {
   position: relative;
-  margin-left:180px;
+  margin-left:110px;
   font-weight: bold;
   font-size: 48px;
  }
+
 .buspanel-container {
   margin-top: 10px;
   width: auto;
   display: flex;
   justify-content: left;
 }
+
 .buspanel{
   width: 33%;
 }
+
 .busline {
   font-weight: bold;
   font-size: 45px;
