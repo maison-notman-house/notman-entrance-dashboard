@@ -316,10 +316,7 @@ footer {
   font-size: 45px;
   color:#513355;
 }
-.bustime{
-  font-size: 35px;
-}
 .busMinutes{
   font-weight: bold;
-  color: black;
+  color: #513355;
 }
