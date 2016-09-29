@@ -319,3 +319,7 @@ footer {
 .bustime{
   font-size: 35px;
 }
+.busMinutes{
+  font-weight: bold;
+  color: black;
+}
