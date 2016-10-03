@@ -38,7 +38,7 @@ export default class ForecastWeatherCard extends React.Component {
     const currentCondition = this.state.currentWeather.weather[0].main;
     console.log('Current condition is ', currentCondition, this.state.currentWeather);
     const isCurrentPrecipitation = PRECIPITATION_TYPES.has(currentCondition);
-    const currentConditionDisplay = <span>{currentCondition} right now.</span>;
+    const currentConditionDisplay = <span>{currentCondition} right now. </span>;
     const precipitations = findPrecipitations(currentCondition, this.state.forecastWeather.list);
     
     let precipitationDisplay;
