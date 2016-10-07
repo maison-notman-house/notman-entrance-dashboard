@@ -18,7 +18,7 @@ export default class Bustime extends React.Component {
     var fetchUrl = 'https://i-www.stm.info/fr/lines/' + scope.state.busline 
     +'/stops/'+ scope.state.busStopCode +'/arrivals.json?callback=&d='+ dateToday
     +'&direction=' + scope.state.direction +'&wheelchair=0&_=1411829351069';
-
+    console.log(fetchUrl);
     var data = fetchJsonp(fetchUrl).then(response => response.json())
     .then( (data)  => data).then((data) => {
       
@@ -108,14 +108,14 @@ export default class Bustime extends React.Component {
 
     if (!this.state.minutesVsHours){
     		return (
-    			<div> 
-    				{direction}: <span className='bustime'> {busTimes}</span>
+    			<div className="bustime"> 
+    				{direction}: {busTimes}
     			</div>
     		)
     } else {
       return (
-          <div> 
-            {direction}: <span className='bustime'>in <span className="busMinutes">{this.state.minutesToBus[0]}</span> and <span className="busMinutes">{this.state.minutesToBus[1]}</span> minutes</span>
+          <div className="bustime"> 
+            {direction}: in<span className="busMinutes"> {this.state.minutesToBus[0]}</span> & <span className="busMinutes">{this.state.minutesToBus[1]}</span> min
           </div>
         )
     } 
