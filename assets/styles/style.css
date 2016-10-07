@@ -309,17 +309,18 @@ footer {
   display: flex;
   justify-content: left;
 }
-
 .buspanel{
   width: 33%;
 }
-
 .busline {
   font-weight: bold;
-  font-size: 45px;
+  font-size: 40px;
   color:#513355;
 }
-
 .bustime{
   font-size: 35px;
+}
+.busMinutes{
+  font-weight: bold;
+  color: #513355;
 }

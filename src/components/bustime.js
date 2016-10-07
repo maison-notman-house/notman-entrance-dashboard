@@ -7,6 +7,7 @@ export default class Bustime extends React.Component {
 	constructor() {
 	  super();
 	  this.state = { 
+      minutesVsHours: false
 	  }
 	}
 
@@ -17,7 +18,7 @@ export default class Bustime extends React.Component {
     var fetchUrl = 'https://i-www.stm.info/fr/lines/' + scope.state.busline 
     +'/stops/'+ scope.state.busStopCode +'/arrivals.json?callback=&d='+ dateToday
     +'&direction=' + scope.state.direction +'&wheelchair=0&_=1411829351069';
-
+    console.log(fetchUrl);
     var data = fetchJsonp(fetchUrl).then(response => response.json())
     .then( (data)  => data).then((data) => {
       
@@ -29,9 +30,11 @@ export default class Bustime extends React.Component {
 
       // calculate and display the next 2 buses as of now
       var nextBusTime = scope.calculateNextBusFromNow(allBusTimes);
+      var minutesToBus = scope.calculateMinutesToBus(nextBusTime);
 
       scope.setState({
-        nextBusTime: nextBusTime.join(" \u2022 ")
+        nextBusTime: nextBusTime,
+        minutesToBus: minutesToBus
       })
 
     })
@@ -48,12 +51,27 @@ export default class Bustime extends React.Component {
     } 
   }
      
+
+
+  calculateMinutesToBus(busTimes){
+    var minutes = []
+    busTimes.forEach( function(busTime){
+      var TimeofBus = Moment(busTime, "HHmm");
+      var now = Moment(Moment().locale('en').format("HHmm"), 'HHmm');
+
+      minutes.push(TimeofBus.diff(now, 'minutes'));
+    })
+    return minutes;
+  } 
+
   componentWillMount() {
 		this.setState({
 			busline: this.props.businfo.busline,
 		  direction: this.props.businfo.direction,
 		  busStopCode: this.props.businfo.busStopCode,
-		  nextBusTime: ''
+		  nextBusTime: [],
+      minutesToBus: []
+
 		})
 	}
 
@@ -62,7 +80,10 @@ export default class Bustime extends React.Component {
 
     window.setInterval(function () {
       this.getNextBusTime();
-    }.bind(this), 30000);
+      this.setState({
+        minutesVsHours:!this.state.minutesVsHours
+      })
+    }.bind(this), 10000);
   }
 
   render(){
@@ -83,10 +104,20 @@ export default class Bustime extends React.Component {
         break;
     };
 
-		return (
-			<div> 
-				{direction}: <span className='bustime'> {this.state.nextBusTime}</span>
-			</div>
-		)
+    var busTimes = this.state.nextBusTime.join(" \u2022 ");
+
+    if (!this.state.minutesVsHours){
+    		return (
+    			<div className="bustime"> 
+    				{direction}: {busTimes}
+    			</div>
+    		)
+    } else {
+      return (
+          <div className="bustime"> 
+            {direction}: in<span className="busMinutes"> {this.state.minutesToBus[0]}</span> & <span className="busMinutes">{this.state.minutesToBus[1]}</span> min
+          </div>
+        )
+    } 
   }
 }
