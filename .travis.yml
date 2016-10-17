@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - "6"
+deploy:
+  provider: s3
+  access_key_id: S3_KEY_ID
+  secret_access_key: S3_ACCESS_KEY
+  bucket: "S3 Bucket"
+  before_script:
+    - npm build
+  on:
+    branch: production  
+addons:
+  artifacts:
+    paths:  
+       - build/*
