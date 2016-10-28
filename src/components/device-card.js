@@ -47,9 +47,9 @@ export default class DeviceCardComponent  extends React.Component {
     this.sources = [{
        id: 'reelyactive',
        name:'Reely Active',
-       logo: 'images/logos/reelyactive.png',
+       logo: 'images/logos/reelyactive.svg',
        url: 'https://www.hyperlocalcontext.com/contextat/directory/notman',
-       text: value => `${value} occupant${value == 1 ? '' : 's'} detected via Bluetooth`,
+       text: value => `${value} ghost${value == 1 ? '' : 's'} haunting the house`,
        value: function(deviceData) {
             var deviceCount = 0;
             var i=0;
@@ -75,7 +75,7 @@ export default class DeviceCardComponent  extends React.Component {
   	   logo: 'images/logos/myseat.png',
   	   // TODO fetch key from somewhere
   	   url: 'https://notman.herokuapp.com/api/myseat/chairs',
-  	   text: value => `${value} Seated in Osmo Café`,
+  	   text: value => `${value} undead in Osmo Café`,
   	   value: function(deviceData) {
   	        // Note that id_geometry = 0 should not be ignored. It simply means the
   	        // device has not been linked to the map. Which was indicated as
@@ -129,15 +129,18 @@ export default class DeviceCardComponent  extends React.Component {
         return  <div className="DeviceCard Card"><div></div></div>;
     }
 
+    var imgStyle = {
+        width: '100px'
+    };
+
     return  <div className="DeviceCard Card">
                 <div>
-                    <img className="DeviceCard--icon" src="images/house-emojis/hackthehouse-smiling.gif"/>
+                    <img className="DeviceCard--icon" src="images/halloween2016/ghost-151064.svg" style={imgStyle} />
                     {this.state.device.text(this.state.device.value(this.state.data))}.
 
                     <div className="deviceVendor">
 
                         Data provided by <img className="vendorLogo" src={this.state.device.logo} />
-                        <div className="lastUpdated">{lastUpdated}</div>
                     </div>
                 </div>
             </div>;
