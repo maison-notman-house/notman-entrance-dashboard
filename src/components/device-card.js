@@ -47,7 +47,7 @@ export default class DeviceCardComponent  extends React.Component {
     this.sources = [{
        id: 'reelyactive',
        name:'Reely Active',
-       logo: 'images/logos/reelyactive.png',
+       logo: 'images/logos/reelyactive.svg',
        url: 'https://www.hyperlocalcontext.com/contextat/directory/notman',
        text: value => `${value} ghost${value == 1 ? '' : 's'} haunting the house`,
        value: function(deviceData) {
@@ -128,9 +128,13 @@ export default class DeviceCardComponent  extends React.Component {
         return  <div className="DeviceCard Card"><div></div></div>;
     }
 
+    var imgStyle = {
+        width: '100px'
+    };
+
     return  <div className="DeviceCard Card">
                 <div>
-                    <img className="DeviceCard--icon" src="images/halloween2016/ghost-151064.svg" cssStyle="width: 100px" />
+                    <img className="DeviceCard--icon" src="images/halloween2016/ghost-151064.svg" style={imgStyle} />
                     {this.state.device.text(this.state.device.value(this.state.data))}.
 
                     <div className="deviceVendor">
