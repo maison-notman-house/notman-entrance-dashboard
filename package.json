@@ -4,32 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "deploy": "npm run build && s3-website deploy build/ -d notman-entrance-dashboard",
-    "build": "webpack && cp -r assets/* build/",
-    "dev-server": "webpack-dev-server --port ${PORT:-8080} --host 0.0.0.0 --inline --content-base assets --no-info",
-    "start": "npm run dev-server"
+    "build": "react-scripts build",
+    "start": "react-scripts start"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "babel-core": "^6.10.4",
-    "babel-loader": "^6.2.4",
-    "babel-preset-es2015": "^6.14.0",
-    "babel-preset-react": "^6.11.1",
-    "babel-preset-stage-0": "^6.5.0",
     "classnames": "^2.2.5",
-    "es6-promise": "^3.2.1",
-    "exports-loader": "^0.6.3",
-    "fetch": "^1.1.0",
     "fetch-jsonp": "^1.0.1",
-    "imports-loader": "^0.6.5",
     "moment": "^2.14.1",
     "react": "^15.2.1",
     "react-addons-css-transition-group": "^15.2.1",
     "react-dom": "^15.2.1",
-    "s3-website": "^2.0.0",
-    "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1",
-    "whatwg-fetch": "^1.0.0"
+    "react-scripts": "^0.7.0"
   }
 }
