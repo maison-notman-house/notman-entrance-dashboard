@@ -16,10 +16,10 @@ body {
   font-weight: 300;
 
   font-family: 'Roboto Condensed', sans-serif;
-  color: #ff9800;
+  color: #555;
 
   background-color: black;
-  background-image: url(../images/halloween2016/halloween-back.jpg);
+  background-image: url(../images/backgrounds/Fall-Leaf-HD.jpg);
   margin: 0;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -30,7 +30,7 @@ body {
 /* CSS Transition group */
 
 .Card {
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(255,255,255,0.8);
   border-radius: 17px;
   box-shadow: 0 0 25px rgba(167, 164, 164, 0.51);
   padding: 20px 40px;
@@ -39,11 +39,11 @@ body {
 
 .Card.SponsorsPanel {
   background-color: white;
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 .Panel {
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(255,255,255,0.9);
   padding: 20px; 
 }
 
@@ -60,7 +60,7 @@ body {
   position: relative;
   overflow-y: hidden;
   overflow-x: hidden;
-  vertical-align: middle;
+  vertical-align: middle;  
 }
 
 
@@ -123,7 +123,7 @@ body {
   font-weight: 700;
   margin-top: 30px;
   font-size: 40px;
-  text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87;
+/*   text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87; */
 }
 
 .EventsCard-day:first-child .EventsCard-day-name{
@@ -238,8 +238,7 @@ h3 {
     font-size: 80px;
     color:black;
     border-radius: 17px;
-
-    text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87
+    background-color: rgba(255,255,255, 0.9);
 }
 
 .eventtime {
@@ -250,7 +249,6 @@ h3 {
     text-align: center;
     margin: 0 auto;
     display: block;
-    text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87
 }
 
 .event {
@@ -290,7 +288,6 @@ footer {
   font-size: 80%;
   text-transform: uppercase;
   font-weight: bold;
-  text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87;  
 }
 
 /*----------- stm card ------------------*/
@@ -311,8 +308,6 @@ footer {
   margin-left:110px;
   font-weight: bold;
   font-size: 48px;
-  text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87;
-
  }
 
 .buspanel-container {
