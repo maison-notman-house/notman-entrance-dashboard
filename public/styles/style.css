@@ -16,10 +16,9 @@ body {
   font-weight: 300;
 
   font-family: 'Roboto Condensed', sans-serif;
-  color: #555;
+  color: #606060;
 
-  background-color: black;
-  background-image: url(../images/backgrounds/hackthehouse.jpg);
+  background-image: linear-gradient(-21deg, #6959b1, #dacde5);
   margin: 0;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -27,24 +26,12 @@ body {
   height: 1900px;
 }
 
-/* CSS Transition group */
 
-.Card {
-  background-color: rgba(255,255,255,0.8);
-  border-radius: 17px;
-  box-shadow: 0 0 25px rgba(167, 164, 164, 0.51);
-  padding: 20px 40px;
-  margin: 20px 20px;
-}
 
-.Card.SponsorsPanel {
-  background-color: white;
-  opacity: 0.9;
-}
-
-.Panel {
-  background-color: rgba(255,255,255,0.9);
-  padding: 20px; 
+.Banner {
+  margin-bottom: 20px;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 .LogoHeader {
@@ -60,7 +47,7 @@ body {
   position: relative;
   overflow-y: hidden;
   overflow-x: hidden;
-  vertical-align: middle;  
+  vertical-align: middle;
 }
 
 
@@ -123,7 +110,6 @@ body {
   font-weight: 700;
   margin-top: 30px;
   font-size: 40px;
-/*   text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87; */
 }
 
 .EventsCard-day:first-child .EventsCard-day-name{
@@ -225,20 +211,15 @@ h3 {
     clear:both;
 }
 
-.Columns-column {
-  float: right;
-  width: 50%;
-}
-
 #timenow {
     position: absolute;
     top: -10px;
     right: 20px;
     padding: 0px 50px;
     font-size: 80px;
-    color:black;
+    color:#6959b1;
+    background-color: white;
     border-radius: 17px;
-    background-color: rgba(255,255,255, 0.9);
 }
 
 .eventtime {
@@ -330,4 +311,14 @@ footer {
 .busMinutes{
   font-weight: bold;
   color: #513355;
+}
+
+.u-cf::before,
+.u-cf::after {
+  content: " "; /* 1 */
+  display: table; /* 2 */
+}
+
+.u-cf::after {
+  clear: both;
 }

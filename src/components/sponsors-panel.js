@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
+import Card from './card';
+import './sponsors-card.css';
+
 const SPONSORS = [
   ['5000.png', [5038,950]],
   ['1000.png',[3983,800]],
@@ -18,6 +21,37 @@ const SPONSORS = [
   ['Banque_nationale_du_Canada_Logo.png', [1703,444]],
   ['investissement-quebec.jpg', [2552,1037]]
 ];
+
+const LOADED_IMAGES = [];
+let count = 0;
+
+const SPONSOR_IMAGES = SPONSORS.map(s => {
+  const img = document.createElement('img');
+  img.src = 'images/logos/' + s[0];
+  console.log('loading', s[0])
+  img.onload = function() {
+    console.log('loaded', img.src, img.height, img.width);
+    LOADED_IMAGES.push(img);
+    count++;
+    console.log('COUNT', count, 'VS', SPONSORS.length);
+    if (count == SPONSORS.length) {
+      done(LOADED_IMAGES);
+    }
+  };
+  img.onerror = function() {
+    console.log('error loading', img);
+    count++;
+    if (count == SPONSORS.length) {
+      done(LOADED_IMAGES);
+    }
+  }
+  return img;
+});
+
+function done() {
+  console.log('DONE LOADING IMAGS');
+}
+
 
 const INTERVAL = 3500;
 
@@ -44,32 +78,19 @@ export default class SponsorsPanel extends React.Component {
   }
 
   update() {
+    console.log('UPDATING SPONSORS');
     let index = (this.state.index + 1) % SPONSORS.length;
     this.setState({index});
   }
 
   render() {
-
-     var dimensions = this.getCurrentSponsorImageDimensions();
-     var ratio = 200 / dimensions[1];
-
-     var style = {
-        width: Math.round(dimensions[0] * ratio)+ 'px',
-        height: Math.round(dimensions[1] * ratio) + 'px'
-     };
-
-     var spanStyle = {
-        width: Math.round(dimensions[0] * ratio)+ 'px',
-        height: Math.round(dimensions[1] * ratio) + 'px'
-     }
-
-    return <div className="Card SponsorsPanel">
-
-        <ReactCSSTransitionGroup transitionName="transition" transitionEnterTimeout={1500} transitionLeaveTimeout={1500}>
-            <div style={spanStyle} id={"sponsor-image-" + this.state.index} key={this.getCurrentSponsorImageUrl()}>
-            <img className="sponsor-image " src={this.getCurrentSponsorImageUrl()} style={style}/>
-            </div>
-        </ReactCSSTransitionGroup>
-    </div>;
+    const backgroundImage = `url(${this.getCurrentSponsorImageUrl()})`;
+    console.log('rending card again', backgroundImage);
+    
+    return <Card size="2" className="SponsorsCard">
+      <ReactCSSTransitionGroup transitionName="transition" transitionEnterTimeout={1500} transitionLeaveTimeout={1500}>
+        <div className="SponsorsCard-image" style={{backgroundImage}} key={this.state.index}/>
+      </ReactCSSTransitionGroup>
+    </Card>;
   }
 }
