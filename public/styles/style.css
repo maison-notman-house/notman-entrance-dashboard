@@ -61,7 +61,18 @@ body {
 .Banner {
   margin-bottom: 20px;
   padding: 30px;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 1);
+  display: flex;
+  flex-flow: row;
+  flex-direction: space-around;
+}
+
+.Banner div {
+  width: 30%
+}
+
+.Banner div img {
+  max-width: 100%;
 }
 
 .LogoHeader {
