@@ -11,19 +11,17 @@ export default function DateBanner({lang}) {
   
   // Why capitalize? Because in french, the weekday is lowercase by default.
   const dateString = capitalize(date.locale(lang).format('dddd, DD MMMM'));
-  return <Banner>
   const time = capitalize(date.locale(lang).format(' HH:mm'));
   return <Banner>
-  <div>
-  	 <div><img src="../images/notman-logo.svg"/></div>
-
-      <div style={{textAlign: 'right', fontSize: '40px', lineHeight: '60px'}}>
+  	 <div>
+  	 	<img src="../images/notman-logo.svg"/>
+  	 </div>
+     <div>
+      	{time} 
+     </div>
+     <div style={{textAlign: 'right', fontSize: '40px', lineHeight: '60px'}}>
         {dateString}
-      </div>
-      <div>
-      {time} 
-      </div>
+     </div>
 
-   </div>
   </Banner>
 }
