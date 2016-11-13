@@ -54,7 +54,7 @@ export default class Dashboard extends React.Component {
         <SponsorsPanel/>
         <DeviceCard lang = {this.state.lang}/>
 
-        <EventsCard/>
+        <EventsCard lang = {this.state.lang}/>
 
         <WeatherCard lang = {this.state.lang}/>
 
