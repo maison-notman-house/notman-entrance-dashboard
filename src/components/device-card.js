@@ -1,5 +1,21 @@
 import React from 'react';
 import Moment from 'moment';
+import LocalizedStrings from 'react-localization';
+
+let strings = new LocalizedStrings({
+  en:{
+    occupant: 'occupant',
+    in: 'in',
+    people: 'people',
+    cafe: 'in Osmo Café'
+  },
+  fr: {
+    occupant: 'occupant',
+    in: 'dans',
+    people: 'personne',
+    cafe: 'dans le Café Osmo'
+  }
+})
 
 export default class DeviceCardComponent  extends React.Component {
 
@@ -49,7 +65,7 @@ export default class DeviceCardComponent  extends React.Component {
        name:'Reely Active',
        logo: 'images/logos/reelyactive.svg',
        url: 'https://www.hyperlocalcontext.com/contextat/directory/notman',
-       text: value => `${value} occupant${value == 1 ? '' : 's'} in Notman`,
+       text: value => `${value} ${strings.occupant}${value == 1 ? '' : 's'} ${strings.in} Notman`,
        value: function(deviceData) {
             var deviceCount = 0;
             var i=0;
@@ -75,7 +91,7 @@ export default class DeviceCardComponent  extends React.Component {
   	   logo: 'images/logos/myseat.png',
   	   // TODO fetch key from somewhere
   	   url: 'https://notman.herokuapp.com/api/myseat/chairs',
-  	   text: value => `${value} people in Osmo Café`,
+  	   text: value => `${value} ${strings.people}${(value == 0 || value >1 )&& this.props.lang=='fr' ? 's' : ''} ${strings.cafe}`,
   	   value: function(deviceData) {
   	        // Note that id_geometry = 0 should not be ignored. It simply means the
   	        // device has not been linked to the map. Which was indicated as
@@ -112,6 +128,11 @@ export default class DeviceCardComponent  extends React.Component {
       }.bind(this), (this.refreshIntervalSeconds * 1000));
 
   }
+
+  componentWillReceiveProps(nextProps) {
+    strings.setLanguage(nextProps.lang);
+    this.setState({})
+  } 
 
   render() {
 
