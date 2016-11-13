@@ -33,42 +33,52 @@ class CardCycler extends React.Component {
     this.state = { index: 0 };
   }
   
+  componentDidUpdate() {
+    this.refs.wrapper.classList.remove('CardCycler--transitionOut');
+    this.refs.wrapper.classList.remove('CardCycler--transitionIn');
+  }
+  
   componentDidMount() {
     this.timer = setInterval(this.onInterval, 9000);
+    
+    this.refs.wrapper.classList.remove('CardCycler--transitionIn');
   }
   
   onInterval = () => {
     let index = (this.state.index + 1) % React.Children.toArray(this.props.children).length;
     
 
-    this.refs.wrapper.style.transform = 'scale(0.95) rotateX(90deg)';
+    this.refs.wrapper.classList.add('CardCycler--transitionOut');
     setTimeout(() => {
       this.setState({index});
     }, 500);
   }
   
+  // animateCardIn() {
+  //   this.refs.wrapper.classList.add('Card--transitionIn');
+    
+  //   this.setTimeout(() => this.refs.wrapper.classList.remove('Card--transitionIn'));
+  // }
+  // animateCardOut() {
+  //   this.refs.wrapper.classList.add('Card--transitionOut');
+  //   this.setTimeout(() => this.refs.wrapper.classList.remove('Card--transitionOut'));
+  // }
+  
   render() {
     const child = React.Children.toArray(this.props.children)[this.state.index];
     console.log(child);
     
-    const wrapperStyle = {
-      transform: 'scale(0.95) rotateX(-90deg)',
-      transition: '0.5s all'
-    };
-    
-    setTimeout(() => {
-      this.refs.wrapper.style.transform = wrapperStyle.transform
-    });
-    
     console.log('Entering');
     
     const delay = 0;
-    setTimeout(() => {
-      this.refs.wrapper.style.transform = '';
-    }, 500 + delay);
+   
+    
+    // setTimeout(() => {
+    
+    // }, 500 + delay);
     
     return (
-      <div ref="wrapper" style={wrapperStyle}>
+      <div ref="wrapper" className="CardCycler CardCycler--transitionIn">
         {child}
       </div>
     );
