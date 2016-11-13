@@ -7,13 +7,15 @@ let strings = new LocalizedStrings({
     occupant: 'occupant',
     in: 'in',
     people: 'people',
-    cafe: 'in Osmo Café'
+    cafe: 'in Osmo Café',
+    vendor: 'Data provided by'
   },
   fr: {
     occupant: 'occupant',
     in: 'dans',
     people: 'personne',
-    cafe: 'dans le Café Osmo'
+    cafe: 'dans le Café Osmo',
+    vendor: 'Données fournies par'
   }
 })
 
@@ -161,7 +163,7 @@ export default class DeviceCardComponent  extends React.Component {
 
                     <div className="deviceVendor">
 
-                        Data provided by <img className="vendorLogo" src={this.state.device.logo} />
+                        {strings.vendor} <img className="vendorLogo" src={this.state.device.logo} />
                     </div>
                 </div>
             </div>;
