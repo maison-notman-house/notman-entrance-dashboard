@@ -70,7 +70,7 @@ export default class DeviceCardComponent  extends React.Component {
             return deviceCount;
        }
        }
-       , {
+       /*, {
        id: 'myseat',
   	   name:'mySeat',
   	   logo: 'images/logos/myseat.png',
@@ -101,7 +101,7 @@ export default class DeviceCardComponent  extends React.Component {
 
             return seated;
   	   }
-  	   }];
+  	   }*/];
 
        this.setDeviceData(0);
   }
