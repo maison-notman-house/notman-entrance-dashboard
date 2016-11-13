@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "react-scripts build",
-    "start": "react-scripts start"
+    "start": "react-scripts start",
+    "test" : "eslint src"
   },
   "author": "",
   "license": "MIT",
@@ -17,5 +18,9 @@
     "react-addons-css-transition-group": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-scripts": "^0.7.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.10.0",
+    "eslint-plugin-react": "^6.6.0"
   }
 }
