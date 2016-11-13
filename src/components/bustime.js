@@ -1,6 +1,24 @@
 import React from 'react';
 import fetchJsonp from 'fetch-jsonp';
 import Moment from 'moment';
+import LocalizedStrings from 'react-localization';
+
+let strings = new LocalizedStrings({
+  en:{
+    north: 'North',
+    south: 'South',
+    east: 'East ',
+    west: 'West',
+    in: 'in',
+  },
+  fr: {
+    north: 'Nord',
+    south: 'Sud',
+    east: 'Est ',
+    west: 'Ouest',
+    in: '',
+  }
+})
 
 export default class Bustime extends React.Component {
 
@@ -18,7 +36,7 @@ export default class Bustime extends React.Component {
     var fetchUrl = 'https://i-www.stm.info/fr/lines/' + scope.state.busline 
     +'/stops/'+ scope.state.busStopCode +'/arrivals.json?callback=&d='+ dateToday
     +'&direction=' + scope.state.direction +'&wheelchair=0&_=1411829351069';
-    console.log(fetchUrl);
+  //  console.log(fetchUrl);
     var data = fetchJsonp(fetchUrl).then(response => response.json())
     .then( (data)  => data).then((data) => {
       
@@ -86,21 +104,26 @@ export default class Bustime extends React.Component {
     }.bind(this), 10000);
   }
 
+  componentWillReceiveProps(nextProps) {
+    strings.setLanguage(nextProps.lang);
+    this.setState({})
+  }
+
   render(){
 
     var direction = "";
     switch(this.state.direction){
       case "N":
-        direction = "North";
+        direction = strings.north;
         break;
       case "S":
-        direction = "South";
+        direction = strings.south;
         break;
       case "E":
-        direction = "East ";
+        direction = strings.east;
         break;
       case "W":
-        direction = "West";
+        direction = strings.west;
         break;
     };
 
@@ -115,7 +138,7 @@ export default class Bustime extends React.Component {
     } else {
       return (
           <div className="bustime"> 
-            {direction}: in<span className="busMinutes"> {this.state.minutesToBus[0]}</span> & <span className="busMinutes">{this.state.minutesToBus[1]}</span> min
+            {direction}: {strings.in}<span className="busMinutes"> {this.state.minutesToBus[0]}</span> & <span className="busMinutes">{this.state.minutesToBus[1]}</span> min
           </div>
         )
     } 

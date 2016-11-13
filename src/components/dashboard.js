@@ -15,6 +15,9 @@ import CoffeeCard from './coffee-card';
 
 import Card from './card';
 
+const LANGUAGES =  ['en', 'fr']
+
+
 function TitleLine({children}) {
   return <div style={{lineHeight: '60px', fontSize: '60px'}}>{children}</div>;
 }
@@ -80,10 +83,30 @@ class CardCycler extends React.Component {
   }
 }
 
+
 export default class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      langIndex: 0,
+      lang: 'en'
+    };
+  }
+
+
+  changeLanguage(){
+    let langIndex = (this.state.langIndex + 1) % LANGUAGES.length;
+    this.setState({
+      langIndex: langIndex,
+      lang: LANGUAGES[langIndex]
+    }) 
+  }
+
+  componentDidMount(){
+
+    window.setInterval(function () {
+      this.changeLanguage();
+    }.bind(this), 3000);
   }
 
   render() {
@@ -92,14 +115,24 @@ export default class Dashboard extends React.Component {
     return (
       <div lang={lang}>
       
-        <Banner>
-          <TitleLine>Saturday, November 12, 2016</TitleLine>
+
+       <Banner>
+          <CurrentDate/>
         </Banner>
-        
+
+    
 
         <CardCycler>
           <CoffeeCard/>
         </CardCycler>
+
+
+        <Panel>
+          <CurrentDate lang = {this.state.lang}/>
+        </Panel>
+
+        <SponsorsPanel/>
+        <DeviceCard lang = {this.state.lang}/>
 
           <SponsorsCard/>
         <Columns>
@@ -111,9 +144,7 @@ export default class Dashboard extends React.Component {
           </Card>
         </Columns>
         
-        <Banner>
-          <CurrentDate/>
-        </Banner>
+       
 
         <Card size="2">
           <TitleLine>Sponsors</TitleLine>
@@ -121,11 +152,12 @@ export default class Dashboard extends React.Component {
         
         <DeviceCard />
 
+
         <EventsCard/>
 
-        <WeatherCard/>
+        <WeatherCard lang = {this.state.lang}/>
 
-        <STMCard/>
+        <STMCard lang = {this.state.lang}/>
 
       </div>
     );

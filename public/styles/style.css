@@ -266,6 +266,7 @@ footer {
 }
 
 .WeatherCard-title {
+  margin-right: 20px;
   font-size: 80%;
   text-transform: uppercase;
   font-weight: bold;
