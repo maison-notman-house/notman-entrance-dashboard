@@ -18,7 +18,9 @@ export default function DateBanner({lang}) {
 
       <div style={{textAlign: 'right', fontSize: '40px', lineHeight: '60px'}}>
         {dateString}
-        {time} 
+      </div>
+      <div>
+      {time} 
       </div>
 
    </div>
