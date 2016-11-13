@@ -35,6 +35,14 @@ body {
     top: -10px;
     z-index: -1;
 }
+
+#particles-js {
+  display: block;
+    position: absolute;
+    top: -10px;
+    z-index: -20;
+    height: 100vh;
+}
 /* CSS Transition group */
 
 .Card {
