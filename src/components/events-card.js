@@ -1,4 +1,36 @@
 import React from 'react';
+import LocalizedStrings from 'react-localization';
+
+let strings = new LocalizedStrings({
+  en:{
+    'cafe': 'osmo café',
+     'big room': 'big room',
+     'glass door room': 'glass door',
+     'glass door': 'glass door',
+     'both rooms': 'both rooms',
+     'Today': 'Today',
+     'Tomorrow': 'Tomorrow',
+     'Monday': 'Monday',
+     'Tuesday': 'Tuesday',
+     'Wednesday': 'Wednesday',
+     'Thursday': 'Thursday',
+     'Friday': 'Friday'
+  },
+  fr: {
+    'cafe': 'café osmo',
+    'big room': 'grande piece',
+    'glass door room': 'porte en verre',
+    'glass door': 'porte en verre',
+    'both rooms': 'les deux pieces',
+    'Today': "Aujourd'hui",
+     'Tomorrow': 'Demain',
+     'Monday': 'Lundi',
+     'Tuesday': 'Mardi',
+     'Wednesday': 'Mercredi',
+     'Thursday': 'Jeudi',
+     'Friday': 'Vendredi'
+  }
+})
 
 export default class EventsCardComponent extends React.Component {
 
@@ -17,10 +49,11 @@ export default class EventsCardComponent extends React.Component {
 
   locationForDisplay(room) {
     const locationMap = {
-      'cafe': 'osmo café',
-      'big room': 'big room',
-      'glass door room': 'glass door',
-      'glass door': 'glass door'
+      'cafe': strings.cafe,
+      'big room': strings['big room'],
+      'glass door room': strings['glass door'],
+      'glass door': strings['glass door'],
+      'both rooms':strings['both rooms']
     };
     if (locationMap[room]) {
       return locationMap[room];
@@ -33,12 +66,12 @@ export default class EventsCardComponent extends React.Component {
     var scope = this;
 
     let items = e.items.map((e, idx) => {
-      return <div className="event" key={e.date + '-' + idx}> <span className={"roomlabel " + e.tags.join(', ').replace(' ', '') } >{this.locationForDisplay(e.tags.join(', ')) }</span> <span className="eventtime">{e.start}</span> <span className="eventname">{e.title}</span></div>;
+      return <div className="event" key={e.date + '-' + idx}><span className={"roomlabel " + e.tags.join(', ').replace(' ', '') } >{this.locationForDisplay(e.tags.join(', ')) }</span> <span className="eventtime">{e.start}</span> <span className="eventname">{e.title}</span></div>;
     });
 
     return <div className="EventsCard-day" key={e.date}>
       <div className="EventsCard-day-name">
-        {e.day}
+        {strings[e.day]}
       </div>
 
       {items}
@@ -57,6 +90,11 @@ export default class EventsCardComponent extends React.Component {
       this.updateEventsData();
     }.bind(this), (this.refreshIntervalMinutes * 60 * 1000));
   }
+
+  componentWillReceiveProps(nextProps) {
+    strings.setLanguage(nextProps.lang);
+    this.setState({})
+  } 
 
   render() {
 
