@@ -14,6 +14,8 @@ import STMCard from './stm-card'
 import CoffeeCard from './coffee-card';
 
 import Card from './card';
+import Banner from './banner';
+import DateBanner from './date-banner';
 
 function TitleLine({children}) {
   return <div style={{lineHeight: '60px', fontSize: '60px'}}>{children}</div>;
@@ -23,14 +25,7 @@ function TextLine({children}) {
   return <div style={{lineHeight: '60px', fontSize: '20px'}}>{children}</div>;
 }
 
-function Banner({children, size=1}) {
-  const style = {
-    height: 120 * size
-  };
-  return <div className="Banner" style={style}>
-    {children}
-  </div>;
-}
+
 
 class CardCycler extends React.Component {
   constructor(props) {
@@ -80,6 +75,7 @@ class CardCycler extends React.Component {
   }
 }
 
+
 export default class Dashboard extends React.Component {
   constructor(props) {
     super(props);
@@ -92,41 +88,17 @@ export default class Dashboard extends React.Component {
     return (
       <div lang={lang}>
       
-        <Banner>
-          <TitleLine>Saturday, November 12, 2016</TitleLine>
-        </Banner>
-        
-
+        <DateBanner lang="fr"/>
+    
         <CardCycler>
-          <CoffeeCard/>
+          <CoffeeCard lang="fr"/>
         </CardCycler>
-
-          <SponsorsCard/>
-        <Columns>
-          <Card size="2">
-          
-          </Card>
-          
-          <Card size="2">
-          </Card>
-        </Columns>
-        
-        <Banner>
-          <CurrentDate/>
-        </Banner>
-
-        <Card size="2">
-          <TitleLine>Sponsors</TitleLine>
-        </Card>
         
         <DeviceCard />
-
         <EventsCard/>
-
         <WeatherCard/>
-
         <STMCard/>
-
+        <SponsorsCard/>
       </div>
     );
   }

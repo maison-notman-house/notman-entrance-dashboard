@@ -46,7 +46,7 @@ export default class ForecastWeatherCard extends React.Component {
     let precipitationDisplay;
     if (precipitations.length) {
       precipitationDisplay = precipitations.map(precipitation => {
-        return <span>{precipitation.weather[0].main} in the next {moment(precipitation.dt_txt).fromNow(false)}. </span>;
+        return <span>{precipitation.weather[0].main} in the next {moment(precipitation.dt_txt).locale('fr').fromNow(true)}. </span>;
       });
     } else if (!isCurrentPrecipitation) {
       precipitationDisplay = <span>No precipitation expected.</span>;

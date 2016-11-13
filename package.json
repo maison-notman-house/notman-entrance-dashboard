@@ -10,6 +10,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "capitalize": "^1.0.0",
     "classnames": "^2.2.5",
     "fetch-jsonp": "^1.0.1",
     "moment": "^2.14.1",

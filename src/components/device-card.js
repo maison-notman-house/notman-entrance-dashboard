@@ -1,5 +1,6 @@
 import React from 'react';
 import Moment from 'moment';
+import Card from './card';
 
 export default class DeviceCardComponent  extends React.Component {
 
@@ -133,7 +134,7 @@ export default class DeviceCardComponent  extends React.Component {
         width: '100px'
     };
 
-    return  <div className="DeviceCard Card">
+    return  <Card className="DeviceCard">
                 <div>
                     <img className="DeviceCard--icon" src="images/house-emojis/hackthehouse-smiling.gif"  />
                     {this.state.device.text(this.state.device.value(this.state.data))}.
@@ -143,7 +144,7 @@ export default class DeviceCardComponent  extends React.Component {
                         Data provided by <img className="vendorLogo" src={this.state.device.logo} />
                     </div>
                 </div>
-            </div>;
+            </Card>;
   }
 
 }

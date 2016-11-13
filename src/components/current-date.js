@@ -1,12 +1,6 @@
 import React from 'react';
 import Moment from 'moment';
 
-// export default function TimePanel() {
-//    var time = Moment(new Date()).format('HH:mm');
-//    return <span id="timenow">{time}</span>
-// }
-
-
 export default class CurrentDateComponent  extends React.Component {
 
   setTime() {
