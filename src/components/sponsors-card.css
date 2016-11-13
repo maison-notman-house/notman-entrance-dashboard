@@ -1,6 +1,7 @@
 .SponsorsCard {
   position: relative;
   padding: 0;
+  background:  white;
 }
 
 .SponsorsCard-image {

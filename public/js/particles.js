@@ -141,6 +141,9 @@ var pJS = function(tag_id, params){
     Object.deepExtend(pJS, params);
   }
 
+fetchReelyActiveOccupants().then(occupants => 
+  console.log(occupants.length)
+
   pJS.tmp.obj = {
     size_value: pJS.particles.size.value,
     size_anim_speed: pJS.particles.size.anim.speed,
