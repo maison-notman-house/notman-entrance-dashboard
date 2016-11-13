@@ -1,10 +1,20 @@
 import React from 'react';
 import Moment from 'moment';
 import Card from './card';
+import fetchReelyActiveOccupants from '../lib/fetch-reelyactive-occupants';
 
 export default class DeviceCardComponent  extends React.Component {
 
   setDeviceData(idx) {
+     
+    fetchReelyActiveOccupants().then(occupants => {
+        this.setState({
+            deviceCount: occupants.length,
+            lastUpdated: new Date()
+        }); 
+    });
+      
+    return;
 
      if (idx === undefined) {
          this.sourceIdx++;
@@ -133,15 +143,16 @@ export default class DeviceCardComponent  extends React.Component {
     var imgStyle = {
         width: '100px'
     };
-
+    
     return  <Card className="DeviceCard">
                 <div>
                     <img className="DeviceCard--icon" src="images/house-emojis/hackthehouse-smiling.gif"  />
-                    {this.state.device.text(this.state.device.value(this.state.data))}.
+
+                    {this.state.deviceCount} devices detected in this house
 
                     <div className="deviceVendor">
 
-                        Data provided by <img className="vendorLogo" src={this.state.device.logo} />
+                        Data provided by <img className="vendorLogo" src="/images/logos/reelyactive.svg" />
                     </div>
                 </div>
             </Card>;
