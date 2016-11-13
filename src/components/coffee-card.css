@@ -1,0 +1,19 @@
+.CoffeeCard {
+    
+}
+
+.CoffeeCard-left {
+    text-align: center;
+}
+
+.CoffeeCard-left-count {
+    font-size: 120px;
+}
+
+.CoffeeCard-right {
+    text-align: center;
+}
+
+.CoffeeCard-right-image {
+    height: 180px;
+}

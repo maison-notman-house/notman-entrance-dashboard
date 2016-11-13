@@ -26,6 +26,8 @@ let strings = new LocalizedStrings({
 })
 
 
+import Card from './card';
+
 const MINUTE = 60000;
 const PRECIPITATION_TYPES = new Set(['Rain', 'Snow', 'Thunderstorm', 'Drizzle']);
 
@@ -88,10 +90,10 @@ export default class ForecastWeatherCard extends React.Component {
       precipitationDisplay = <span> {strings.noPrecipitation}</span>;
     }
     
-    return  <div className="Card WeatherCard">
+    return  <Card>
       <span className="WeatherCard-title">{strings.title}</span> {currentConditionDisplay}
       {precipitationDisplay}
-    </div>;
+    </Card>;
     
   }
 }

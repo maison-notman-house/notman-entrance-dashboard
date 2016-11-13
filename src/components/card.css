@@ -1,0 +1,20 @@
+.Card {
+  margin: 0 20px 20px;
+  padding: 30px 10px;
+  background-color: white;
+  border-radius: 17px;
+  transform: all 0.5s;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2), 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.Columns-column {
+  float: left;
+}
+
+.Columns-column > .Card {
+  margin: 0 20px 20px 0px;
+}
+
+.Columns-column:first-child > .Card {
+  margin: 0 20px 20px 20px;
+}
