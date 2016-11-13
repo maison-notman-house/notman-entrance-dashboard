@@ -6,11 +6,77 @@
     <link rel="stylesheet" href="%PUBLIC_URL%/styles/style.css"/>
   </head>
   <body>
-    <main>
+
+<main>
+    <canvas id='canvas' width="1080" height="1900"></canvas>
     <div id="container"></div>
     </main>
     <footer>
        Community-built. Contribute at github.com/maison-notman-house</span>
     </footer>
   </body>
+
+      <script type="text/javascript">
+
+  var ctx = document.getElementById('canvas').getContext('2d');
+  var img = new Image();
+  img.src = '../images/backgrounds/Montreal_Panorama.jpg';
+
+var canvasWidth = 1080;
+var canvasHeight = 1920;
+var speed = 60; //lower is faster
+var scale = 1.0;
+var y = -4.5; //vertical offset
+
+// Main program
+
+var dx = 0.75;
+var imgW;
+var imgH;
+var x = 0;
+var clearX;
+var clearY;
+var ctx;
+
+img.onload = function() {
+    imgW = img.width*scale;
+    imgH = img.height*scale;
+    if (imgW > canvasWidth) { x = canvasWidth-imgW; } // image larger than canvas
+    if (imgW > canvasWidth) { clearX = imgW; } // image larger than canvas
+    else { clearX = canvasWidth; }
+    if (imgH > canvasHeight) { clearY = imgH; } // image larger than canvas
+    else { clearY = canvasHeight; }
+    //Get Canvas Element
+    ctx = document.getElementById('canvas').getContext('2d');
+    //Set Refresh Rate
+    return setInterval(draw, speed);
+}
+
+function draw() {
+    //Clear Canvas
+    ctx.clearRect(0,0,clearX,clearY);
+    //If image is <= Canvas Size
+    if (imgW <= canvasWidth) {
+        //reset, start from beginning
+        if (x > (canvasWidth)) { x = 0; }
+        //draw aditional image
+        if (x > (canvasWidth-imgW)) { ctx.drawImage(img,x-canvasWidth+1,y,imgW,imgH); }
+    }
+    //If image is > Canvas Size
+    else {
+        //reset, start from beginning
+        if (x > (canvasWidth)) { x = canvasWidth-imgW; }
+        //draw aditional image
+        if (x > (canvasWidth-imgW)) { ctx.drawImage(img,x-imgW+1,y,imgW,imgH); }
+    }
+    //draw image
+    imgW = img.width*scale;
+    imgH = img.height*scale;
+    ctx.drawImage(img,x,y,imgW,imgH);
+    //amount to move
+    x += dx;
+   // scale += 0.0001;
+}
+    </script>
+
 </html>

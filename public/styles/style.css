@@ -18,6 +18,7 @@ body {
   font-family: 'Roboto Condensed', sans-serif;
   color: #555;
 
+/*
   background-color: black;
   background-image: url(../images/backgrounds/hackthehouse.jpg);
   margin: 0;
@@ -25,14 +26,21 @@ body {
   background-attachment: fixed;
   position: relative;
   height: 1900px;
+  */
 }
 
+#canvas {
+  display: block;
+    position: absolute;
+    top: -10px;
+    z-index: -1;
+}
 /* CSS Transition group */
 
 .Card {
   background-color: rgba(255,255,255,0.8);
   border-radius: 17px;
-  box-shadow: 0 0 25px rgba(167, 164, 164, 0.51);
+  /* box-shadow: 0 0 25px rgba(167, 164, 164, 0.51); */
   padding: 20px 40px;
   margin: 20px 20px;
 }
