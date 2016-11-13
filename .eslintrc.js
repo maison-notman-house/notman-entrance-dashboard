@@ -29,7 +29,14 @@ module.exports = {
         ],
         "no-console": [
             "warn"
-        ]
+        ],
+        "no-unused-vars": [
+             "error", {
+                 "args": "none"
+             }
+        ],
+        "react/jsx-uses-react": 1,
+        "react/jsx-uses-vars": 1
     },
     "plugins": [
         "react"
