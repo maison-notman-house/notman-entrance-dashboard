@@ -4,6 +4,8 @@ import capitalize from 'capitalize';
 
 import Banner from './banner';
 
+
+
 export default function DateBanner({lang}) {
   const date = moment();
   
