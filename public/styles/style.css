@@ -68,7 +68,7 @@ body {
 }
 
 .Banner div {
-  width: 30%;
+  width: 40%;
   text-align: center;
   margin: auto;
 }
@@ -76,6 +76,7 @@ body {
 .Banner div:nth-child(2) {
   font-size: 1.2em;
   margin-top: -3px;
+  width: 20%;
 }
 
 .Banner div img {
