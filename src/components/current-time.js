@@ -1,37 +1,32 @@
 import React from 'react';
 import Moment from 'moment';
 
-// export default function TimePanel() {
-//    var time = Moment(new Date()).format('HH:mm');
-//    return <span id="timenow">{time}</span>
-// }
+export default class CurrentTimeComponent extends React.Component {
 
+    setTime() {
+        var lang = 'en';
+        this.setState({
+            time: Moment(new Date())
+                .locale(lang)
+                .format('HH:mm')
+        });
+    }
 
-export default class CurrentTimeComponent  extends React.Component {
+    update() {}
 
-  setTime() {
-     var lang = 'en';
-     this.setState({
-        time: Moment(new Date()).locale(lang).format('HH:mm')
-     });
-  }
+    componentWillMount() {
+        this.setTime();
+    }
 
-  update() {
+    componentDidMount() {
+        window
+            .setInterval(function () {
+                this.setTime();
+            }.bind(this), 1000);
+    }
 
-  }
-
-  componentWillMount() {
-  	this.setTime();
-  }
-
-  componentDidMount() {
-  	 window.setInterval(function () {
-      this.setTime();
-    }.bind(this), 1000);
-  }
-
-  render() {
-   return <span id="timenow">{this.state.time}</span>
-  }
+    render() {
+        return <span id="timenow">{this.state.time}</span>;
+    }
 
 }

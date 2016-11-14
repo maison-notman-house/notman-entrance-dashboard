@@ -22,54 +22,54 @@ const SPONSORS = [
 const INTERVAL = 3500;
 
 export default class SponsorsPanel extends React.Component {
-  constructor() {
-    super();
-    this.state = { index: 0 };
-  }
+    constructor() {
+        super();
+        this.state = { index: 0 };
+    }
 
-  componentDidMount() {
-    this.intervalTimer = setInterval(this.update.bind(this), INTERVAL);
-  }
+    componentDidMount() {
+        this.intervalTimer = setInterval(this.update.bind(this), INTERVAL);
+    }
 
-  componentWillUnmount() {
-    clearInterval(this.intervalTimer);
-  }
+    componentWillUnmount() {
+        clearInterval(this.intervalTimer);
+    }
 
-  getCurrentSponsorImageUrl() {
-    return 'images/logos/' + SPONSORS[this.state.index][0];
-  }
+    getCurrentSponsorImageUrl() {
+        return 'images/logos/' + SPONSORS[this.state.index][0];
+    }
 
-  getCurrentSponsorImageDimensions() {
-    return SPONSORS[this.state.index][1];
-  }
+    getCurrentSponsorImageDimensions() {
+        return SPONSORS[this.state.index][1];
+    }
 
-  update() {
-    let index = (this.state.index + 1) % SPONSORS.length;
-    this.setState({index});
-  }
+    update() {
+        let index = (this.state.index + 1) % SPONSORS.length;
+        this.setState({index});
+    }
 
-  render() {
+    render() {
 
-     var dimensions = this.getCurrentSponsorImageDimensions();
-     var ratio = 200 / dimensions[1];
+        var dimensions = this.getCurrentSponsorImageDimensions();
+        var ratio = 200 / dimensions[1];
 
-     var style = {
-        width: Math.round(dimensions[0] * ratio)+ 'px',
-        height: Math.round(dimensions[1] * ratio) + 'px'
-     };
+        var style = {
+            width: Math.round(dimensions[0] * ratio)+ 'px',
+            height: Math.round(dimensions[1] * ratio) + 'px'
+        };
 
-     var spanStyle = {
-        width: Math.round(dimensions[0] * ratio)+ 'px',
-        height: Math.round(dimensions[1] * ratio) + 'px'
-     }
+        var spanStyle = {
+            width: Math.round(dimensions[0] * ratio)+ 'px',
+            height: Math.round(dimensions[1] * ratio) + 'px'
+        };
 
-    return <div className="Card SponsorsPanel">
+        return <div className="Card SponsorsPanel">
 
         <ReactCSSTransitionGroup transitionName="transition" transitionEnterTimeout={1500} transitionLeaveTimeout={1500}>
-            <div style={spanStyle} id={"sponsor-image-" + this.state.index} key={this.getCurrentSponsorImageUrl()}>
-            <img className="sponsor-image " src={this.getCurrentSponsorImageUrl()} style={style}/>
+            <div style={spanStyle} id={'sponsor-image-' + this.state.index} key={this.getCurrentSponsorImageUrl()}>
+            <img className="sponsor-image " src={this.getCurrentSponsorImageUrl()} style={style} alt="sponsor logo"/>
             </div>
         </ReactCSSTransitionGroup>
     </div>;
-  }
+    }
 }
