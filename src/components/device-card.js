@@ -5,13 +5,14 @@ export default class DeviceCardComponent  extends React.Component {
 
   setDeviceData(idx) {
 
-     if (idx === undefined) {
-         this.sourceIdx++;
-         if (this.sourceIdx >= this.sources.length) {
-             this.sourceIdx = 0;
-         }
-         idx = this.sourceIdx;
-     }
+    this.sourceIdx = 0;
+//      if (idx === undefined) {
+//          this.sourceIdx++;
+//          if (this.sourceIdx >= this.sources.length) {
+//              this.sourceIdx = 0;
+//          }
+//          idx = this.sourceIdx;
+//      }
 
      var scope = this;
 
