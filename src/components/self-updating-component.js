@@ -2,20 +2,20 @@ import React from 'react';
 
 export default class SelfUpdatingComponent extends React.Component {
 
-  update() {
+    update() {
 
-  }
+    }
 
-  render() {
-    return <div></div>;
-  }
+    render() {
+        return <div></div>;
+    }
 
-  componentDidMount() {
-    this.refreshTimer = setInterval(() => this.update());
-  }
+    componentDidMount() {
+        this.refreshTimer = setInterval(() => this.update());
+    }
 
-  componentDidUnmount() {
-    clearInterval(this.refreshTimer);
-  }
+    componentDidUnmount() {
+        clearInterval(this.refreshTimer);
+    }
 
 }

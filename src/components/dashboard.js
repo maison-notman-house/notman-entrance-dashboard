@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import Panel from './panel';
 import LogoHeader from './logo-header';
@@ -7,22 +6,20 @@ import EventsCard from './events-card';
 import WeatherCard from './weather-card';
 import DeviceCard from './device-card';
 import SponsorsPanel from './sponsors-panel';
-import Columns from './columns';
 import CurrentDate from './current-date';
-import VideoPanel from './video-panel';
-import STMCard from './stm-card'
+import STMCard from './stm-card';
 
 
 export default class Dashboard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
 
-  render() {
-    var lang = 'en';
+    render() {
+        var lang = 'en';
 
-    return (
+        return (
       <div lang={lang}>
 
         <LogoHeader/>
@@ -41,6 +38,6 @@ export default class Dashboard extends React.Component {
         <STMCard/>
 
       </div>
-    );
-  }
+        );
+    }
 }
