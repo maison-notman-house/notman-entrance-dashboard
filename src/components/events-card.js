@@ -3,15 +3,13 @@ import React from 'react';
 export default class EventsCardComponent extends React.Component {
 
   updateEventsData() {
-
-    var scope = this;
-    var data = fetch(this.fetchUrl).then(response => response.json()).then(function (data) {
+    fetch(this.fetchUrl).then(response => response.json()).then(function (data) {
       return data;
     }).then(function (data) {
-      scope.setState({
+      this.setState({
         events: data
       });
-    });
+    }.bind(this));
 
   }
 
@@ -30,8 +28,6 @@ export default class EventsCardComponent extends React.Component {
   }
 
   createDay(e) {
-    var scope = this;
-
     let items = e.items.map((e, idx) => {
       return <div className="event" key={e.date + '-' + idx}> <span className={"roomlabel " + e.tags.join(', ').replace(' ', '') } >{this.locationForDisplay(e.tags.join(', ')) }</span> <span className="eventtime">{e.start}</span> <span className="eventname">{e.title}</span></div>;
     });

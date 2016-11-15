@@ -56,26 +56,26 @@ function done() {
 const INTERVAL = 3500;
 
 export default class SponsorsPanel extends React.Component {
-  constructor() {
-    super();
-    this.state = { index: 0 };
-  }
+    constructor() {
+        super();
+        this.state = { index: 0 };
+    }
 
-  componentDidMount() {
-    this.intervalTimer = setInterval(this.update.bind(this), INTERVAL);
-  }
+    componentDidMount() {
+        this.intervalTimer = setInterval(this.update.bind(this), INTERVAL);
+    }
 
-  componentWillUnmount() {
-    clearInterval(this.intervalTimer);
-  }
+    componentWillUnmount() {
+        clearInterval(this.intervalTimer);
+    }
 
-  getCurrentSponsorImageUrl() {
-    return 'images/logos/' + SPONSORS[this.state.index][0];
-  }
+    getCurrentSponsorImageUrl() {
+        return 'images/logos/' + SPONSORS[this.state.index][0];
+    }
 
-  getCurrentSponsorImageDimensions() {
-    return SPONSORS[this.state.index][1];
-  }
+    getCurrentSponsorImageDimensions() {
+        return SPONSORS[this.state.index][1];
+    }
 
   update() {
     console.log('UPDATING SPONSORS');
@@ -93,4 +93,5 @@ export default class SponsorsPanel extends React.Component {
       </ReactCSSTransitionGroup>
     </Card>;
   }
+
 }

@@ -1,21 +1,21 @@
 import React from 'react';
-import Moment from 'moment';
 
 export default class DeviceCardComponent  extends React.Component {
 
   setDeviceData(idx) {
 
-     if (idx === undefined) {
-         this.sourceIdx++;
-         if (this.sourceIdx >= this.sources.length) {
-             this.sourceIdx = 0;
-         }
-         idx = this.sourceIdx;
-     }
+    this.sourceIdx = 0;
+//      if (idx === undefined) {
+//          this.sourceIdx++;
+//          if (this.sourceIdx >= this.sources.length) {
+//              this.sourceIdx = 0;
+//          }
+//          idx = this.sourceIdx;
+//      }
 
      var scope = this;
 
-     var data = fetch(scope.sources[idx].url).then(response => response.json()).then(function(data) {
+     fetch(scope.sources[idx].url).then(response => response.json()).then(function(data) {
         return data;
      }).then(function(data) {
          scope.setState({
@@ -39,7 +39,6 @@ export default class DeviceCardComponent  extends React.Component {
 
   componentWillMount() {
 
-//    this.refreshIntervalMinutes = 1;
     this.apiKeysUrl = 'https://notman.herokuapp.com/api/keys';
 
     this.refreshIntervalSeconds = 15;
@@ -49,18 +48,19 @@ export default class DeviceCardComponent  extends React.Component {
        name:'Reely Active',
        logo: 'images/logos/reelyactive.svg',
        url: 'https://www.hyperlocalcontext.com/contextat/directory/notman',
-       text: value => `${value} occupant${value == 1 ? '' : 's'} in Notman`,
+       text: value => `${value} occupant${value === 1 ? '' : 's'} in Notman`,
        value: function(deviceData) {
             var deviceCount = 0;
-            var i=0;
 
             if (typeof deviceData !== 'undefined') {
                 var devices = deviceData.devices;
                 var key;
                 for (key in devices) {
-                    var device = devices[key];
-                    if (device.nearest && device.url !== 'http://reelyactive.com/products/ra-r436/') {
-                        deviceCount++;
+                    if (devices[key] !== undefined) {
+                        var device = devices[key];
+                        if (device.nearest && device.url !== 'http://reelyactive.com/products/ra-r436/') {
+                            deviceCount++;
+                        }
                     }
                 }
             } else {
@@ -115,32 +115,16 @@ export default class DeviceCardComponent  extends React.Component {
 
   render() {
 
-    var lastUpdated = '';
-    var lang = 'en';
-
-    if (this.state && this.state.lastUpdated) {
-        var time = Moment(this.state.lastUpdated).locale(lang).format('HH:mm');
-        var date = Moment(this.state.lastUpdated).locale(lang).format('DD MMMM YYYY');
-
-        lastUpdated = `Last updated at: ${time} on ${date}`;
-    }
-
     if (!this.state) {
         return  <div className="DeviceCard Card"><div></div></div>;
     }
 
-    var imgStyle = {
-        width: '100px'
-    };
-
     return  <div className="DeviceCard Card">
                 <div>
-                    <img className="DeviceCard--icon" src="images/house-emojis/hackthehouse-smiling.gif"  />
+                    <img className="DeviceCard--icon" src="images/house-emojis/hackthehouse-smiling.gif" alt="◉‿◉" />
                     {this.state.device.text(this.state.device.value(this.state.data))}.
-
                     <div className="deviceVendor">
-
-                        Data provided by <img className="vendorLogo" src={this.state.device.logo} />
+                        Data provided by <img className="vendorLogo" src={this.state.device.logo} alt={this.state.device.name}/>
                     </div>
                 </div>
             </div>;

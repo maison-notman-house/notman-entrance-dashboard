@@ -1,21 +1,28 @@
 {
-  "name": "notman-entrance-dashboard",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build": "react-scripts build",
-    "start": "react-scripts start"
-  },
-  "author": "",
-  "license": "MIT",
-  "dependencies": {
-    "classnames": "^2.2.5",
-    "fetch-jsonp": "^1.0.1",
-    "moment": "^2.14.1",
-    "react": "^15.2.1",
-    "react-addons-css-transition-group": "^15.3.2",
-    "react-dom": "^15.2.1",
-    "react-scripts": "^0.7.0"
-  }
+    "name": "notman-entrance-dashboard",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "react-scripts build",
+        "start": "react-scripts start",
+        "test": "eslint src && react-scripts test --env=jsdom"
+    },
+    "author": "",
+    "license": "MIT",
+    "engines": {
+        "node": ">=6.7.0"
+    },
+    "dependencies": {
+        "classnames": "^2.2.5",
+        "fetch-jsonp": "^1.0.1",
+        "moment": "^2.14.1",
+        "react": "^15.2.1",
+        "react-addons-css-transition-group": "^15.2.1",
+        "react-dom": "^15.2.1",
+        "react-scripts": "^0.7.0"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    }
 }

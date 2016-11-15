@@ -1,15 +1,11 @@
 import React from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-import Panel from './panel';
-import LogoHeader from './logo-header';
 import EventsCard from './events-card';
 import WeatherCard from './weather-card';
 import DeviceCard from './device-card';
 import SponsorsCard from './sponsors-card';
 import Columns from './columns';
 import CurrentDate from './current-date';
-import VideoPanel from './video-panel';
 import STMCard from './stm-card'
 import CoffeeCard from './coffee-card';
 
@@ -17,10 +13,6 @@ import Card from './card';
 
 function TitleLine({children}) {
   return <div style={{lineHeight: '60px', fontSize: '60px'}}>{children}</div>;
-}
-
-function TextLine({children}) {
-  return <div style={{lineHeight: '60px', fontSize: '20px'}}>{children}</div>;
 }
 
 function Banner({children, size=1}) {
@@ -81,15 +73,15 @@ class CardCycler extends React.Component {
 }
 
 export default class Dashboard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
 
-  render() {
-    var lang = 'en';
+    render() {
+        var lang = 'en';
 
-    return (
+        return (
       <div lang={lang}>
       
         <Banner>
@@ -128,6 +120,6 @@ export default class Dashboard extends React.Component {
         <STMCard/>
 
       </div>
-    );
-  }
+        );
+    }
 }
