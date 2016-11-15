@@ -23,8 +23,8 @@ export default class Buspanel extends React.Component {
 		return (
 			<div className = "buspanel"> 
 				<div className='busline'> Bus {bus.busline} </div>
-				<Bustime businfo = {bus1} />
-				<Bustime businfo = {bus2} />
+				<Bustime businfo = {bus1} lang = {this.props.lang} />
+				<Bustime businfo = {bus2} lang = {this.props.lang}/>
 			</div>
 		)
 	}

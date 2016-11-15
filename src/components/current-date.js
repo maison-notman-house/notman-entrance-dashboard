@@ -1,18 +1,13 @@
 import React from 'react';
 import Moment from 'moment';
 
-// export default function TimePanel() {
-//    var time = Moment(new Date()).format('HH:mm');
-//    return <span id="timenow">{time}</span>
-// }
-
-
 export default class CurrentDateComponent  extends React.Component {
 
-  setTime() {
-     var lang = 'en';
+  setTime(lang) {
+     var date = Moment(new Date()).locale(lang).format('dddd, DD MMMM YYYY')
+     date = date.charAt(0).toUpperCase() + date.slice(1);
      this.setState({
-        time: Moment(new Date()).locale(lang).format('dddd, DD MMMM YYYY')
+        time: date
      });
   }
 
@@ -21,13 +16,17 @@ export default class CurrentDateComponent  extends React.Component {
   }
 
   componentWillMount() {
-  	this.setTime();
+  	this.setTime('en');
   }
-
-  componentDidMount() {
+/*
+ componentDidMount() {
   	 window.setInterval(function () {
       this.setTime();
     }.bind(this), 60000);
+  }*/
+
+  componentWillReceiveProps(nextProps) {
+    this.setTime(nextProps.lang)
   }
 
   render() {
