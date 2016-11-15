@@ -13,7 +13,7 @@ export default function CoffeeCard({count=23}) {
         <div>coffee cups poured today</div>
       </div>
       <div className="CoffeeCard-right">
-        <img className="CoffeeCard-right-image" src={process.env.PUBLIC_URL + '/images/coffee.svg'}/>
+        <img className="CoffeeCard-right-image" src={process.env.PUBLIC_URL + '/images/coffee.svg'} role="img" alt="Coffee"/>
       </div>
     </Columns>
   </Card>

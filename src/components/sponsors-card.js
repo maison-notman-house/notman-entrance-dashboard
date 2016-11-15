@@ -38,7 +38,7 @@ export default class SponsorsPanel extends React.Component {
   
   preloadImages() {
     SPONSORS.forEach(path => {
-      const img = document.createElement(img);
+      const img = document.createElement('img');
       img.src = PATH + path;
       img.onload = function() { console.log('loaded') };
     });
