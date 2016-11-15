@@ -26,44 +26,44 @@ const SPONSORS = [
 const INTERVAL = 3500;
 
 export default class SponsorsPanel extends React.Component {
-  constructor() {
-    super();
-    this.state = { index: 0 };
-  }
+    constructor() {
+        super();
+        this.state = { index: 0 };
+    }
 
-  componentDidMount() {
-    this.intervalTimer = setInterval(this.update.bind(this), INTERVAL);
-    this.preloadImages();
-  }
+    componentDidMount() {
+        this.intervalTimer = setInterval(this.update.bind(this), INTERVAL);
+        this.preloadImages();
+    }
   
-  preloadImages() {
-    SPONSORS.forEach(path => {
-      const img = document.createElement('img');
-      img.src = PATH + path;
-      img.onload = function() { console.log('loaded') };
-    });
-  }
+    preloadImages() {
+        SPONSORS.forEach(path => {
+            const img = document.createElement('img');
+            img.src = PATH + path;
+            img.onload = function() { console.log('loaded'); };
+        });
+    }
 
-  componentWillUnmount() {
-    clearInterval(this.intervalTimer);
-  }
+    componentWillUnmount() {
+        clearInterval(this.intervalTimer);
+    }
 
-  getCurrentSponsorImageUrl() {
-    return 'images/logos/' + SPONSORS[this.state.index][0];
-  }
+    getCurrentSponsorImageUrl() {
+        return 'images/logos/' + SPONSORS[this.state.index][0];
+    }
 
-  update() {
-    let index = (this.state.index + 1) % SPONSORS.length;
-    this.setState({index});
-  }
+    update() {
+        let index = (this.state.index + 1) % SPONSORS.length;
+        this.setState({index});
+    }
 
-  render() {
-    const backgroundImage = `url(${this.getCurrentSponsorImageUrl()})`;
+    render() {
+        const backgroundImage = `url(${this.getCurrentSponsorImageUrl()})`;
 
-    return <Card size="2" className="SponsorsCard">
+        return <Card size="2" className="SponsorsCard">
       <ReactCSSTransitionGroup transitionName="transition" transitionEnterTimeout={1500} transitionLeaveTimeout={1500}>
         <div className="SponsorsCard-image" style={{backgroundImage}} key={this.state.index}/>
       </ReactCSSTransitionGroup>
     </Card>;
-  }
+    }
 }

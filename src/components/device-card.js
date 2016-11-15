@@ -6,36 +6,36 @@ import fetchReelyActiveOccupants from '../lib/fetch-reelyactive-occupants';
 import LocalizedStrings from 'react-localization';
 
 let strings = new LocalizedStrings({
-  en:{
-    occupant: 'occupant',
-    in: 'in',
-    people: 'people',
-    cafe: 'in Osmo Café',
-    vendor: 'Data provided by'
-  },
-  fr: {
-    occupant: 'occupant',
-    in: 'dans',
-    people: 'personne',
-    cafe: 'dans le Café Osmo',
-    vendor: 'Données fournies par'
-  }
-})
+    en:{
+        occupant: 'occupant',
+        in: 'in',
+        people: 'people',
+        cafe: 'in Osmo Café',
+        vendor: 'Data provided by'
+    },
+    fr: {
+        occupant: 'occupant',
+        in: 'dans',
+        people: 'personne',
+        cafe: 'dans le Café Osmo',
+        vendor: 'Données fournies par'
+    }
+});
 
 export default class DeviceCardComponent  extends React.Component {
 
-  setDeviceData(idx) {
+    setDeviceData(idx) {
      
-    fetchReelyActiveOccupants().then(occupants => {
-        this.setState({
-            deviceCount: occupants.length,
-            lastUpdated: new Date()
-        }); 
-    });
+        fetchReelyActiveOccupants().then(occupants => {
+            this.setState({
+                deviceCount: occupants.length,
+                lastUpdated: new Date()
+            }); 
+        });
       
-    return;
+        return;
 
-    this.sourceIdx = 0;
+        this.sourceIdx = 0;
 //      if (idx === undefined) {
 //          this.sourceIdx++;
 //          if (this.sourceIdx >= this.sources.length) {
@@ -44,62 +44,62 @@ export default class DeviceCardComponent  extends React.Component {
 //          idx = this.sourceIdx;
 //      }
 
-     var scope = this;
+        var scope = this;
 
-     fetch(scope.sources[idx].url).then(response => response.json()).then(function(data) {
-        return data;
-     }).then(function(data) {
-         scope.setState({
-            device:  scope.sources[idx],
-            data: data,
-            lastUpdated: new Date()
-         });
-     }).catch(function(error) {
-         scope.setState({
-            device:  scope.sources[idx],
-            data: undefined,
-            lastUpdated: new Date()
-         });
-     });
+        fetch(scope.sources[idx].url).then(response => response.json()).then(function(data) {
+            return data;
+        }).then(function(data) {
+            scope.setState({
+                device:  scope.sources[idx],
+                data: data,
+                lastUpdated: new Date()
+            });
+        }).catch(function(error) {
+            scope.setState({
+                device:  scope.sources[idx],
+                data: undefined,
+                lastUpdated: new Date()
+            });
+        });
 
-  }
+    }
 
-  update() {
+    update() {
 
-  }
+    }
 
-  componentWillMount() {
+    componentWillMount() {
 
-    this.apiKeysUrl = 'https://notman.herokuapp.com/api/keys';
+        this.apiKeysUrl = 'https://notman.herokuapp.com/api/keys';
 
-    this.refreshIntervalSeconds = 15;
-    this.sourceIdx = 0;
-    this.sources = [{
-       id: 'reelyactive',
-       name:'Reely Active',
-       logo: 'images/logos/reelyactive.svg',
-       url: 'https://www.hyperlocalcontext.com/contextat/directory/notman',
-       text: value => `${value} ${strings.occupant}${value === 1 ? '' : 's'} ${strings.in} Notman`,
-       value: function(deviceData) {
-            var deviceCount = 0;
+        this.refreshIntervalSeconds = 15;
+        this.sourceIdx = 0;
+        this.sources = [{
+            id: 'reelyactive',
+            name:'Reely Active',
+            logo: 'images/logos/reelyactive.svg',
+            url: 'https://www.hyperlocalcontext.com/contextat/directory/notman',
+            text: value => `${value} ${strings.occupant}${value === 1 ? '' : 's'} ${strings.in} Notman`,
+            value: function(deviceData) {
+                var deviceCount = 0;
 
-            if (typeof deviceData !== 'undefined') {
-                var devices = deviceData.devices;
-                var key;
-                for (key in devices) {
-                    if (devices[key] !== undefined) {
-                        var device = devices[key];
-                        if (device.nearest && device.url !== 'http://reelyactive.com/products/ra-r436/') {
-                            deviceCount++;
+                if (typeof deviceData !== 'undefined') {
+                    var devices = deviceData.devices;
+                    var key;
+                    for (key in devices) {
+                        if (devices[key] !== undefined) {
+                            var device = devices[key];
+                            if (device.nearest && device.url !== 'http://reelyactive.com/products/ra-r436/') {
+                                deviceCount++;
+                            }
                         }
                     }
+                } else {
+                    deviceCount = -1;
                 }
-            } else {
-                deviceCount = -1;
+                return deviceCount;
             }
-            return deviceCount;
-       }
-       }
+        }
        /*, {
        id: 'myseat',
   	   name:'mySeat',
@@ -133,36 +133,36 @@ export default class DeviceCardComponent  extends React.Component {
   	   }
   	   }*/];
 
-       this.setDeviceData(0);
-  }
-
-
-  componentDidMount() {
-      window.setInterval(function () {
-         this.setDeviceData();
-      }.bind(this), (this.refreshIntervalSeconds * 1000));
-
-  }
-
-  componentWillReceiveProps(nextProps) {
-    strings.setLanguage(nextProps.lang);
-    this.setState({})
-  } 
-
-  render() {
-
-    if (!this.state) {
-        return  <div className="DeviceCard Card"><div></div></div>;
+        this.setDeviceData(0);
     }
 
-    var imgStyle = {
-        width: '100px'
-    };
+
+    componentDidMount() {
+        window.setInterval(function () {
+            this.setDeviceData();
+        }.bind(this), (this.refreshIntervalSeconds * 1000));
+
+    }
+
+    componentWillReceiveProps(nextProps) {
+        strings.setLanguage(nextProps.lang);
+        this.setState({});
+    } 
+
+    render() {
+
+        if (!this.state) {
+            return  <div className="DeviceCard Card"><div></div></div>;
+        }
+
+        var imgStyle = {
+            width: '100px'
+        };
     
-    const value = this.state.deviceCount;
-    const displayString = `${value} ${strings.occupant}${value == 1 ? '' : 's'} ${strings.in} Notman`;
+        const value = this.state.deviceCount;
+        const displayString = `${value} ${strings.occupant}${value == 1 ? '' : 's'} ${strings.in} Notman`;
     
-    return  <Card className="DeviceCard">
+        return  <Card className="DeviceCard">
                 <div>
                     <img className="DeviceCard--icon" src="images/house-emojis/hackthehouse-smiling.gif"  />
 
@@ -173,6 +173,6 @@ export default class DeviceCardComponent  extends React.Component {
                     </div>
                 </div>
             </Card>;
-  }
+    }
 
 }

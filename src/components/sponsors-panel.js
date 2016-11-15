@@ -26,30 +26,30 @@ const LOADED_IMAGES = [];
 let count = 0;
 
 const SPONSOR_IMAGES = SPONSORS.map(s => {
-  const img = document.createElement('img');
-  img.src = 'images/logos/' + s[0];
-  console.log('loading', s[0])
-  img.onload = function() {
-    console.log('loaded', img.src, img.height, img.width);
-    LOADED_IMAGES.push(img);
-    count++;
-    console.log('COUNT', count, 'VS', SPONSORS.length);
-    if (count === SPONSORS.length) {
-      done(LOADED_IMAGES);
-    }
-  };
-  img.onerror = function() {
-    console.log('error loading', img);
-    count++;
-    if (count === SPONSORS.length) {
-      done(LOADED_IMAGES);
-    }
-  }
-  return img;
+    const img = document.createElement('img');
+    img.src = 'images/logos/' + s[0];
+    console.log('loading', s[0]);
+    img.onload = function() {
+        console.log('loaded', img.src, img.height, img.width);
+        LOADED_IMAGES.push(img);
+        count++;
+        console.log('COUNT', count, 'VS', SPONSORS.length);
+        if (count === SPONSORS.length) {
+            done(LOADED_IMAGES);
+        }
+    };
+    img.onerror = function() {
+        console.log('error loading', img);
+        count++;
+        if (count === SPONSORS.length) {
+            done(LOADED_IMAGES);
+        }
+    };
+    return img;
 });
 
 function done() {
-  console.log('DONE LOADING IMAGS');
+    console.log('DONE LOADING IMAGS');
 }
 
 
@@ -77,21 +77,21 @@ export default class SponsorsPanel extends React.Component {
         return SPONSORS[this.state.index][1];
     }
 
-  update() {
-    console.log('UPDATING SPONSORS');
-    let index = (this.state.index + 1) % SPONSORS.length;
-    this.setState({index});
-  }
+    update() {
+        console.log('UPDATING SPONSORS');
+        let index = (this.state.index + 1) % SPONSORS.length;
+        this.setState({index});
+    }
 
-  render() {
-    const backgroundImage = `url(${this.getCurrentSponsorImageUrl()})`;
-    console.log('rending card again', backgroundImage);
+    render() {
+        const backgroundImage = `url(${this.getCurrentSponsorImageUrl()})`;
+        console.log('rending card again', backgroundImage);
     
-    return <Card size="2" className="SponsorsCard">
+        return <Card size="2" className="SponsorsCard">
       <ReactCSSTransitionGroup transitionName="transition" transitionEnterTimeout={1500} transitionLeaveTimeout={1500}>
         <div className="SponsorsCard-image" style={{backgroundImage}} key={this.state.index}/>
       </ReactCSSTransitionGroup>
     </Card>;
-  }
+    }
 
 }

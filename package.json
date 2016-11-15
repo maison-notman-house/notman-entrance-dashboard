@@ -6,7 +6,7 @@
     "scripts": {
         "build": "react-scripts build",
         "start": "react-scripts start",
-        "test": "eslint src && react-scripts test --env=jsdom"
+        "test": "eslint src --fix && react-scripts test --env=jsdom"
     },
     "author": "",
     "license": "MIT",
