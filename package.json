@@ -10,9 +10,9 @@
     },
     "author": "",
     "license": "MIT",
-  "engines": {
-    "node": ">=6.7.0"
-  },    
+    "engines": {
+        "node": ">=6.7.0"
+    },
     "dependencies": {
         "classnames": "^2.2.5",
         "fetch-jsonp": "^1.0.1",
@@ -21,15 +21,6 @@
         "react-addons-css-transition-group": "^15.2.1",
         "react-dom": "^15.2.1",
         "react-scripts": "^0.7.0"
-    },
-    "devDependencies": {
-        "eslint": "^3.8.1",
-        "babel-eslint": "7.0.0",
-        "eslint-plugin-import": "^2.0.1",
-        "eslint-plugin-jsx-a11y": "^2.2.3",
-        "eslint-plugin-flowtype": "^2.21.0",
-        "eslint-plugin-react": "^6.6.0",
-        "eslint-config-react-app": "^0.3.0"        
     },
     "eslintConfig": {
         "extends": "react-app"
