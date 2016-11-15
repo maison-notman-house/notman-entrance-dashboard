@@ -6,10 +6,10 @@ before_script:
   - npm install -g eslint-config-react-app@0.3.0 eslint@3.8.1 babel-eslint@7.0.0 eslint-plugin-react@6.4.1 eslint-plugin-import@2.0.1 eslint-plugin-jsx-a11y@2.2.3 eslint-plugin-flowtype@2.21.0
 
 before_deploy:
-  - chmod +x bin/deploy.sh
+  - chmod +x bin/deploy-netlify.sh
 
 deploy:
   provider: script
-  script: bin/deploy.sh
+  script: bin/deploy-netlify.sh
   on:
     branch: production
