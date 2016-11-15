@@ -36,8 +36,8 @@ export default class Bustime extends React.Component {
     var fetchUrl = 'https://i-www.stm.info/fr/lines/' + scope.state.busline 
     +'/stops/'+ scope.state.busStopCode +'/arrivals.json?callback=&d='+ dateToday
     +'&direction=' + scope.state.direction +'&wheelchair=0&_=1411829351069';
-  //  console.log(fetchUrl);
-    var data = fetchJsonp(fetchUrl).then(response => response.json())
+
+    fetchJsonp(fetchUrl).then(response => response.json())
     .then( (data)  => data).then((data) => {
       
       //make an array with all bus times for the day
@@ -62,7 +62,7 @@ export default class Bustime extends React.Component {
     var timeNow = Moment().locale('en').add(1, 'm').format("HHmm");
 
     for (var i=0; i<busTimes.length; i++) {    
-      if (parseInt(busTimes[i]) > parseInt(timeNow)) {
+      if (parseInt(busTimes[i], 10) > parseInt(timeNow, 10)) {
       	// returns the time of the next two buses after the current time (can give an error at the end of the day)
         return [Moment(busTimes[i], "HH:mm" ).format("HH:mm"), Moment(busTimes[i+1], "HH:mm" ).format("HH:mm")]
       }
@@ -125,6 +125,8 @@ export default class Bustime extends React.Component {
       case "W":
         direction = strings.west;
         break;
+      default:
+        direction = "undefined"
     };
 
     var busTimes = this.state.nextBusTime.join(" \u2022 ");

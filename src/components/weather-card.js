@@ -66,7 +66,9 @@ export default class ForecastWeatherCard extends React.Component {
     }
   
     render() {
-        if (!this.state.currentWeather) return null;
+        if (!this.state.currentWeather) {
+            return null;
+        }
     
     let currentCondition = this.state.currentWeather.main.temp;
     currentCondition = Math.round(currentCondition) + '\u00B0';

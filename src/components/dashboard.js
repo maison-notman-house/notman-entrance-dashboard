@@ -82,12 +82,7 @@ class CardCycler extends React.Component {
 const LANGUAGES =  ['en', 'fr']
 
 export default class Dashboard extends React.Component {
-<<<<<<< HEAD
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-=======
+
   constructor(props) {
     super(props);
     this.state = {
@@ -111,7 +106,6 @@ export default class Dashboard extends React.Component {
       this.changeLanguage();
     }.bind(this), 5000);
   }
->>>>>>> 1abba4b36bff15af6e3cbaf63de0cfb6ae7b2235
 
     render() {
         var lang = 'en';
@@ -119,24 +113,18 @@ export default class Dashboard extends React.Component {
         return (
       <div lang={lang}>
       
-        <DateBanner lang = {this.state.lang}/>
+        <DateBanner lang={this.state.lang}/>
     
         <CardCycler>
-          <CoffeeCard lang= {this.state.lang}/>
+          <CoffeeCard lang={this.state.lang}/>
         </CardCycler>
         
-        <DeviceCard lang = {this.state.lang} />
-        <EventsCard lang = {this.state.lang}/>
-        <WeatherCard lang = {this.state.lang}/>
-        <STMCard lang = {this.state.lang}/>
+        <DeviceCard lang={this.state.lang} />
+        <EventsCard lang={this.state.lang}/>
+        <WeatherCard lang={this.state.lang}/>
+        <STMCard lang={this.state.lang}/>
         <SponsorsCard/>
       </div>
-<<<<<<< HEAD
-        );
-    }
-}
-=======
     );
   }
 }
->>>>>>> 1abba4b36bff15af6e3cbaf63de0cfb6ae7b2235

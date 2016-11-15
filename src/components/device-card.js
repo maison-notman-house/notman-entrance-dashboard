@@ -79,11 +79,7 @@ export default class DeviceCardComponent  extends React.Component {
        name:'Reely Active',
        logo: 'images/logos/reelyactive.svg',
        url: 'https://www.hyperlocalcontext.com/contextat/directory/notman',
-<<<<<<< HEAD
-       text: value => `${value} occupant${value === 1 ? '' : 's'} in Notman`,
-=======
-       text: value => `${value} ${strings.occupant}${value == 1 ? '' : 's'} ${strings.in} Notman`,
->>>>>>> 1abba4b36bff15af6e3cbaf63de0cfb6ae7b2235
+       text: value => `${value} ${strings.occupant}${value === 1 ? '' : 's'} ${strings.in} Notman`,
        value: function(deviceData) {
             var deviceCount = 0;
 
@@ -159,14 +155,6 @@ export default class DeviceCardComponent  extends React.Component {
         return  <div className="DeviceCard Card"><div></div></div>;
     }
 
-<<<<<<< HEAD
-    return  <div className="DeviceCard Card">
-                <div>
-                    <img className="DeviceCard--icon" src="images/house-emojis/hackthehouse-smiling.gif" alt="◉‿◉" />
-                    {this.state.device.text(this.state.device.value(this.state.data))}.
-                    <div className="deviceVendor">
-                        Data provided by <img className="vendorLogo" src={this.state.device.logo} alt={this.state.device.name}/>
-=======
     var imgStyle = {
         width: '100px'
     };
@@ -181,10 +169,7 @@ export default class DeviceCardComponent  extends React.Component {
                     {displayString}
 
                     <div className="deviceVendor">
-
                         {strings.vendor} <img className="vendorLogo" src="/images/logos/reelyactive.svg" />
-
->>>>>>> 1abba4b36bff15af6e3cbaf63de0cfb6ae7b2235
                     </div>
                 </div>
             </Card>;

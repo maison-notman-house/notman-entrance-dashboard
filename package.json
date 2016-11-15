@@ -14,12 +14,14 @@
         "node": ">=6.7.0"
     },
     "dependencies": {
+        "capitalize": "^1.0.0",
         "classnames": "^2.2.5",
         "fetch-jsonp": "^1.0.1",
         "moment": "^2.14.1",
         "react": "^15.2.1",
         "react-addons-css-transition-group": "^15.2.1",
         "react-dom": "^15.2.1",
+        "react-localization": "0.0.8",
         "react-scripts": "^0.7.0"
     },
     "eslintConfig": {

@@ -34,14 +34,14 @@ const SPONSOR_IMAGES = SPONSORS.map(s => {
     LOADED_IMAGES.push(img);
     count++;
     console.log('COUNT', count, 'VS', SPONSORS.length);
-    if (count == SPONSORS.length) {
+    if (count === SPONSORS.length) {
       done(LOADED_IMAGES);
     }
   };
   img.onerror = function() {
     console.log('error loading', img);
     count++;
-    if (count == SPONSORS.length) {
+    if (count === SPONSORS.length) {
       done(LOADED_IMAGES);
     }
   }

@@ -53,11 +53,6 @@ const BUSSTOPS = [
 
 export default class STMCard extends React.Component {
 
-  constructor() {
-      super();
-    };
-
-
   componentWillReceiveProps(nextProps) {
     strings.setLanguage(nextProps.lang);
     this.setState({})
@@ -67,13 +62,13 @@ export default class STMCard extends React.Component {
 
 
   	return (
-      <div className = "Card stm-card">
+      <div className="Card stm-card">
         <img id="stm-logo" src="images/logos/stm.png" />
         <div className="bus-card-title" > {strings.nextBus}</div>
-        <div className= " buspanel-container">
+        <div className="buspanel-container">
           {
             BUSSTOPS.map( (bus) => {
-            return <Buspanel businfo={bus} key={bus.key} lang = {this.props.lang} />
+            return <Buspanel businfo={bus} key={bus.key} lang={this.props.lang} />
             })
           }
         </div>
