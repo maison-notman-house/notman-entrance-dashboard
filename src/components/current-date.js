@@ -26,7 +26,7 @@ export default class CurrentDateComponent extends React.Component {
     }
 
     render() {
-        return <span id="datenow">{this.state.time}</span>;
+        return <span id="datenow">{this.state.time} XX1</span>;
     }
 
 }
