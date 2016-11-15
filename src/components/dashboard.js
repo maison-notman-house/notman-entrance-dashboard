@@ -10,18 +10,15 @@ import STMCard from './stm-card'
 import CoffeeCard from './coffee-card';
 
 import Card from './card';
+import Banner from './banner';
+import DateBanner from './date-banner';
 
 function TitleLine({children}) {
   return <div style={{lineHeight: '60px', fontSize: '60px'}}>{children}</div>;
 }
 
-function Banner({children, size=1}) {
-  const style = {
-    height: 120 * size
-  };
-  return <div className="Banner" style={style}>
-    {children}
-  </div>;
+function TextLine({children}) {
+  return <div style={{lineHeight: '60px', fontSize: '20px'}}>{children}</div>;
 }
 
 class CardCycler extends React.Component {
@@ -30,53 +27,91 @@ class CardCycler extends React.Component {
     this.state = { index: 0 };
   }
   
+  componentDidUpdate() {
+    this.refs.wrapper.classList.remove('CardCycler--transitionOut');
+    this.refs.wrapper.classList.remove('CardCycler--transitionIn');
+  }
+  
   componentDidMount() {
     this.timer = setInterval(this.onInterval, 9000);
+    
+    this.refs.wrapper.classList.remove('CardCycler--transitionIn');
   }
   
   onInterval = () => {
     let index = (this.state.index + 1) % React.Children.toArray(this.props.children).length;
     
 
-    this.refs.wrapper.style.transform = 'scale(0.95) rotateX(90deg)';
+    this.refs.wrapper.classList.add('CardCycler--transitionOut');
     setTimeout(() => {
       this.setState({index});
     }, 500);
   }
   
+  // animateCardIn() {
+  //   this.refs.wrapper.classList.add('Card--transitionIn');
+    
+  //   this.setTimeout(() => this.refs.wrapper.classList.remove('Card--transitionIn'));
+  // }
+  // animateCardOut() {
+  //   this.refs.wrapper.classList.add('Card--transitionOut');
+  //   this.setTimeout(() => this.refs.wrapper.classList.remove('Card--transitionOut'));
+  // }
+  
   render() {
     const child = React.Children.toArray(this.props.children)[this.state.index];
     console.log(child);
     
-    const wrapperStyle = {
-      transform: 'scale(0.95) rotateX(-90deg)',
-      transition: '0.5s all'
-    };
-    
-    setTimeout(() => {
-      this.refs.wrapper.style.transform = wrapperStyle.transform
-    });
-    
     console.log('Entering');
     
     const delay = 0;
-    setTimeout(() => {
-      this.refs.wrapper.style.transform = '';
-    }, 500 + delay);
+   
+    
+    // setTimeout(() => {
+    
+    // }, 500 + delay);
     
     return (
-      <div ref="wrapper" style={wrapperStyle}>
+      <div ref="wrapper" className="CardCycler CardCycler--transitionIn">
         {child}
       </div>
     );
   }
 }
 
+const LANGUAGES =  ['en', 'fr']
+
 export default class Dashboard extends React.Component {
+<<<<<<< HEAD
     constructor(props) {
         super(props);
         this.state = {};
     }
+=======
+  constructor(props) {
+    super(props);
+    this.state = {
+      langIndex: 0,
+      lang: 'en'
+    };
+  }
+
+
+  changeLanguage(){
+    let langIndex = (this.state.langIndex + 1) % LANGUAGES.length;
+    this.setState({
+      langIndex: langIndex,
+      lang: LANGUAGES[langIndex]
+    }) 
+  }
+
+  componentDidMount(){
+
+    window.setInterval(function () {
+      this.changeLanguage();
+    }.bind(this), 5000);
+  }
+>>>>>>> 1abba4b36bff15af6e3cbaf63de0cfb6ae7b2235
 
     render() {
         var lang = 'en';
@@ -84,42 +119,24 @@ export default class Dashboard extends React.Component {
         return (
       <div lang={lang}>
       
-        <Banner>
-          <TitleLine>Saturday, November 12, 2016</TitleLine>
-        </Banner>
-        
-
+        <DateBanner lang = {this.state.lang}/>
+    
         <CardCycler>
-          <CoffeeCard/>
+          <CoffeeCard lang= {this.state.lang}/>
         </CardCycler>
-
-          <SponsorsCard/>
-        <Columns>
-          <Card size="2">
-          
-          </Card>
-          
-          <Card size="2">
-          </Card>
-        </Columns>
         
-        <Banner>
-          <CurrentDate/>
-        </Banner>
-
-        <Card size="2">
-          <TitleLine>Sponsors</TitleLine>
-        </Card>
-        
-        <DeviceCard />
-
-        <EventsCard/>
-
-        <WeatherCard/>
-
-        <STMCard/>
-
+        <DeviceCard lang = {this.state.lang} />
+        <EventsCard lang = {this.state.lang}/>
+        <WeatherCard lang = {this.state.lang}/>
+        <STMCard lang = {this.state.lang}/>
+        <SponsorsCard/>
       </div>
+<<<<<<< HEAD
         );
     }
 }
+=======
+    );
+  }
+}
+>>>>>>> 1abba4b36bff15af6e3cbaf63de0cfb6ae7b2235

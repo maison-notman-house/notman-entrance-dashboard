@@ -1,5 +1,7 @@
 import React from 'react';
+import LocalizedStrings from 'react-localization';
 import Buspanel from './buspanel';
+
 
 const BUSSTOPS = [
     {
@@ -38,20 +40,44 @@ const BUSSTOPS = [
     }
 ];
 
-export default class STMCard extends React.Component {
-    render() {
-        return (
-            <div className="Card stm-card">
-                <img id="stm-logo" src="images/logos/stm.png" alt="STM"/>
-                <div className="bus-card-title">
-                    Your next bus
-                </div>
-                <div className=" buspanel-container">
-                    {BUSSTOPS.map((bus) => {
-                        return <Buspanel businfo={bus} key={bus.key}/>;
-                    })}
-                </div>
-            </div>
-        );
+  let strings = new LocalizedStrings({
+    en: {
+      'nextBus': 'Your next bus'
+    },
+    fr: {
+      'nextBus':'Votre prochain bus'
     }
+  })
+
+  
+
+export default class STMCard extends React.Component {
+
+  constructor() {
+      super();
+    };
+
+
+  componentWillReceiveProps(nextProps) {
+    strings.setLanguage(nextProps.lang);
+    this.setState({})
+  }  
+
+	render(){
+
+
+  	return (
+      <div className = "Card stm-card">
+        <img id="stm-logo" src="images/logos/stm.png" />
+        <div className="bus-card-title" > {strings.nextBus}</div>
+        <div className= " buspanel-container">
+          {
+            BUSSTOPS.map( (bus) => {
+            return <Buspanel businfo={bus} key={bus.key} lang = {this.props.lang} />
+            })
+          }
+        </div>
+			</div>
+    )
+  }
 }

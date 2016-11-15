@@ -1,8 +1,39 @@
 import React from 'react';
+import Moment from 'moment';
+import Card from './card';
+import fetchReelyActiveOccupants from '../lib/fetch-reelyactive-occupants';
+
+import LocalizedStrings from 'react-localization';
+
+let strings = new LocalizedStrings({
+  en:{
+    occupant: 'occupant',
+    in: 'in',
+    people: 'people',
+    cafe: 'in Osmo Café',
+    vendor: 'Data provided by'
+  },
+  fr: {
+    occupant: 'occupant',
+    in: 'dans',
+    people: 'personne',
+    cafe: 'dans le Café Osmo',
+    vendor: 'Données fournies par'
+  }
+})
 
 export default class DeviceCardComponent  extends React.Component {
 
   setDeviceData(idx) {
+     
+    fetchReelyActiveOccupants().then(occupants => {
+        this.setState({
+            deviceCount: occupants.length,
+            lastUpdated: new Date()
+        }); 
+    });
+      
+    return;
 
     this.sourceIdx = 0;
 //      if (idx === undefined) {
@@ -48,7 +79,11 @@ export default class DeviceCardComponent  extends React.Component {
        name:'Reely Active',
        logo: 'images/logos/reelyactive.svg',
        url: 'https://www.hyperlocalcontext.com/contextat/directory/notman',
+<<<<<<< HEAD
        text: value => `${value} occupant${value === 1 ? '' : 's'} in Notman`,
+=======
+       text: value => `${value} ${strings.occupant}${value == 1 ? '' : 's'} ${strings.in} Notman`,
+>>>>>>> 1abba4b36bff15af6e3cbaf63de0cfb6ae7b2235
        value: function(deviceData) {
             var deviceCount = 0;
 
@@ -69,13 +104,13 @@ export default class DeviceCardComponent  extends React.Component {
             return deviceCount;
        }
        }
-       , {
+       /*, {
        id: 'myseat',
   	   name:'mySeat',
   	   logo: 'images/logos/myseat.png',
   	   // TODO fetch key from somewhere
   	   url: 'https://notman.herokuapp.com/api/myseat/chairs',
-  	   text: value => `${value} people in Osmo Café`,
+  	   text: value => `${value} ${strings.people}${(value == 0 || value >1 )&& this.props.lang=='fr' ? 's' : ''} ${strings.cafe}`,
   	   value: function(deviceData) {
   	        // Note that id_geometry = 0 should not be ignored. It simply means the
   	        // device has not been linked to the map. Which was indicated as
@@ -100,7 +135,7 @@ export default class DeviceCardComponent  extends React.Component {
 
             return seated;
   	   }
-  	   }];
+  	   }*/];
 
        this.setDeviceData(0);
   }
@@ -113,21 +148,46 @@ export default class DeviceCardComponent  extends React.Component {
 
   }
 
+  componentWillReceiveProps(nextProps) {
+    strings.setLanguage(nextProps.lang);
+    this.setState({})
+  } 
+
   render() {
 
     if (!this.state) {
         return  <div className="DeviceCard Card"><div></div></div>;
     }
 
+<<<<<<< HEAD
     return  <div className="DeviceCard Card">
                 <div>
                     <img className="DeviceCard--icon" src="images/house-emojis/hackthehouse-smiling.gif" alt="◉‿◉" />
                     {this.state.device.text(this.state.device.value(this.state.data))}.
                     <div className="deviceVendor">
                         Data provided by <img className="vendorLogo" src={this.state.device.logo} alt={this.state.device.name}/>
+=======
+    var imgStyle = {
+        width: '100px'
+    };
+    
+    const value = this.state.deviceCount;
+    const displayString = `${value} ${strings.occupant}${value == 1 ? '' : 's'} ${strings.in} Notman`;
+    
+    return  <Card className="DeviceCard">
+                <div>
+                    <img className="DeviceCard--icon" src="images/house-emojis/hackthehouse-smiling.gif"  />
+
+                    {displayString}
+
+                    <div className="deviceVendor">
+
+                        {strings.vendor} <img className="vendorLogo" src="/images/logos/reelyactive.svg" />
+
+>>>>>>> 1abba4b36bff15af6e3cbaf63de0cfb6ae7b2235
                     </div>
                 </div>
-            </div>;
+            </Card>;
   }
 
 }
