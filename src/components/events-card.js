@@ -14,21 +14,25 @@ let strings = new LocalizedStrings({
      'Tuesday': 'Tuesday',
      'Wednesday': 'Wednesday',
      'Thursday': 'Thursday',
-     'Friday': 'Friday'
+     'Friday': 'Friday',
+     'Saturday': 'Saturday',
+     'Sunday':'Sunday'
   },
   fr: {
     'cafe': 'café osmo',
-    'big room': 'grande piece',
+    'big room': 'grande salle',
     'glass door room': 'porte en verre',
     'glass door': 'porte en verre',
-    'both rooms': 'les deux pieces',
+    'both rooms': 'les 2 salles',
     'Today': "Aujourd'hui",
      'Tomorrow': 'Demain',
      'Monday': 'Lundi',
      'Tuesday': 'Mardi',
      'Wednesday': 'Mercredi',
      'Thursday': 'Jeudi',
-     'Friday': 'Vendredi'
+     'Friday': 'Vendredi',
+    'Saturday': 'Samedi',
+     'Sunday':'Dimanche'
   }
 })
 
@@ -71,7 +75,7 @@ export default class EventsCardComponent extends React.Component {
 
     return <div className="EventsCard-day" key={e.date}>
       <div className="EventsCard-day-name">
-        {strings[e.day]}
+        {strings[e.day]} 
       </div>
 
       {items}
