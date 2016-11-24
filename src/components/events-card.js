@@ -7,28 +7,34 @@ let strings = new LocalizedStrings({
         'big room': 'big room',
         'glass door room': 'glass door',
         'glass door': 'glass door',
-        'both rooms': 'both rooms',
+        'both rooms': '3rd floor',
+        '3rd floor': '3rd floor',
         'Today': 'Today',
         'Tomorrow': 'Tomorrow',
         'Monday': 'Monday',
         'Tuesday': 'Tuesday',
         'Wednesday': 'Wednesday',
         'Thursday': 'Thursday',
-        'Friday': 'Friday'
+        'Friday': 'Friday',
+        'Saturday': 'Saturday',
+        'Sunday': 'Sunday'
     },
     fr: {
         'cafe': 'café osmo',
         'big room': 'grande piece',
         'glass door room': 'porte en verre',
         'glass door': 'porte en verre',
-        'both rooms': 'les deux pieces',
+        'both rooms': '3ieme étage',
+        '3rd floor': '3ieme étage',
         'Today': "Aujourd'hui",
         'Tomorrow': 'Demain',
         'Monday': 'Lundi',
         'Tuesday': 'Mardi',
         'Wednesday': 'Mercredi',
         'Thursday': 'Jeudi',
-        'Friday': 'Vendredi'
+        'Friday': 'Vendredi',
+        'Saturday': 'Samedi',
+        'Sunday': 'Dimanche'
     }
 });
 
