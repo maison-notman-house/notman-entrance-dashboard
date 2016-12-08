@@ -7,11 +7,11 @@ import SponsorsCard from './sponsors-card';
 import Columns from './columns';
 import CurrentDate from './current-date';
 import STMCard from './stm-card';
-import CoffeeCard from './coffee-card';
 
 import Card from './card';
 import Banner from './banner';
 import DateBanner from './date-banner';
+import DirectoryCard from './directory-component';
 
 function TitleLine({children}) {
     return <div style={{
@@ -107,9 +107,14 @@ export default class Dashboard extends React.Component {
 
     constructor(props) {
         super(props);
+        var location = props.location.query.location;
+        if (!location) {
+            location = 'entrance';
+        }
         this.state = {
             langIndex: 0,
-            lang: 'en'
+            lang: 'en',
+            location: location
         };
     }
 
@@ -119,6 +124,7 @@ export default class Dashboard extends React.Component {
     }
 
     componentDidMount() {
+
         window
             .setInterval(function () {
                 this.changeLanguage();
@@ -128,21 +134,33 @@ export default class Dashboard extends React.Component {
     render() {
         var lang = 'en';
 
-        return (
-            <div lang={lang}>
+        if (this.state.location === 'entrance') {
+            return (
+                <div lang={lang} className="portrait">
+                    <DateBanner lang={this.state.lang}/>
+                    <DeviceCard lang={this.state.lang}/>
+                    <EventsCard lang={this.state.lang}/>
+                    <WeatherCard lang={this.state.lang}/>
+                    <STMCard lang={this.state.lang}/>
+                    <SponsorsCard/>
+                </div>
+            );
+        } else { //if (this.state.location === 'campus-3') {
+            return (
+                <div lang={lang} className="landscape">
+                    <DateBanner lang={this.state.lang}/>
 
-                <DateBanner lang={this.state.lang}/>
-
-                <CardCycler>
-                    <CoffeeCard lang={this.state.lang}/>
-                </CardCycler>
-
-                <DeviceCard lang={this.state.lang}/>
-                <EventsCard lang={this.state.lang}/>
-                <WeatherCard lang={this.state.lang}/>
-                <STMCard lang={this.state.lang}/>
-                <SponsorsCard/>
-            </div>
-        );
+                    <Columns>
+                        <div className="screenLeft">
+                            <DirectoryCard lang={this.state.lang} location={this.state.location}/>
+                        </div>
+                        <div className="screenRight">
+                            <EventsCard lang={this.state.lang}/>
+                            <WeatherCard lang={this.state.lang}/>
+                        </div>
+                    </Columns>
+                </div>
+            );
+        }
     }
 }

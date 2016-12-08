@@ -1,5 +1,5 @@
 import React from 'react';
-import Moment from 'moment';
+// import Moment from 'moment';
 import Card from './card';
 import fetchReelyActiveOccupants from '../lib/fetch-reelyactive-occupants';
 
@@ -25,14 +25,14 @@ let strings = new LocalizedStrings({
 export default class DeviceCardComponent  extends React.Component {
 
     setDeviceData(idx) {
-     
+
         fetchReelyActiveOccupants().then(occupants => {
             this.setState({
                 deviceCount: occupants.length,
                 lastUpdated: new Date()
-            }); 
+            });
         });
-      
+
         return;
 
         this.sourceIdx = 0;
@@ -147,7 +147,7 @@ export default class DeviceCardComponent  extends React.Component {
     componentWillReceiveProps(nextProps) {
         strings.setLanguage(nextProps.lang);
         this.setState({});
-    } 
+    }
 
     render() {
 
@@ -158,18 +158,18 @@ export default class DeviceCardComponent  extends React.Component {
         var imgStyle = {
             width: '100px'
         };
-    
+
         const value = this.state.deviceCount;
-        const displayString = `${value} ${strings.occupant}${value == 1 ? '' : 's'} ${strings.in} Notman`;
-    
+        const displayString = `${value} ${strings.occupant}${value === 1 ? '' : 's'} ${strings.in} Notman`;
+
         return  <Card className="DeviceCard">
                 <div>
-                    <img className="DeviceCard--icon" src="images/house-emojis/hackthehouse-smiling.gif"  />
+                    <img className="DeviceCard--icon" src="images/house-emojis/hackthehouse-smiling.gif" role="img" />
 
                     {displayString}
 
                     <div className="deviceVendor">
-                        {strings.vendor} <img className="vendorLogo" src="/images/logos/reelyactive.svg" />
+                        {strings.vendor} <img className="vendorLogo" src="/images/logos/reelyactive.svg" role="img" />
                     </div>
                 </div>
             </Card>;
