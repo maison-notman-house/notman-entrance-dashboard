@@ -100,7 +100,7 @@ export default class Bustime extends React.Component {
             direction = 'West';
             break;
         default:
-            direction = "unknown"
+            direction = "unknown";
         }
 
         var busTimes = this
