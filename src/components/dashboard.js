@@ -131,10 +131,40 @@ export default class Dashboard extends React.Component {
             }.bind(this), 5000);
     }
 
+    renderFloorView(location, floor, building, lang) {
+        return (
+            <div lang={lang} className="landscape">
+                <DateBanner lang={this.state.lang}/>
+                <Columns>
+                    <div className="screenLeft">
+                        <DirectoryCard lang={this.state.lang} location={location} floor={floor} building={building}/>
+                    </div>
+                    <div className="screenRight">
+                        <EventsCard lang={this.state.lang}/>
+                        <WeatherCard lang={this.state.lang}/>
+                    </div>
+                </Columns>
+            </div>
+        );        
+    }
     render() {
         var lang = 'en';
 
-        if (this.state.location === 'entrance') {
+        if (this.state.location === 'campus-1') {
+            return this.renderFloorView(
+                this.state.location,
+                1,
+                'campus',
+                this.state.lang
+            );
+        } else if (this.state.location === 'campus-2') {
+            return this.renderFloorView(
+                this.state.location,
+                2,
+                'campus',
+                this.state.lang
+            );
+        } else {
             return (
                 <div lang={lang} className="portrait">
                     <DateBanner lang={this.state.lang}/>
@@ -145,22 +175,6 @@ export default class Dashboard extends React.Component {
                     <SponsorsCard/>
                 </div>
             );
-        } else { //if (this.state.location === 'campus-3') {
-            return (
-                <div lang={lang} className="landscape">
-                    <DateBanner lang={this.state.lang}/>
-
-                    <Columns>
-                        <div className="screenLeft">
-                            <DirectoryCard lang={this.state.lang} location={this.state.location}/>
-                        </div>
-                        <div className="screenRight">
-                            <EventsCard lang={this.state.lang}/>
-                            <WeatherCard lang={this.state.lang}/>
-                        </div>
-                    </Columns>
-                </div>
-            );
-        }
+        } 
     }
 }

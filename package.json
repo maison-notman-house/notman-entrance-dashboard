@@ -22,7 +22,8 @@
         "react-addons-css-transition-group": "^15.2.1",
         "react-dom": "^15.2.1",
         "react-localization": "0.0.8",
-        "react-scripts": "^0.7.0"
+        "react-scripts": "^0.7.0",
+        "react-router": "^2.4.1"
     },
     "eslintConfig": {
         "extends": "react-app"

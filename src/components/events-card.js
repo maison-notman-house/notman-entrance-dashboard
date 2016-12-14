@@ -108,6 +108,7 @@ export default class EventsCardComponent extends React.Component {
         strings.setLanguage(nextProps.lang);
         this.setState({});
     }
+    
 
     render() {
 
