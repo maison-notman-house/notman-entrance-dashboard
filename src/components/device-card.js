@@ -42,7 +42,7 @@ export default class DeviceCardComponent extends React.Component {
                 id: 'reelyactive',
                 name: 'Reely Active',
                 logo: 'images/logos/reelyactive.svg',
-                url: 'https://www.hyperlocalcontext.com/contextat/directory/notman',
+                url: 'https://notman.herokuapp.com/api/reelyactive/devices',
                 text: value => `${value} occupant${value === 1
                     ? ''
                     : 's'} in Notman`,
@@ -56,19 +56,10 @@ export default class DeviceCardComponent extends React.Component {
                         for (key in devices) {
                             if (devices[key] !== undefined) {
                                 var device = devices[key];
-                                if (!device || !device.url || !device.nearest ) {
-                                    continue;
-                                } else if (device.url === 'http://reelyactive.com/products/ra-r436/') {
-                                    continue;
-                                } else if (device.url === 'https://sniffypedia.org/Product/reelyActive_RA-R436/') {
-                                    continue;
-                                } else if (device.url === 'https://sniffypedia.org/Organization/Estimote_Inc/') {
-                                    continue;
-                                } else if ((device.url + '').startsWith('https://maison-notman-house.github.io/notman-reelyactive-dashboard/places')) {
-                                    continue;
-                                } else {
+                                // only count 'mobile' devices
+                                if(!device.fixedDevice) {
                                     deviceCount++;
-                                }
+                                } 
                             }
                         }
                     } else {

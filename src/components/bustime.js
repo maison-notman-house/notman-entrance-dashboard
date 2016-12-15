@@ -16,7 +16,7 @@ export default class Bustime extends React.Component {
         var dateToday = Moment().format('YYYYMMDD');
 
         var fetchUrl = 'https://i-www.stm.info/fr/lines/' + scope.state.busline + '/stops/' + scope.state.busStopCode + '/arrivals.json?callback=&d=' + dateToday + '&direction=' + scope.state.direction + '&wheelchair=0&_=1411829351069';
-        console.log(fetchUrl);
+        //console.log(fetchUrl);
         fetchJsonp(fetchUrl)
             .then(response => response.json())
             .then((data) => data)
