@@ -1,141 +1,184 @@
 html {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
-*, *:before, *:after {
-  box-sizing: inherit;
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
 }
 
 html {
-  height: 100%;
+    height: 100%;
 }
 
 body {
-  cursor: none;
-  margin: 0;
-  font-size: 44px;
-  font-weight: 300;
-
-  font-family: 'Roboto Condensed', sans-serif;
-  color: #555;
-
-  background-color: black;
-  background-image: url(../images/backgrounds/Fall-Leaf-HD.jpg);
-  margin: 0;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  position: relative;
-  height: 1900px;
+    cursor: none;
+    margin: 0;
+    font-size: 44px;
+    font-weight: 300;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #555;
+    background-color: white;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
 }
+
+body.landscape {
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+}
+
+body.campus-1 #timenow {
+    background: transparent;
+    color: black;
+}
+
+body.campus-1 {
+    background: url(/images/backgrounds/ajmas-photo-0001.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body.campus-2 {
+    background: url(/images/backgrounds/Khoroshkov-ivan-observatory.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body.campus-2 #timenow {
+    background: transparent;
+    color: white;
+}
+
+body.entrance {
+    background-image: url(../images/backgrounds/Fall-Leaf-HD.jpg);
+}
+
+body.portrait {
+    height: 1900px;
+    width: 1080px;
+    overflow: hidden;
+}
+
 
 /* CSS Transition group */
 
 .Card {
-  background-color: rgba(255,255,255,0.8);
-  border-radius: 17px;
-  box-shadow: 0 0 25px rgba(167, 164, 164, 0.51);
-  padding: 20px 40px;
-  margin: 20px 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 0 25px rgba(167, 164, 164, 0.51);
+    padding: 20px 40px;
+    margin: 20px 20px;
 }
 
 .Card.SponsorsPanel {
-  background-color: white;
-  opacity: 0.9;
+    background-color: white;
+    opacity: 0.9;
 }
 
 .Panel {
-  background-color: rgba(255,255,255,0.9);
-  padding: 20px; 
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    margin-bottom: 20px;
 }
 
 .LogoHeader {
-  margin: 20px 20px;
+    margin: 20px 20px;
 }
 
 .LogoHeader img {
-  max-height: 90px;
+    max-height: 90px;
 }
+
+
+/* -- Sponsors card ------------------- */
 
 .Card.SponsorsPanel {
-  height: 260px;
-  position: relative;
-  overflow-y: hidden;
-  overflow-x: hidden;
-  vertical-align: middle;  
+    height: 260px;
+    position: relative;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    vertical-align: middle;
 }
 
-
-.SponsorsPanel > span {
-   position: relative;
-   display: block;
-   margin: 10px auto;
-   height: 200px;
-   padding: 0px;
+.SponsorsPanel>span {
+    position: relative;
+    display: block;
+    margin: 10px auto;
+    height: 200px;
+    padding: 0px;
 }
 
-.SponsorsPanel > span img:nth-child(1){
-	z-index: 4;
+.SponsorsPanel>span img:nth-child(1) {
+    z-index: 4;
 }
 
-.SponsorsPanel > span > div {
-   position: absolute;
-   left: 50%;
-   top: 50%;
-   display: block;
+.SponsorsPanel>span>div {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: block;
 }
 
 .sponsor-image {
-  position: absolute;
-  left: -50%;
-  top: -50%;
-  -x-webkit-image-rendering: crisp-edges;
+    position: absolute;
+    left: -50%;
+    top: -50%;
+    -x-webkit-image-rendering: crisp-edges;
 }
 
-
 .strong {
-  font-weight: 700;
+    font-weight: 700;
 }
 
 .transition-enter {
-  opacity: 0;
-  transition: opacity 800ms;
+    opacity: 0;
+    transition: opacity 800ms;
 }
 
 .transition-enter.transition-enter-active {
-  opacity: 1;
-  transition: opacity 800ms;
+    opacity: 1;
+    transition: opacity 800ms;
 }
 
 .transition-leave {
-  opacity: 1;
-  transition: opacity 1500ms;
+    opacity: 1;
+    transition: opacity 1500ms;
 }
 
 .transition-leave.transition-leave-active {
-  opacity: 0;
-  transition: opacity 1500ms;
+    opacity: 0;
+    transition: opacity 1500ms;
 }
 
+
+/* -- Events card --------------------- */
+
 .EventsCard {
-  font-size: 36px;
+    font-size: 36px;
 }
 
 .EventsCard-day-name {
-  font-weight: 700;
-  margin-top: 30px;
-  font-size: 40px;
-/*   text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87; */
+    font-weight: 700;
+    margin-top: 30px;
+    font-size: 40px;
+    /*   text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87; */
 }
 
-.EventsCard-day:first-child .EventsCard-day-name{
-  margin-top: 0;
+.EventsCard-day:first-child .EventsCard-day-name {
+    margin-top: 0;
 }
 
 h3 {
-  margin: 0;
+    margin: 0;
 }
 
 .EventsCard-day {
-	margin-bottom: 7px;
+    margin-bottom: 7px;
 }
 
 .eventname {
@@ -143,28 +186,27 @@ h3 {
 }
 
 .event {
-  margin: 10px 0;
+    margin: 10px 0;
 }
 
 .roomlabel {
-  vertical-align: 3px;
-  padding: 5px 0;
-  font-size: 24px;
-  font-weight: 400;
-  border-radius: 10px;
-  color: white;
-  white-space: nowrap;
-  display: inline-block;
-  width: 170px;
-  text-align: center;
-  text-transform: uppercase;
-
-  /* default color */
-  background-color: #909090;
+    vertical-align: 3px;
+    padding: 5px 0;
+    font-size: 24px;
+    font-weight: 400;
+    border-radius: 10px;
+    color: white;
+    white-space: nowrap;
+    display: inline-block;
+    width: 170px;
+    text-align: center;
+    text-transform: uppercase;
+    /* default color */
+    background-color: #909090;
 }
 
-
-.roomlabel.cafe, .roomlabel.café {
+.roomlabel.cafe,
+.roomlabel.café {
     background-color: brown;
 }
 
@@ -188,21 +230,73 @@ h3 {
     background-color: #007fab;
 }
 
-.DeviceCard {
-	position: relative;
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
-.DeviceCard--icon {
-  height: 80px;
-  vertical-align: -22px;
-  margin-right: 30px;
+.Columns-column {
+    float: right;
+    width: 50%;
 }
 
-.weatherImg {
-   display: inline-block;
-   vertical-align: middle;
-   margin-right: 7px;
+.eventtime {
+    font-weight: bold;
+    margin-left: 10px;
+    margin-right: 10px;
 }
+
+.event {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+}
+
+
+/* -- Misc ---------------------------- */
+
+#timenow {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    padding: 0px 50px;
+    font-size: 80px;
+    color: black;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+#datenow {
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+}
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    padding: 5px 12px;
+    font-size: 30px;
+    color: #d3d3d3;
+}
+
+
+/* -- Video card ---------------------- */
+
+.VideoPanel {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.0);
+    margin: 90px;
+}
+
+.VideoPanel iframe {
+    border: none;
+    background-color: transparent;
+}
+
+
+/* -- Device card --------------------- */
 
 .deviceVendor {
     float: right;
@@ -216,118 +310,112 @@ h3 {
 }
 
 .vendorLogo {
-	height: 30px
-}
-
-.clearfix:after {
-    content:"";
-    display:table;
-    clear:both;
-}
-
-.Columns-column {
-  float: right;
-  width: 50%;
-}
-
-#timenow {
-    position: absolute;
-    top: -10px;
-    right: 20px;
-    padding: 0px 50px;
-    font-size: 80px;
-    color:black;
-    border-radius: 17px;
-    background-color: rgba(255,255,255, 0.9);
-}
-
-.eventtime {
-    font-weight: bold;
-}
-
-#datenow {
-    text-align: center;
-    margin: 0 auto;
-    display: block;
-}
-
-.event {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow-x: hidden;
-}
-
-.VideoPanel {
-   text-align: center;
-   background-color: rgba(255,255,255, 0.0);
-   margin: 90px;
-}
-
-.VideoPanel iframe {
-   border: none;
-   background-color: transparent;
-}
-
-footer {
-    position: fixed;
-    bottom: 0px;
-    padding: 5px 12px;
-    font-size: 30px;
-    color: #d3d3d3;
+    height: 30px
 }
 
 .DeviceCard .lastUpdated {
-   font-size: 12px;
+    font-size: 12px;
 }
 
-.WeatherCard {
-
+.DeviceCard {
+    position: relative;
 }
+
+.DeviceCard--icon {
+    height: 80px;
+    vertical-align: -22px;
+    margin-right: 30px;
+}
+
+
+/* -- Weather card -------------------- */
+
+.weatherImg {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 7px;
+}
+
+.WeatherCard {}
 
 .WeatherCard-title {
-  font-size: 80%;
-  text-transform: uppercase;
-  font-weight: bold;
+    font-size: 80%;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
-/*----------- stm card ------------------*/
+
+/* -- STM card ------------------------ */
+
 #stm-logo {
-  position:absolute;
-  left: 40px;
-  width:90px;
-  height:70px;
- }
+    position: absolute;
+    left: 40px;
+    width: 90px;
+    height: 70px;
+}
 
 .stm-card {
-  position: relative;
-  height: auto;
+    position: relative;
+    height: auto;
 }
 
 .bus-card-title {
-  position: relative;
-  margin-left:110px;
-  font-weight: bold;
-  font-size: 48px;
- }
+    position: relative;
+    margin-left: 110px;
+    font-weight: bold;
+    font-size: 48px;
+}
 
 .buspanel-container {
-  margin-top: 10px;
-  width: auto;
-  display: flex;
-  justify-content: left;
+    margin-top: 10px;
+    width: auto;
+    display: flex;
+    justify-content: left;
 }
-.buspanel{
-  width: 33%;
+
+.buspanel {
+    width: 33%;
 }
+
 .busline {
-  font-weight: bold;
-  font-size: 40px;
-  color:#513355;
+    font-weight: bold;
+    font-size: 40px;
+    color: #513355;
 }
-.bustime{
-  font-size: 35px;
+
+.bustime {
+    font-size: 35px;
 }
-.busMinutes{
-  font-weight: bold;
-  color: #513355;
+
+.busMinutes {
+    font-weight: bold;
+    color: #513355;
+}
+
+
+/* -- Directory card ------------------ */
+
+.Card.directory span.room {
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+.Card.directory span.room {
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+.Card.directory span.organization {}
+
+.Card.directory ul {
+    padding-left: 0px
+}
+
+.Card.directory li {
+    display: block;
+}
+
+.Card.directory h2 {
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
