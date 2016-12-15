@@ -5,13 +5,17 @@ export default class DeviceCardComponent extends React.Component {
     setDeviceData(idx) {
 
         this.sourceIdx = 0;
-        //      if (idx === undefined) {          this.sourceIdx++;          if
-        // (this.sourceIdx >= this.sources.length) {              this.sourceIdx = 0;
-        //       }          idx = this.sourceIdx;      }
+
+        if (idx === undefined) {
+            // this.sourceIdx++;
+            // if (this.sourceIdx >= this.sources.length) {
+            //     this.sourceIdx = 0;
+            // }
+            idx = this.sourceIdx;
+        }
 
         var scope = this;
-
-        fetch(scope.sources[idx].url)
+        fetch(scope.sources[this.sourceIdx].url)
             .then(response => response.json())
             .then(function (data) {
                 return data;
@@ -42,6 +46,7 @@ export default class DeviceCardComponent extends React.Component {
                 text: value => `${value} occupant${value === 1
                     ? ''
                     : 's'} in Notman`,
+
                 value: function (deviceData) {
                     var deviceCount = 0;
 
@@ -51,7 +56,17 @@ export default class DeviceCardComponent extends React.Component {
                         for (key in devices) {
                             if (devices[key] !== undefined) {
                                 var device = devices[key];
-                                if (device.nearest && device.url !== 'http://reelyactive.com/products/ra-r436/') {
+                                if (!device || !device.url || !device.nearest ) {
+                                    continue;
+                                } else if (device.url === 'http://reelyactive.com/products/ra-r436/') {
+                                    continue;
+                                } else if (device.url === 'https://sniffypedia.org/Product/reelyActive_RA-R436/') {
+                                    continue;
+                                } else if (device.url === 'https://sniffypedia.org/Organization/Estimote_Inc/') {
+                                    continue;
+                                } else if ((device.url + '').startsWith('https://maison-notman-house.github.io/notman-reelyactive-dashboard/places')) {
+                                    continue;
+                                } else {
                                     deviceCount++;
                                 }
                             }
@@ -115,15 +130,20 @@ export default class DeviceCardComponent extends React.Component {
             </div>;
         }
 
+        var value = 'n/a';
+        if (this.state.device) {
+            value = this
+                .state
+                .device
+                .text(this.state.device.value(this.state.data));
+        }
+
         return <div className="DeviceCard Card">
             <div>
                 <img
                     className="DeviceCard--icon"
                     src="images/house-emojis/hackthehouse-smiling.gif"
-                    alt="◉‿◉"/> {this
-                    .state
-                    .device
-                    .text(this.state.device.value(this.state.data))}.
+                    alt="◉‿◉"/> {value}.
                 <div className="deviceVendor">
                     Data provided by
                     <img
