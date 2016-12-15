@@ -37,7 +37,6 @@ export default class DirectoryComponent extends React.Component {
     }
 
     updateOcupantData() {
-        console.log('!!!!!');
         var scope = this;
         var requestUrl = url.parse(this.fetchUrl);
 
@@ -64,7 +63,6 @@ export default class DirectoryComponent extends React.Component {
     render() {
         const location = this.state.location;
         const occupants = this.state.occupants;
-        console.log(location, occupants);
 
         return (
             <Card size="7" className="directory">
