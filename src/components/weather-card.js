@@ -72,7 +72,7 @@ export default class ForecastWeatherCard extends React.Component {
 
         let currentCondition = this.state.currentWeather.main.temp;
         currentCondition = Math.round(currentCondition) + '\u00B0';
-        console.log('Current condition is ', currentCondition, this.state.currentWeather);
+        //console.log('Current condition is ', currentCondition, this.state.currentWeather);
         const isCurrentPrecipitation = PRECIPITATION_TYPES.has(currentCondition);
         const currentConditionDisplay = <span>
             {strings.now}: {currentCondition}.
@@ -82,11 +82,12 @@ export default class ForecastWeatherCard extends React.Component {
 
         let precipitationDisplay;
         if (precipitations.length) {
+            var idx=0;
             precipitationDisplay = precipitations.map(precipitation => {
-
+                idx++;
                 var precipitationToTranslate = precipitation.weather[0].main;
                 if (strings[precipitationToTranslate]) {
-                    return <span>{strings[precipitationToTranslate]} {strings.next}
+                    return <span key={idx}>{strings[precipitationToTranslate]} {strings.next}&nbsp;
                         {moment(precipitation.dt_txt)
                             .locale(this.props.lang)
                             .fromNow(true)}.
@@ -102,7 +103,7 @@ export default class ForecastWeatherCard extends React.Component {
 
         return <Card>
             <span className="WeatherCard-title">{strings.title}</span>
-            {currentConditionDisplay}
+            {currentConditionDisplay}&nbsp;
             {precipitationDisplay}
         </Card>;
 

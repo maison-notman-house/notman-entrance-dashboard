@@ -1,24 +1,25 @@
 html {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
-*, *:before, *:after {
-  box-sizing: inherit;
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
 }
 
 html {
-  height: 100%;
+    height: 100%;
 }
 
 body {
-  cursor: none;
-  margin: 0;
-  font-size: 44px;
-  font-weight: 300;
-
-  font-family: 'Roboto Condensed', sans-serif;
-  color: #606060;
-
-/*
+    cursor: none;
+    margin: 0;
+    font-size: 44px;
+    font-weight: 300;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #606060;
+    /*
   background-color: black;
   background-image: url(../images/backgrounds/Fall-Leaf-HD.jpg);
   margin: 0;
@@ -29,148 +30,158 @@ body {
   */
 }
 
+.landscape {
+    width: 1920px;
+    height: 1080px;
+}
+
+.portrait {
+    width: 1080px;
+    height: 1920px;
+}
+
 #canvas {
-  display: block;
+    display: block;
     position: absolute;
     top: -10px;
     z-index: -1;
 }
 
 #particles-js {
-  display: block;
+    display: block;
     position: absolute;
     top: -10px;
     z-index: -20;
     height: 100vh;
 }
+
+
 /* CSS Transition group */
 
 .Card {
-  background-color: rgba(255,255,255,0.8);
-  border-radius: 17px;
-  /* box-shadow: 0 0 25px rgba(167, 164, 164, 0.51); */
-  padding: 20px 40px;
-  margin: 20px 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 17px;
+    /* box-shadow: 0 0 25px rgba(167, 164, 164, 0.51); */
+    padding: 20px 40px;
+    margin: 20px 20px;
 }
 
 .Card.SponsorsPanel {
-  background-color: white;
-  opacity: 0.9;
+    background-color: white;
+    opacity: 0.9;
 }
 
 .Banner {
-  margin-bottom: 20px;
-  padding: 30px;
-  background-color: rgba(255, 255, 255, 1);
-  display: flex;
-  flex-flow: row;
-  justify-content: space-between; 
+    margin-bottom: 20px;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 1);
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
 }
 
 .Banner div {
-  width: 40%;
-  text-align: center;
-  margin: auto;
+    width: 40%;
+    text-align: center;
+    margin: auto;
 }
 
 .Banner div:nth-child(2) {
-  font-size: 1.2em;
-  margin-top: -3px;
-  width: 20%;
+    font-size: 1.2em;
+    margin-top: -3px;
+    width: 20%;
 }
 
 .Banner div img {
-  max-width: 100%;
+    max-width: 100%;
 }
 
 .LogoHeader {
-  margin: 20px 20px;
+    margin: 20px 20px;
 }
 
 .LogoHeader img {
-  max-height: 90px;
+    max-height: 90px;
 }
 
 .Card.SponsorsPanel {
-  height: 260px;
-  position: relative;
-  overflow-y: hidden;
-  overflow-x: hidden;
-  vertical-align: middle;
+    height: 260px;
+    position: relative;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    vertical-align: middle;
 }
 
-
-.SponsorsPanel > span {
-   position: relative;
-   display: block;
-   margin: 10px auto;
-   height: 200px;
-   padding: 0px;
+.SponsorsPanel>span {
+    position: relative;
+    display: block;
+    margin: 10px auto;
+    height: 200px;
+    padding: 0px;
 }
 
-.SponsorsPanel > span img:nth-child(1){
-	z-index: 4;
+.SponsorsPanel>span img:nth-child(1) {
+    z-index: 4;
 }
 
-.SponsorsPanel > span > div {
-   position: absolute;
-   left: 50%;
-   top: 50%;
-   display: block;
+.SponsorsPanel>span>div {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: block;
 }
 
 .sponsor-image {
-  position: absolute;
-  left: -50%;
-  top: -50%;
-  -x-webkit-image-rendering: crisp-edges;
+    position: absolute;
+    left: -50%;
+    top: -50%;
+    -x-webkit-image-rendering: crisp-edges;
 }
 
-
 .strong {
-  font-weight: 700;
+    font-weight: 700;
 }
 
 .transition-enter {
-  opacity: 0;
-  transition: opacity 800ms;
+    opacity: 0;
+    transition: opacity 800ms;
 }
 
 .transition-enter.transition-enter-active {
-  opacity: 1;
-  transition: opacity 800ms;
+    opacity: 1;
+    transition: opacity 800ms;
 }
 
 .transition-leave {
-  opacity: 1;
-  transition: opacity 1500ms;
+    opacity: 1;
+    transition: opacity 1500ms;
 }
 
 .transition-leave.transition-leave-active {
-  opacity: 0;
-  transition: opacity 1500ms;
+    opacity: 0;
+    transition: opacity 1500ms;
 }
 
 .EventsCard {
-  font-size: 36px;
+    font-size: 36px;
 }
 
 .EventsCard-day-name {
-  font-weight: 700;
-  margin-top: 30px;
-  font-size: 40px;
+    font-weight: 700;
+    margin-top: 30px;
+    font-size: 40px;
 }
 
-.EventsCard-day:first-child .EventsCard-day-name{
-  margin-top: 0;
+.EventsCard-day:first-child .EventsCard-day-name {
+    margin-top: 0;
 }
 
 h3 {
-  margin: 0;
+    margin: 0;
 }
 
 .EventsCard-day {
-	margin-bottom: 7px;
+    margin-bottom: 7px;
 }
 
 .eventname {
@@ -178,28 +189,32 @@ h3 {
 }
 
 .event {
-  margin: 10px 0;
+    margin: 10px 0;
+}
+
+.directory span.room {
+    display: inline-block;
+    margin-right: 20px;
 }
 
 .roomlabel {
-  vertical-align: 3px;
-  padding: 5px 0;
-  font-size: 24px;
-  font-weight: 400;
-  border-radius: 10px;
-  color: white;
-  white-space: nowrap;
-  display: inline-block;
-  width: 170px;
-  text-align: center;
-  text-transform: uppercase;
-
-  /* default color */
-  background-color: #909090;
+    vertical-align: 3px;
+    padding: 5px 0;
+    font-size: 24px;
+    font-weight: 400;
+    border-radius: 10px;
+    color: white;
+    white-space: nowrap;
+    display: inline-block;
+    width: 170px;
+    text-align: center;
+    text-transform: uppercase;
+    /* default color */
+    background-color: #909090;
 }
 
-
-.roomlabel.cafe, .roomlabel.café {
+.roomlabel.cafe,
+.roomlabel.café {
     background-color: brown;
 }
 
@@ -224,19 +239,19 @@ h3 {
 }
 
 .DeviceCard {
-	position: relative;
+    position: relative;
 }
 
 .DeviceCard--icon {
-  height: 80px;
-  vertical-align: -22px;
-  margin-right: 30px;
+    height: 80px;
+    vertical-align: -22px;
+    margin-right: 30px;
 }
 
 .weatherImg {
-   display: inline-block;
-   vertical-align: middle;
-   margin-right: 7px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 7px;
 }
 
 .deviceVendor {
@@ -251,13 +266,13 @@ h3 {
 }
 
 .vendorLogo {
-	height: 30px
+    height: 30px
 }
 
 .clearfix:after {
-    content:"";
-    display:table;
-    clear:both;
+    content: "";
+    display: table;
+    clear: both;
 }
 
 #timenow {
@@ -266,13 +281,15 @@ h3 {
     right: 20px;
     padding: 0px 50px;
     font-size: 80px;
-    color:#6959b1;
+    color: #6959b1;
     background-color: white;
     border-radius: 17px;
 }
 
 .eventtime {
     font-weight: bold;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 #datenow {
@@ -282,20 +299,20 @@ h3 {
 }
 
 .event {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
 }
 
 .VideoPanel {
-   text-align: center;
-   background-color: rgba(255,255,255, 0.0);
-   margin: 90px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.0);
+    margin: 90px;
 }
 
 .VideoPanel iframe {
-   border: none;
-   background-color: transparent;
+    border: none;
+    background-color: transparent;
 }
 
 footer {
@@ -307,68 +324,74 @@ footer {
 }
 
 .DeviceCard .lastUpdated {
-   font-size: 12px;
+    font-size: 12px;
 }
 
-.WeatherCard {
-
-}
+.WeatherCard {}
 
 .WeatherCard-title {
-  margin-right: 20px;
-  font-size: 80%;
-  text-transform: uppercase;
-  font-weight: bold;
+    margin-right: 20px;
+    font-size: 80%;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
+
 /*----------- stm card ------------------*/
+
 #stm-logo {
-  position:absolute;
-  left: 30px;
-  width: 70px;
-  height: 55px;
- }
+    position: absolute;
+    left: 30px;
+    width: 70px;
+    height: 55px;
+}
 
 .stm-card {
-  position: relative;
-  height: auto;
+    position: relative;
+    height: auto;
 }
 
 .bus-card-title {
-  position: relative;
-  margin-left:110px;
-  font-weight: bold;
-  font-size: 48px;
- }
+    position: relative;
+    margin-left: 110px;
+    font-weight: bold;
+    font-size: 48px;
+}
 
 .buspanel-container {
-  margin-top: 10px;
-  width: auto;
-  display: flex;
-  justify-content: left;
+    margin-top: 10px;
+    width: auto;
+    display: flex;
+    justify-content: left;
 }
-.buspanel{
-  width: 33%;
+
+.buspanel {
+    width: 33%;
 }
+
 .busline {
-  font-weight: bold;
-  font-size: 40px;
-  color:#513355;
+    font-weight: bold;
+    font-size: 40px;
+    color: #513355;
 }
-.bustime{
-  font-size: 35px;
+
+.bustime {
+    font-size: 35px;
 }
-.busMinutes{
-  font-weight: bold;
-  color: #513355;
+
+.busMinutes {
+    font-weight: bold;
+    color: #513355;
 }
 
 .u-cf::before,
 .u-cf::after {
-  content: " "; /* 1 */
-  display: table; /* 2 */
+    content: " ";
+    /* 1 */
+    display: table;
+    /* 2 */
 }
 
 .u-cf::after {
-  clear: both;
+    clear: both;
 }
