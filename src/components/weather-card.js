@@ -36,7 +36,6 @@ export default class ForecastWeatherCard extends React.Component {
         if (!this.state.currentWeather) return null;
     
         const currentCondition = this.state.currentWeather.weather[0].main;
-        console.log('Current condition is ', currentCondition, this.state.currentWeather);
         const isCurrentPrecipitation = PRECIPITATION_TYPES.has(currentCondition);
         const currentConditionDisplay = <span>{currentCondition} right now. </span>;
         const precipitations = findPrecipitations(currentCondition, this.state.forecastWeather.list);
@@ -44,7 +43,7 @@ export default class ForecastWeatherCard extends React.Component {
         let precipitationDisplay;
         if (precipitations.length) {
             precipitationDisplay = precipitations.map(precipitation => {
-                return <span>{precipitation.weather[0].main} in the next {moment(precipitation.dt_txt).fromNow(false)}. </span>;
+                return <span key={precipitation.weather[0].id}>{precipitation.weather[0].main} in the next {moment(precipitation.dt_txt).fromNow(false)}. </span>;
             });
         } else if (!isCurrentPrecipitation) {
             precipitationDisplay = <span>No precipitation expected.</span>;
