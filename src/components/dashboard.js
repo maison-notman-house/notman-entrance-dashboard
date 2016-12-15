@@ -14,7 +14,6 @@ import Columns from './columns';
 
 import BodyClass from './body-class';
 
-console.log(BodyClass)
 export default class Dashboard extends React.Component {
     constructor(props) {
         super(props);
@@ -55,8 +54,6 @@ export default class Dashboard extends React.Component {
     render() {
         var lang = 'en';
 
-
-        console.log('this.state.location', this.state.location)
         if (this.state.location === 'campus-1') {
             BodyClass.addClassToBody('landscape campus-1');
             return this.renderFloorView('Campus - Floor 1', 1, 'campus', this.state.lang);
