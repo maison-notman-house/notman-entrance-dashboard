@@ -9,35 +9,78 @@ import SponsorsPanel from './sponsors-panel';
 import CurrentDate from './current-date';
 import STMCard from './stm-card';
 
+import DirectoryCard from './directory-component';
+import Columns from './columns';
+
+import BodyClass from './body-class';
 
 export default class Dashboard extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+
+        var location = props.location.query.location;
+        if (!location) {
+            location = 'entrance';
+        }
+
+        this.state = {
+            location: location
+        };
+    }
+
+    renderFloorView(location, floor, building, lang) {
+        return (
+            <div lang={lang}>
+
+                <LogoHeader/>
+
+                <Columns>
+                    <div className="screenLeft">
+                        <DirectoryCard
+                            lang={this.state.lang}
+                            location={location}
+                            floor={floor}
+                            building={building}/>
+                    </div>
+                    <div className="screenRight">
+                        <DeviceCard lang={this.state.lang}/>
+                        <WeatherCard lang={this.state.lang}/>
+                    </div>
+                </Columns>
+            </div>
+        );
     }
 
     render() {
         var lang = 'en';
 
-        return (
-      <div lang={lang}>
+        if (this.state.location === 'campus-1') {
+            BodyClass.addClassToBody('landscape campus-1');
+            return this.renderFloorView('Campus - Floor 1', 1, 'campus', this.state.lang);
+        } else if (this.state.location === 'campus-2') {
+            BodyClass.addClassToBody('landscape campus-2');            
+            return this.renderFloorView('Campus - Floor 2', 2, 'campus', this.state.lang);
+        } else {
+            BodyClass.addClassToBody('portrait entrance');
 
-        <LogoHeader/>
+            return (
+                <div lang={lang}>
 
-        <Panel>
-          <CurrentDate/>
-        </Panel>
+                    <LogoHeader/>
 
-        <SponsorsPanel/>
-        <DeviceCard />
+                    <Panel>
+                        <CurrentDate/>
+                    </Panel>
 
-        <EventsCard/>
+                    <EventsCard/>
+                    <DeviceCard/>
+                    <WeatherCard/>
 
-        <WeatherCard/>
+                    <STMCard/>
+                    <SponsorsPanel/>
 
-        <STMCard/>
-
-      </div>
-        );
+                </div>
+            );
+        }
     }
 }
