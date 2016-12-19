@@ -55,7 +55,12 @@ body.campus-2 #timenow {
 }
 
 body.entrance {
-    background-image: url(../images/backgrounds/Fall-Leaf-HD.jpg);
+    background-image: url(../images/backgrounds/pexels-photo-29543-adjusted.jpg);
+}
+
+body.entrance #timenow {
+    background: transparent;
+    color: black;
 }
 
 body.portrait {
