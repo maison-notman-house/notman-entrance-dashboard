@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Dashboard from './components/dashboard';
 
 import MessageClient from './message-client';
-import { Router, Route, Link, browserHistory } from 'react-router';
+import { Router, Route, browserHistory } from 'react-router';
 
 new MessageClient('ws://notman.herokuapp.com/socket');
 
