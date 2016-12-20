@@ -168,8 +168,8 @@ export default class Dashboard extends React.Component {
             return (
                 <div lang={lang} className="portrait">
                     <DateBanner lang={this.state.lang}/>
-                    <DeviceCard lang={this.state.lang}/>
                     <EventsCard lang={this.state.lang}/>
+                    <DeviceCard lang={this.state.lang}/>
                     <WeatherCard lang={this.state.lang}/>
                     <STMCard lang={this.state.lang}/>
                     <SponsorsCard/>
