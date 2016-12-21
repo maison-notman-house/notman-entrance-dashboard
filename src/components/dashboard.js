@@ -8,7 +8,7 @@ import DeviceCard from './device-card';
 import SponsorsPanel from './sponsors-panel';
 import CurrentDate from './current-date';
 import STMCard from './stm-card';
-
+import HolidayEventsCard from './holiday-events';
 import DirectoryCard from './directory-component';
 import Columns from './columns';
 
@@ -58,7 +58,7 @@ export default class Dashboard extends React.Component {
             BodyClass.addClassToBody('landscape campus-1');
             return this.renderFloorView('Campus - Floor 1', 1, 'campus', this.state.lang);
         } else if (this.state.location === 'campus-2') {
-            BodyClass.addClassToBody('landscape campus-2');            
+            BodyClass.addClassToBody('landscape campus-2');
             return this.renderFloorView('Campus - Floor 2', 2, 'campus', this.state.lang);
         } else {
             BodyClass.addClassToBody('portrait entrance');
@@ -72,7 +72,8 @@ export default class Dashboard extends React.Component {
                         <CurrentDate/>
                     </Panel>
 
-                    <EventsCard/>
+                    <HolidayEventsCard/>
+
                     <DeviceCard/>
                     <WeatherCard/>
 
