@@ -7,10 +7,6 @@ export default class HolidayEventsCard extends React.Component {
             'font-weight': 'bold'
         };
 
-        var style2 = {
-            'display': 'bold'
-        };
-
         return <div className="EventsCard Card">
             <h3>Osmo Café & Notman House</h3>
             <ul>
