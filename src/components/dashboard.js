@@ -8,7 +8,6 @@ import DeviceCard from './device-card';
 import SponsorsPanel from './sponsors-panel';
 import CurrentDate from './current-date';
 import STMCard from './stm-card';
-import HolidayEventsCard from './holiday-events';
 import DirectoryCard from './directory-component';
 import Columns from './columns';
 
@@ -72,7 +71,7 @@ export default class Dashboard extends React.Component {
                         <CurrentDate/>
                     </Panel>
 
-                    <HolidayEventsCard/>
+                    <EventsCard/>
 
                     <DeviceCard/>
                     <WeatherCard/>
