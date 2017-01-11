@@ -26,9 +26,22 @@ export default class Dashboard extends React.Component {
         }
 
         this.state = {
+            langIndex: 0,
             location: location,
-            language: LANGUAGES[0]
+            lang: LANGUAGES[0]
         };
+    }
+
+    changeLanguage() {
+        let langIndex = (this.state.langIndex + 1) % LANGUAGES.length;
+        this.setState({langIndex: langIndex, lang: LANGUAGES[langIndex]});
+    }
+
+    componentDidMount() {
+        window
+            .setInterval(function () {
+                this.changeLanguage();
+            }.bind(this), 5000);
     }
 
     renderFloorView(location, floor, building, lang) {
@@ -40,23 +53,22 @@ export default class Dashboard extends React.Component {
                 <Columns>
                     <div className="screenLeft">
                         <DirectoryCard
-                            lang={this.state.lang}
+                            lang={lang}
                             location={location}
                             floor={floor}
                             building={building}/>
                     </div>
                     <div className="screenRight">
-                        <DeviceCard lang={this.state.lang}/>
-                        <WeatherCard lang={this.state.lang}/>
-                        <TwitterCard />
+                        <DeviceCard lang={lang}/>
+                        <TwitterCard height="500"/>
                     </div>
                 </Columns>
             </div>
         );
     }
 
-    render() {
-        var lang = this.state.language;
+    render() {        
+        var lang = this.state.lang;
 
         if (this.state.location === 'campus-1') {
             BodyClass.addClassToBody('landscape campus-1');

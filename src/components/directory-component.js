@@ -23,8 +23,15 @@ export default class DirectoryComponent extends React.Component {
 
         this.state = {
             location: this.props.location,
-            occupants: []
+            occupants: [],
+            lang: props.lang
         };
+        
+        strings.setLanguage(props.lang);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        strings.setLanguage(nextProps.lang);
     }
 
     createRooms(entry) {

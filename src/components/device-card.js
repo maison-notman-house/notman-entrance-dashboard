@@ -24,7 +24,11 @@ export default class DeviceCardComponent extends React.Component {
             idx = this.sourceIdx;
         }
 
-        var lang = this.props.lang;
+        var lang = 'en';
+        if (this.props.lang) {
+            lang = this.props.lang;
+        }
+
         var scope = this;
         fetch(scope.sources[this.sourceIdx].url)
             .then(response => response.json())
@@ -35,6 +39,7 @@ export default class DeviceCardComponent extends React.Component {
                 scope.setState({device: scope.sources[idx], data: data, lastUpdated: new Date(), lang: lang});
             })
             .catch(function (error) {
+                
                 scope.setState({device: scope.sources[idx], data: undefined, lastUpdated: new Date(), lang: lang});
             });
 
@@ -42,9 +47,14 @@ export default class DeviceCardComponent extends React.Component {
 
     update() {}
 
-    componentWillMount() {
-        strings.setLanguage(this.props.lang);
-        
+    componentWillReceiveProps(nextProps) {
+        strings.setLanguage(nextProps.lang);
+        this.setState(
+            Object.assign(this.state, { lang: nextProps.lang})
+        );
+    }
+
+    componentWillMount() {        
         this.apiKeysUrl = 'https://notman.herokuapp.com/api/keys';
 
         this.refreshIntervalSeconds = 15;
@@ -137,8 +147,15 @@ export default class DeviceCardComponent extends React.Component {
 
         var value = 'n/a';
         if (this.state.device) {
-            var txtFn = this.state.device.text[this.state.lang];
+            var txtFn = this.state.device.text[strings.getLanguage()];
             value = txtFn(this.state.device.value(this.state.data));
+        }
+
+        var deviceLogo = '';
+        var deviceName = '';
+        if (this.state && this.state.device) {
+            deviceLogo = this.state.device.logo;
+            deviceName = this.state.device.name;
         }
 
         return <div className="DeviceCard Card">
@@ -151,8 +168,8 @@ export default class DeviceCardComponent extends React.Component {
                     {strings.providedBy}
                     <img
                         className="vendorLogo"
-                        src={this.state.device.logo}
-                        alt={this.state.device.name}/>
+                        src={deviceLogo}
+                        alt={deviceName}/>
                 </div>
             </div>
         </div>;
