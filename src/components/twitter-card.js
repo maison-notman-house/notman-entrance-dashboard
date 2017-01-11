@@ -6,10 +6,15 @@ import {Timeline} from 'react-twitter-widgets';
  */
 export default class TwitterCardComponent extends React.Component {
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return false;
+    }
+    
     render() {
-
+        var height = this.props.height || 400;
+        
         return (
-            <div className="Card">
+            <div className="Card TwitterCard">
                 <Timeline
                     dataSource={{
                         sourceType: 'profile',
@@ -17,7 +22,7 @@ export default class TwitterCardComponent extends React.Component {
                     }}
                     options={{
                         username: 'notman',
-                        height: '400',
+                        height: `${height}`,
                         chrome: 'nofooter, noborders, transparent, noscrollbar'
                     }}/>
             </div>
