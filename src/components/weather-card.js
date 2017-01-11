@@ -1,5 +1,31 @@
 import React from 'react';
 import moment from 'moment';
+import LocalizedStrings from 'react-localization';
+
+let strings = new LocalizedStrings({
+    en: {
+        title: 'Weather',
+        now: 'Now',
+        next: 'in',
+        noPrecipitation: 'No precipitation expected.',
+        Rain: 'Rain',
+        Snow: 'Snow',
+        Thunderstorm: 'Thunderstorm',
+        Drizzle: 'Drizzle'
+    },
+    fr: {
+        title: 'Meteo',
+        now: 'Actuellement',
+        next: 'dans',
+        noPrecipitation: 'Aucune précipitation prévue.',
+        Rain: 'Pluie',
+        Snow: 'Neige',
+        Thunderstorm: 'Orage',
+        Drizzle: 'Bruine'
+    }
+});
+
+import Card from './card';
 
 const MINUTE = 60000;
 const PRECIPITATION_TYPES = new Set(['Rain', 'Snow', 'Thunderstorm', 'Drizzle']);
@@ -7,56 +33,97 @@ const PRECIPITATION_TYPES = new Set(['Rain', 'Snow', 'Thunderstorm', 'Drizzle'])
 export default class ForecastWeatherCard extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            lang: props.lang
+        };
+
+        strings.setLanguage(props.lang);        
+        
     }
-    
+
     componentDidMount() {
-        this.updateWeatherData();
+        this.updateWeatherData('en');
         setInterval(this.updateWeatherData.bind(this), 60 * MINUTE);
     }
-    
-    updateWeatherData() {
-        var currentWeatherResponse;
-        fetch('http://api.openweathermap.org/data/2.5/weather?id=6077243&APPID=dc252e41ccdd53d06d044cde8f15dedb&units=metric&lang=en')
-    .then(response => response.json())
-    .then(jsonResponse => {
-        currentWeatherResponse = jsonResponse;
-    }).then(() => {
-        return fetch('http://api.openweathermap.org/data/2.5/forecast?id=6077243&units=metric&appid=dc252e41ccdd53d06d044cde8f15dedb');
-    }).then(response => response.json())
-    .then(jsonResponse => {
-        this.setState({
-            currentWeather: currentWeatherResponse,
-            forecastWeather: jsonResponse
-        });
-    });
+
+    componentWillReceiveProps(nextProps) {
+        strings.setLanguage(nextProps.lang);
+        this.updateWeatherData(nextProps.lang);
+        this.setState({});
     }
-  
-    render() {
-        if (!this.state.currentWeather) return null;
-    
-        const currentCondition = this.state.currentWeather.weather[0].main;
-        const isCurrentPrecipitation = PRECIPITATION_TYPES.has(currentCondition);
-        const currentConditionDisplay = <span>{currentCondition} right now. </span>;
-        const precipitations = findPrecipitations(currentCondition, this.state.forecastWeather.list);
-    
+
+    updateWeatherData(lang) {
+        var currentWeatherResponse;
+        fetch('http://api.openweathermap.org/data/2.5/weather?id=6077243&APPID=dc252e41ccdd53d0' +
+                    '6d044cde8f15dedb&units=metric&lang=' + lang)
+            .then(response => response.json())
+            .then(jsonResponse => {
+                currentWeatherResponse = jsonResponse;
+            })
+            .then(() => {
+                return fetch(
+                    'http://api.openweathermap.org/data/2.5/forecast?id=6077243&units=metric' +
+                    '&lang=' + lang +
+                    '&appid=dc' +
+                    '252e41ccdd53d06d044cde8f15dedb');
+            })
+            .then(response => response.json())
+            .then(jsonResponse => {
+                this.setState({currentWeather: currentWeatherResponse, forecastWeather: jsonResponse});
+            });
+    }
+
+    renderCurrentCondition(currentWeather) {
+        let currentCondition = currentWeather.main.temp;
+        currentCondition = Math.round(currentCondition) + '\u00B0';
+        return <span>
+            {strings.now}: {currentCondition}.
+        </span>;
+    }
+
+    renderPrecipitationDisplay(precipitations, currentCondition) {
         let precipitationDisplay;
+        const isCurrentPrecipitation = PRECIPITATION_TYPES.has(currentCondition);
+
         if (precipitations.length) {
+            var idx=0;
             precipitationDisplay = precipitations.map(precipitation => {
-                return <span key={precipitation.weather[0].id}>{precipitation.weather[0].main} in the next {moment(precipitation.dt_txt).fromNow(false)}. </span>;
+                idx++;
+                var precipitationToTranslate = precipitation.weather[0].main;
+                if (strings[precipitationToTranslate]) {
+                    return <span key={idx}>{strings[precipitationToTranslate]} {strings.next}&nbsp;
+                        {moment(precipitation.dt_txt)
+                            .locale(this.props.lang)
+                            .fromNow(true)}.
+                    </span>;
+                } else {
+                    return <span></span>;
+                }
             });
         } else if (!isCurrentPrecipitation) {
-            precipitationDisplay = <span>No precipitation expected.</span>;
+            precipitationDisplay = <span>
+                {strings.noPrecipitation}</span>;
         }
-    
-        return  <div className="Card WeatherCard">
-      <span className="WeatherCard-title">Weather</span> {currentConditionDisplay}
-      {precipitationDisplay}
-    </div>;
-    
+
+        return precipitationDisplay;
+    }
+
+    render() {
+        if (!this.state.currentWeather) {
+            return null;
+        }
+
+        const currentConditionDisplay = this.renderCurrentCondition(this.state.currentWeather);
+        const currentCondition = this.state.currentWeather.main.temp;
+        const precipitations = findPrecipitations(currentCondition, this.state.forecastWeather.list);
+        const precipitationDisplay = this.renderPrecipitationDisplay(precipitations, currentCondition);
+
+        return <Card>
+            <span className="WeatherCard-title">{strings.title}</span>&nbsp;
+            <span>{currentConditionDisplay}&nbsp;{precipitationDisplay}</span>
+        </Card>;
     }
 }
-
 
 function findPrecipitations(currentCondition, weatherPoints) {
     const seenPrecipitations = new Set();

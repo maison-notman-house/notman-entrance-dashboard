@@ -13,6 +13,8 @@ import Columns from './columns';
 
 import BodyClass from './body-class';
 
+const LANGUAGES = ['en', 'fr'];
+
 export default class Dashboard extends React.Component {
     constructor(props) {
         super(props);
@@ -23,7 +25,8 @@ export default class Dashboard extends React.Component {
         }
 
         this.state = {
-            location: location
+            location: location,
+            language: LANGUAGES[1]
         };
     }
 
@@ -51,33 +54,33 @@ export default class Dashboard extends React.Component {
     }
 
     render() {
-        var lang = 'en';
+        var lang = this.state.language;
 
         if (this.state.location === 'campus-1') {
             BodyClass.addClassToBody('landscape campus-1');
-            return this.renderFloorView('Campus - Floor 1', 1, 'campus', this.state.lang);
+            return this.renderFloorView('Campus - Floor 1', 1, 'campus', lang);
         } else if (this.state.location === 'campus-2') {
             BodyClass.addClassToBody('landscape campus-2');
-            return this.renderFloorView('Campus - Floor 2', 2, 'campus', this.state.lang);
+            return this.renderFloorView('Campus - Floor 2', 2, 'campus', lang);
         } else {
             BodyClass.addClassToBody('portrait entrance');
 
             return (
                 <div lang={lang}>
 
-                    <LogoHeader/>
+                    <LogoHeader lang={lang}/>
 
                     <Panel>
-                        <CurrentDate/>
+                        <CurrentDate lang={lang}/>
                     </Panel>
 
-                    <EventsCard/>
+                    <EventsCard lang={lang}/>
 
-                    <DeviceCard/>
-                    <WeatherCard/>
+                    <DeviceCard lang={lang}/>
+                    <WeatherCard lang={lang}/>
 
-                    <STMCard/>
-                    <SponsorsPanel/>
+                    <STMCard lang={lang}/>
+                    <SponsorsPanel lang={lang}/>
 
                 </div>
             );
