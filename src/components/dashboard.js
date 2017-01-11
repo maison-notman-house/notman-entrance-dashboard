@@ -26,7 +26,7 @@ export default class Dashboard extends React.Component {
 
         this.state = {
             location: location,
-            language: LANGUAGES[1]
+            language: LANGUAGES[0]
         };
     }
 
