@@ -6,18 +6,6 @@ import {Timeline} from 'react-twitter-widgets';
  */
 export default class TwitterCardComponent extends React.Component {
 
-    componentWillMount() {
-        this.refreshIntervalSeconds = 60;
-    }
-
-    componentDidMount() {
-        window
-            .setInterval(function () {
-                this.setState({x: 1});
-            }.bind(this), (this.refreshIntervalSeconds * 1000));
-
-    }
-
     render() {
 
         return (
