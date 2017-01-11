@@ -12,6 +12,7 @@ import DirectoryCard from './directory-component';
 import Columns from './columns';
 
 import BodyClass from './body-class';
+import TwitterCard from './twitter-card';
 
 export default class Dashboard extends React.Component {
     constructor(props) {
@@ -44,6 +45,7 @@ export default class Dashboard extends React.Component {
                     <div className="screenRight">
                         <DeviceCard lang={this.state.lang}/>
                         <WeatherCard lang={this.state.lang}/>
+                        <TwitterCard />
                     </div>
                 </Columns>
             </div>
