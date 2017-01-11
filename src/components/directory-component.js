@@ -57,7 +57,15 @@ export default class DirectoryComponent extends React.Component {
     componentWillMount() {
         this.fetchUrl = 'http://notman.herokuapp.com/api/directory';
         this.updateOcupantData();
-        this.refreshIntervalMinutes = 60 * 4; // Every four hours
+        this.refreshIntervalMinutes = 60; // Every hour
+    }
+
+    componentDidMount() {
+        window
+            .setInterval(function () {
+                this.setState({x: 1});
+            }.bind(this), (this.refreshIntervalSeconds * 1000));
+
     }
 
     render() {
