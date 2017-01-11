@@ -12,6 +12,9 @@ import DirectoryCard from './directory-component';
 import Columns from './columns';
 
 import BodyClass from './body-class';
+import TwitterCard from './twitter-card';
+
+const LANGUAGES = ['en', 'fr'];
 
 export default class Dashboard extends React.Component {
     constructor(props) {
@@ -23,8 +26,22 @@ export default class Dashboard extends React.Component {
         }
 
         this.state = {
-            location: location
+            langIndex: 0,
+            location: location,
+            lang: LANGUAGES[0]
         };
+    }
+
+    changeLanguage() {
+        let langIndex = (this.state.langIndex + 1) % LANGUAGES.length;
+        this.setState({langIndex: langIndex, lang: LANGUAGES[langIndex]});
+    }
+
+    componentDidMount() {
+        window
+            .setInterval(function () {
+                this.changeLanguage();
+            }.bind(this), 5000);
     }
 
     renderFloorView(location, floor, building, lang) {
@@ -36,48 +53,48 @@ export default class Dashboard extends React.Component {
                 <Columns>
                     <div className="screenLeft">
                         <DirectoryCard
-                            lang={this.state.lang}
+                            lang={lang}
                             location={location}
                             floor={floor}
                             building={building}/>
                     </div>
                     <div className="screenRight">
-                        <DeviceCard lang={this.state.lang}/>
-                        <WeatherCard lang={this.state.lang}/>
+                        <DeviceCard lang={lang}/>
+                        <TwitterCard height="500"/>
                     </div>
                 </Columns>
             </div>
         );
     }
 
-    render() {
-        var lang = 'en';
+    render() {        
+        var lang = this.state.lang;
 
         if (this.state.location === 'campus-1') {
             BodyClass.addClassToBody('landscape campus-1');
-            return this.renderFloorView('Campus - Floor 1', 1, 'campus', this.state.lang);
+            return this.renderFloorView('Campus - Floor 1', 1, 'campus', lang);
         } else if (this.state.location === 'campus-2') {
             BodyClass.addClassToBody('landscape campus-2');
-            return this.renderFloorView('Campus - Floor 2', 2, 'campus', this.state.lang);
+            return this.renderFloorView('Campus - Floor 2', 2, 'campus', lang);
         } else {
             BodyClass.addClassToBody('portrait entrance');
 
             return (
                 <div lang={lang}>
 
-                    <LogoHeader/>
+                    <LogoHeader lang={lang}/>
 
                     <Panel>
-                        <CurrentDate/>
+                        <CurrentDate lang={lang}/>
                     </Panel>
 
-                    <EventsCard/>
+                    <EventsCard lang={lang}/>
 
-                    <DeviceCard/>
-                    <WeatherCard/>
+                    <DeviceCard lang={lang}/>
+                    <WeatherCard lang={lang}/>
 
-                    <STMCard/>
-                    <SponsorsPanel/>
+                    <STMCard lang={lang}/>
+                    <SponsorsPanel lang={lang}/>
 
                 </div>
             );
