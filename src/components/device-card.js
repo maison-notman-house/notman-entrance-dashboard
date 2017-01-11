@@ -1,4 +1,14 @@
 import React from 'react';
+import LocalizedStrings from 'react-localization';
+
+let strings = new LocalizedStrings({
+    en: {
+        'providedBy': 'Data provided by'
+    },
+    fr: {
+        'providedBy': 'Données fournis par'
+    }
+});
 
 export default class DeviceCardComponent extends React.Component {
 
@@ -14,6 +24,7 @@ export default class DeviceCardComponent extends React.Component {
             idx = this.sourceIdx;
         }
 
+        var lang = this.props.lang;
         var scope = this;
         fetch(scope.sources[this.sourceIdx].url)
             .then(response => response.json())
@@ -21,10 +32,10 @@ export default class DeviceCardComponent extends React.Component {
                 return data;
             })
             .then(function (data) {
-                scope.setState({device: scope.sources[idx], data: data, lastUpdated: new Date()});
+                scope.setState({device: scope.sources[idx], data: data, lastUpdated: new Date(), lang: lang});
             })
             .catch(function (error) {
-                scope.setState({device: scope.sources[idx], data: undefined, lastUpdated: new Date()});
+                scope.setState({device: scope.sources[idx], data: undefined, lastUpdated: new Date(), lang: lang});
             });
 
     }
@@ -32,7 +43,8 @@ export default class DeviceCardComponent extends React.Component {
     update() {}
 
     componentWillMount() {
-
+        strings.setLanguage(this.props.lang);
+        
         this.apiKeysUrl = 'https://notman.herokuapp.com/api/keys';
 
         this.refreshIntervalSeconds = 15;
@@ -43,10 +55,10 @@ export default class DeviceCardComponent extends React.Component {
                 name: 'Reely Active',
                 logo: 'images/logos/reelyactive.svg',
                 url: 'https://notman.herokuapp.com/api/reelyactive/devices',
-                text: value => `${value} occupant${value === 1
-                    ? ''
-                    : 's'} in Notman`,
-
+                text: {
+                    en: value => `${value} occupant${value === 1?'':'s'} in Notman`,
+                    fr: value => `${value} occupant${value === 1?'':'s'} dans Notman`
+                },
                 value: function (deviceData) {
                     var deviceCount = 0;
 
@@ -73,7 +85,10 @@ export default class DeviceCardComponent extends React.Component {
                 logo: 'images/logos/myseat.png',
                 // TODO fetch key from somewhere
                 url: 'https://notman.herokuapp.com/api/myseat/chairs',
-                text: value => `${value} people in Osmo Café`,
+                text: {
+                    en: value => `${value} people in Osmo Café`,
+                    fr: value => `${value} personnes dans Café Osmo `
+                },
                 value: function (deviceData) {
                     // Note that id_geometry = 0 should not be ignored. It simply means the device
                     // has not been linked to the map. Which was indicated as being the case for the
@@ -110,7 +125,6 @@ export default class DeviceCardComponent extends React.Component {
             .setInterval(function () {
                 this.setDeviceData();
             }.bind(this), (this.refreshIntervalSeconds * 1000));
-
     }
 
     render() {
@@ -123,10 +137,8 @@ export default class DeviceCardComponent extends React.Component {
 
         var value = 'n/a';
         if (this.state.device) {
-            value = this
-                .state
-                .device
-                .text(this.state.device.value(this.state.data));
+            var txtFn = this.state.device.text[this.state.lang];
+            value = txtFn(this.state.device.value(this.state.data));
         }
 
         return <div className="DeviceCard Card">
@@ -136,7 +148,7 @@ export default class DeviceCardComponent extends React.Component {
                     src="images/house-emojis/hackthehouse-smiling.gif"
                     alt="◉‿◉"/> {value}.
                 <div className="deviceVendor">
-                    Data provided by
+                    {strings.providedBy}
                     <img
                         className="vendorLogo"
                         src={this.state.device.logo}
