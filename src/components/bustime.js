@@ -1,6 +1,22 @@
 import React from 'react';
 import fetchJsonp from 'fetch-jsonp';
 import Moment from 'moment';
+import LocalizedStrings from 'react-localization';
+
+let strings = new LocalizedStrings({
+    en: {
+        north: 'North',
+        south: 'South',
+        east: 'East ',
+        west: 'West', in: 'in'
+    },
+    fr: {
+        north: 'Nord',
+        south: 'Sud',
+        east: 'Est ',
+        west: 'Ouest', in: ''
+    }
+});
 
 export default class Bustime extends React.Component {
 
@@ -16,7 +32,7 @@ export default class Bustime extends React.Component {
         var dateToday = Moment().format('YYYYMMDD');
 
         var fetchUrl = 'https://i-www.stm.info/fr/lines/' + scope.state.busline + '/stops/' + scope.state.busStopCode + '/arrivals.json?callback=&d=' + dateToday + '&direction=' + scope.state.direction + '&wheelchair=0&_=1411829351069';
-        //console.log(fetchUrl);
+
         fetchJsonp(fetchUrl)
             .then(response => response.json())
             .then((data) => data)
@@ -43,15 +59,15 @@ export default class Bustime extends React.Component {
         var timeNow = Moment()
             .locale('en')
             .add(1, 'm')
-            .format('HHmm');
+            .format("HHmm");
 
         for (var i = 0; i < busTimes.length; i++) {
             if (parseInt(busTimes[i], 10) > parseInt(timeNow, 10)) {
                 // returns the time of the next two buses after the current time (can give an
                 // error at the end of the day)
                 return [
-                    Moment(busTimes[i], 'HH:mm').format('HH:mm'),
-                    Moment(busTimes[i + 1], 'HH:mm').format('HH:mm')
+                    Moment(busTimes[i], "HH:mm").format("HH:mm"),
+                    Moment(busTimes[i + 1], "HH:mm").format("HH:mm")
                 ];
             }
         }
@@ -60,8 +76,8 @@ export default class Bustime extends React.Component {
     calculateMinutesToBus(busTimes) {
         var minutes = [];
         busTimes.forEach(function (busTime) {
-            var TimeofBus = Moment(busTime, 'HHmm');
-            var now = Moment(Moment().locale('en').format('HHmm'), 'HHmm');
+            var TimeofBus = Moment(busTime, "HHmm");
+            var now = Moment(Moment().locale('en').format("HHmm"), 'HHmm');
 
             minutes.push(TimeofBus.diff(now, 'minutes'));
         });
@@ -83,30 +99,35 @@ export default class Bustime extends React.Component {
         }.bind(this), 10000);
     }
 
+    componentWillReceiveProps(nextProps) {
+        strings.setLanguage(nextProps.lang);
+        this.setState({});
+    }
+
     render() {
 
-        var direction = '';
+        var direction = "";
         switch (this.state.direction) {
-        case 'N':
-            direction = 'North';
+        case "N":
+            direction = strings.north;
             break;
-        case 'S':
-            direction = 'South';
+        case "S":
+            direction = strings.south;
             break;
-        case 'E':
-            direction = 'East ';
+        case "E":
+            direction = strings.east;
             break;
-        case 'W':
-            direction = 'West';
+        case "W":
+            direction = strings.west;
             break;
         default:
-            direction = "unknown";
-        }
+            direction = "undefined";
+        };
 
         var busTimes = this
             .state
             .nextBusTime
-            .join(' \u2022 ');
+            .join(" \u2022 ");
 
         if (!this.state.minutesVsHours) {
             return (
@@ -117,7 +138,7 @@ export default class Bustime extends React.Component {
         } else {
             return (
                 <div className="bustime">
-                    {direction}: in<span className="busMinutes">
+                    {direction}: {strings.in}<span className="busMinutes">
                         {this.state.minutesToBus[0]}</span>
                     &
                     <span className="busMinutes">{this.state.minutesToBus[1]}</span>
@@ -126,4 +147,5 @@ export default class Bustime extends React.Component {
             );
         }
     }
+
 }
