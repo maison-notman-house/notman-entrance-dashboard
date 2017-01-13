@@ -118,7 +118,7 @@ export default class ForecastWeatherCard extends React.Component {
         const precipitations = findPrecipitations(currentCondition, this.state.forecastWeather.list);
         const precipitationDisplay = this.renderPrecipitationDisplay(precipitations, currentCondition);
 
-        return <Card>
+        return <Card size="1.5">
             <span className="WeatherCard-title">{strings.title}</span>&nbsp;
             <span>{currentConditionDisplay}&nbsp;{precipitationDisplay}</span>
         </Card>;
