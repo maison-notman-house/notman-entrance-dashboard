@@ -49,6 +49,12 @@ body.campus-2 {
     background-size: cover;
 }
 
+body.fronthouse {
+    background: url(/images/backgrounds/1359714833HP9.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 body.campus-2 #timenow {
     background: transparent;
     color: white;

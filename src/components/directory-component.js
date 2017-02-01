@@ -7,12 +7,12 @@ let strings = new LocalizedStrings({
     en: {
         directory: 'Floor Directory',
         room: 'Room',
-        occupant: 'Occupant',        
+        occupant: 'Occupant',
     },
     fr: {
-        directory: 'Annuaire',        
+        directory: 'Annuaire',
         room: 'Salle',
-        occupant: 'Occupant',        
+        occupant: 'Occupant',
     }
 });
 
@@ -26,7 +26,7 @@ export default class DirectoryComponent extends React.Component {
             occupants: [],
             lang: props.lang
         };
-        
+
         strings.setLanguage(props.lang);
     }
 
@@ -48,9 +48,12 @@ export default class DirectoryComponent extends React.Component {
         var requestUrl = url.parse(this.fetchUrl);
 
         requestUrl.query = {
-            floor: this.props.floor,
-            building: this.props.building            
+            building: this.props.building
         };
+
+        if (this.props.floor) {
+            requestUrl.query.floor = this.props.floor;
+        }
 
         fetch(url.format(requestUrl))
             .then(response => response.json())
