@@ -71,10 +71,11 @@ export default class DirectoryComponent extends React.Component {
     }
 
     componentDidMount() {
+        let scope = this;
         window
             .setInterval(function () {
-                this.setState({x: 1});
-            }.bind(this), (this.refreshIntervalSeconds * 1000));
+                scope.updateOcupantData();
+            }, (this.refreshIntervalSeconds * 1000));
 
     }
 
