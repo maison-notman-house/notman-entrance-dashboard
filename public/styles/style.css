@@ -34,7 +34,7 @@ body.landscape {
 
 body.campus-1 #timenow {
     background: transparent;
-    color: black;
+    color: white;
 }
 
 body.campus-1 {
@@ -61,7 +61,7 @@ body.campus-2 #timenow {
 }
 
 body.entrance {
-    background-image: url(../images/backgrounds/winter-snowflakes.jpg);
+    background-image: url(../images/backgrounds/Spring-ray-of-lights-white-wild-flowers-tree-nature-ultra-4k-1080x1920.jpg);
 }
 
 body.entrance #timenow {
@@ -276,6 +276,11 @@ h3 {
     color: black;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.9);
+}
+
+#date-panel {
+    font-size: 120%;
+    background-color: transparent;
 }
 
 #datenow {

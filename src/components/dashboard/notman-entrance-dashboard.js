@@ -30,7 +30,7 @@ export default class OsmoEntranceDashboard extends React.Component {
 
                 <LogoHeader lang={lang}/>
 
-                <Panel>
+                <Panel id="date-panel">
                     <CurrentDate lang={lang}/>
                 </Panel>
 
