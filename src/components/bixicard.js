@@ -36,7 +36,7 @@ export default class BixiCard extends React.Component {
             }).map(function(station){
                 // set state of bikes available
                 this.setState({ba: station.ba});
-               // console.log('Bixi at', Date.now(), this.state.ba)
+               // console.log('Bixi <at></at>', Date.now(), this.state.ba)
             }, this);
         }).catch(err => {
             console.log('Bixi error '+err);
@@ -59,9 +59,9 @@ export default class BixiCard extends React.Component {
 
     render(){
         return(
-            <div className='Card '>
-                <img id='bixi-logo' src='images/logos/Bixi_logo.svg.png' alt='Bixi'/>
-                <div className='bixi-text'>
+            <div className='Card ' id='bixi-card'>
+                <img className='logo' src='images/logos/Bixi_logo.svg.png' alt='Bixi'/>
+                <div className='text'>
                 {this.state.ba} {strings.bikes}{this.state.ba === 1?'':'s'} {strings.available}
                 </div>
             </div>
