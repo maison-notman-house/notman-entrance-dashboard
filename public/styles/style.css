@@ -408,6 +408,17 @@ footer {
     color: #513355;
 }
 
+/* -- Bixi card ------------------------ */
+
+#bixi-card .logo {
+    position: absolute;
+    left: 80px;
+    width: 160px;
+}
+#bixi-card .text {
+    text-align: left;
+    margin-left: 220px;
+}
 
 /* -- Directory card ------------------ */
 
