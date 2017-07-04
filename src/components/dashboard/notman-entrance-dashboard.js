@@ -8,6 +8,7 @@ import DeviceCard from '../device-card';
 import SponsorsPanel from '../sponsors-panel';
 import CurrentDate from '../current-date';
 import STMCard from '../stm-card';
+import BixiCard from '../bixicard';
 import DirectoryCard from '../directory-component';
 import Columns from '../columns';
 
@@ -40,6 +41,7 @@ export default class OsmoEntranceDashboard extends React.Component {
                 <WeatherCard lang={lang}/>
 
                 <STMCard lang={lang}/>
+                <BixiCard lang={lang} />
                 <SponsorsPanel lang={lang}/>
 
             </div>
