@@ -209,7 +209,7 @@ h3 {
     color: white;
     white-space: nowrap;
     display: inline-block;
-    width: 170px;
+    width: 190px;
     text-align: center;
     text-transform: uppercase;
     /* default color */
@@ -408,6 +408,7 @@ footer {
     color: #513355;
 }
 
+
 /* -- Bixi card ------------------------ */
 
 #bixi-card .logo {
@@ -415,10 +416,12 @@ footer {
     left: 80px;
     width: 160px;
 }
+
 #bixi-card .text {
     text-align: left;
     margin-left: 220px;
 }
+
 
 /* -- Directory card ------------------ */
 
