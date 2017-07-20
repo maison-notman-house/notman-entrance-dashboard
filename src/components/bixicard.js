@@ -30,6 +30,7 @@ export default class BixiCard extends React.Component {
             cycleCount: 0,
         };
         this.updateBixi = this.updateBixi.bind(this);
+        //this.cycleBixi = this.cycleBixi.bind(this);
     }
 
     updateBixi() {
@@ -49,7 +50,14 @@ export default class BixiCard extends React.Component {
                 stationArray.push(station);
             });
             scope.setState({stationData: stationArray});
+            return;
+        })
+        .then( () => {
+            clearInterval(cycleInterval);
             this.cycleBixi();
+            let cycleInterval = window.setInterval(function(){
+                this.cycleBixi();
+            }.bind(this), 20000);
         }).catch(err => {
             scope.setState({
                 bikesAvailable: -1
@@ -59,12 +67,16 @@ export default class BixiCard extends React.Component {
     }
 
     cycleBixi() {
-        let i = this.state.cycleCount;
-        let arr = this.state.stationData;
-        (i+1<arr.length?++i:i=0);
-        this.setState({cycleCount: i});
-        this.setState({bikesAvailable: this.state.stationData[i].ba});
-        this.setState({station: this.state.stationData[i].s});
+        let cycleCount = this.state.cycleCount;
+        let stationData = this.state.stationData;
+        if (cycleCount+1 < stationData.length){
+            ++cycleCount;
+        } else {
+            cycleCount = 0;
+        }
+        this.setState({cycleCount: cycleCount});
+        this.setState({bikesAvailable: this.state.stationData[cycleCount].ba});
+        this.setState({station: this.state.stationData[cycleCount].s});
     }
 
     componentWillMount() {
@@ -74,7 +86,7 @@ export default class BixiCard extends React.Component {
     componentDidMount() {
         window.setInterval(function(){
             this.updateBixi();
-        }.bind(this), 20000);
+        }.bind(this), 60000);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -90,6 +102,7 @@ export default class BixiCard extends React.Component {
             message = `${bikesAvailable} ${strings.bikes}${bikesAvailable === 1?'':'s'} ${strings.available}${this.state.station}`;
         } else {
             message = 'Unable to get bike availabilty';
+            console.log('unavailable');
         }
 
         return(
