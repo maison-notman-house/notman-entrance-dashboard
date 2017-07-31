@@ -1,5 +1,6 @@
 import React from 'react';
 import LocalizedStrings from 'react-localization';
+import Card from './card';
 
 let strings = new LocalizedStrings({
     en: {
@@ -158,20 +159,22 @@ export default class DeviceCardComponent extends React.Component {
             deviceName = this.state.device.name;
         }
 
-        return <div className="DeviceCard Card">
-            <div>
-                <img
-                    className="DeviceCard--icon"
-                    src="images/house-emojis/hackthehouse-smiling.gif"
-                    alt="◉‿◉"/> {value}.
-                <div className="deviceVendor">
-                    {strings.providedBy}
+        return (
+            <Card size="1.2">
+                <div>
                     <img
-                        className="vendorLogo"
-                        src={deviceLogo}
-                        alt={deviceName}/>
+                        className="DeviceCard--icon"
+                        src="images/house-emojis/hackthehouse-smiling.gif"
+                        alt="◉‿◉"/> {value}.
+                    <div className="deviceVendor">
+                        {strings.providedBy}
+                        <img
+                            className="vendorLogo"
+                            src={deviceLogo}
+                            alt={deviceName}/>
+                    </div>
                 </div>
-            </div>
-        </div>;
+            </Card>
+        );
     }
 }

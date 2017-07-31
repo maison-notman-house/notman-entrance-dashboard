@@ -11,6 +11,8 @@ import STMCard from '../stm-card';
 import BixiCard from '../bixicard';
 import DirectoryCard from '../directory-component';
 import Columns from '../columns';
+import ComponentRotator from '../component-rotater';
+import AnnouncementCard from '../announcement-card';
 
 import BodyClass from '../body-class';
 import TwitterCard from '../twitter-card';
@@ -37,8 +39,13 @@ export default class OsmoEntranceDashboard extends React.Component {
 
                 <EventsCard lang={lang}/>
 
-                <DeviceCard lang={lang}/>
-                <WeatherCard lang={lang}/>
+                <ComponentRotator interval={10000}>
+                    <div key="Group1">
+                        <DeviceCard lang={lang}/>
+                        <WeatherCard lang={lang}/>
+                    </div>
+                    <AnnouncementCard key="Group2"/>
+                </ComponentRotator>
 
                 <STMCard lang={lang}/>
                 <BixiCard lang={lang} />
