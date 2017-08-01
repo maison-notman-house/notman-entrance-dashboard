@@ -9,50 +9,33 @@ import SponsorsPanel from '../sponsors-panel';
 import CurrentDate from '../current-date';
 import STMCard from '../stm-card';
 import BixiCard from '../bixicard';
-import DirectoryCard from '../directory-component';
-import Columns from '../columns';
 import ComponentRotator from '../component-rotater';
 import AnnouncementCard from '../announcement-card';
 
-import BodyClass from '../body-class';
-import TwitterCard from '../twitter-card';
+export default function render({lang='en'}) {
+    return (
+        <div lang={lang}>
 
-const LANGUAGES = ['en', 'fr'];
+            <LogoHeader lang={lang}/>
 
-export default class OsmoEntranceDashboard extends React.Component {
+            <Panel id="date-panel">
+                <CurrentDate lang={lang}/>
+            </Panel>
 
-    render() {
+            <EventsCard lang={lang}/>
 
-        var location = this.props.location;
-        var floor = this.props.floor;
-        var building = this.props.building;
-        var lang = this.props.lang;
+            <ComponentRotator interval={10000} className="rotatorA">
+                <div key="Group1">
+                    <DeviceCard lang={lang}/>
+                    <WeatherCard lang={lang}/>
+                </div>
+                <AnnouncementCard key="Group2" lang={lang}/>
+            </ComponentRotator>
 
-        return (
-            <div lang={lang}>
+            <STMCard lang={lang}/>
+            <BixiCard lang={lang} />
+            <SponsorsPanel lang={lang}/>
 
-                <LogoHeader lang={lang}/>
-
-                <Panel id="date-panel">
-                    <CurrentDate lang={lang}/>
-                </Panel>
-
-                <EventsCard lang={lang}/>
-
-                <ComponentRotator interval={10000} className="rotatorA">
-                    <div key="Group1">
-                        <DeviceCard lang={lang}/>
-                        <WeatherCard lang={lang}/>
-                    </div>
-                    <AnnouncementCard key="Group2" lang={lang}/>
-                </ComponentRotator>
-
-                <STMCard lang={lang}/>
-                <BixiCard lang={lang} />
-                <SponsorsPanel lang={lang}/>
-
-            </div>
-        );
-    }
-
+        </div>
+    );
 }

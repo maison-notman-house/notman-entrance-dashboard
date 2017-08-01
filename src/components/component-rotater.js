@@ -15,7 +15,6 @@ export default class ComponentRotater extends Component {
     }
 
     rotate () {
-        console.log('reotate');
         const {children} = this.props;
         var displayIndex = this.state.displayIndex;
         displayIndex++;

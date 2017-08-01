@@ -13,15 +13,6 @@ let strings = new LocalizedStrings({
 
 export default class DeviceCardComponent extends React.Component {
 
-    constructor(props) {
-        super(props);
-
-        this.mounted = false;
-        // this.state = {
-        //     mounted: false
-        // };
-    }
-
     setDeviceData(idx) {
 
         this.sourceIdx = 0;
@@ -33,11 +24,7 @@ export default class DeviceCardComponent extends React.Component {
             // }
             idx = this.sourceIdx;
         }
-
-        var lang = 'en';
-        if (this.props.lang) {
-            lang = this.props.lang;
-        }
+        const {lang='en'} = this.props;
 
         var scope = this;
         fetch(scope.sources[this.sourceIdx].url)
@@ -46,14 +33,10 @@ export default class DeviceCardComponent extends React.Component {
                 return data;
             })
             .then(function (data) {
-                if (scope.mounted) {
-                    scope.setState({device: scope.sources[idx], data: data, lastUpdated: new Date(), lang: lang});
-                }
+                scope.setState({device: scope.sources[idx], data: data, lastUpdated: new Date(), lang: lang});                
             })
             .catch(function (error) {
-                if (scope.mounted) {
-                    scope.setState({device: scope.sources[idx], data: undefined, lastUpdated: new Date(), lang: lang});
-                }
+                scope.setState({device: scope.sources[idx], data: undefined, lastUpdated: new Date(), lang: lang});
             });
 
     }
@@ -62,9 +45,6 @@ export default class DeviceCardComponent extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         strings.setLanguage(nextProps.lang);
-        this.setState(
-            Object.assign(this.state, { lang: nextProps.lang})
-        );
     }
 
     componentWillMount() {        
@@ -144,14 +124,12 @@ export default class DeviceCardComponent extends React.Component {
     }
 
     componentDidMount() {
-        this.mounted = true;
         this.intervalTimer = setInterval(function () {
             this.setDeviceData();
         }.bind(this), (this.refreshIntervalSeconds * 1000));
     }
 
     componentWillUnmount() {
-        this.mounted = false;
         clearInterval(this.intervalTimer);     
     }
 
