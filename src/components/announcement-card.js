@@ -1,13 +1,32 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Card from './card';
+import LocalizedStrings from 'react-localization';
 
-export default function render ({lang}) {
+let strings = new LocalizedStrings({
+    en: {
+        'title': 'Offices Available',
+        'text': 'Contact info@notman.org for more information.',
+    },
+    fr: {
+        'title': 'Bureaux disponibles',
+        'text': 'Contactez info@notman.org pour plus d\'information',
+    }
+});
 
-    return (
-        <Card size="2.5">
-            Startup office space available at Notman<br/>
-            See http://notman.org/offices
-        </Card>
-    );
+export default class AnnouncementCard extends Component {
 
+    componentWillReceiveProps(nextProps) {
+        strings.setLanguage(nextProps.lang);
+    }
+
+    render () {
+        return (
+            <Card size="2.8" className="announcements">
+                <img src="/images/notman-announcements/house-photo.jpg" alt="" role="img"/>
+                <h3>{strings['title']}</h3>
+                {strings['text']}            
+            </Card>
+        );
+
+    }
 }

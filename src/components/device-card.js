@@ -13,6 +13,15 @@ let strings = new LocalizedStrings({
 
 export default class DeviceCardComponent extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        this.mounted = false;
+        // this.state = {
+        //     mounted: false
+        // };
+    }
+
     setDeviceData(idx) {
 
         this.sourceIdx = 0;
@@ -37,11 +46,14 @@ export default class DeviceCardComponent extends React.Component {
                 return data;
             })
             .then(function (data) {
-                scope.setState({device: scope.sources[idx], data: data, lastUpdated: new Date(), lang: lang});
+                if (scope.mounted) {
+                    scope.setState({device: scope.sources[idx], data: data, lastUpdated: new Date(), lang: lang});
+                }
             })
             .catch(function (error) {
-                
-                scope.setState({device: scope.sources[idx], data: undefined, lastUpdated: new Date(), lang: lang});
+                if (scope.mounted) {
+                    scope.setState({device: scope.sources[idx], data: undefined, lastUpdated: new Date(), lang: lang});
+                }
             });
 
     }
@@ -80,7 +92,7 @@ export default class DeviceCardComponent extends React.Component {
                             if (devices[key] !== undefined) {
                                 var device = devices[key];
                                 // only count 'mobile' devices
-                                if(!device.fixedDevice) {
+                                if(device && !device.fixedDevice) {
                                     deviceCount++;
                                 } 
                             }
@@ -132,10 +144,15 @@ export default class DeviceCardComponent extends React.Component {
     }
 
     componentDidMount() {
-        window
-            .setInterval(function () {
-                this.setDeviceData();
-            }.bind(this), (this.refreshIntervalSeconds * 1000));
+        this.mounted = true;
+        this.intervalTimer = setInterval(function () {
+            this.setDeviceData();
+        }.bind(this), (this.refreshIntervalSeconds * 1000));
+    }
+
+    componentWillUnmount() {
+        this.mounted = false;
+        clearInterval(this.intervalTimer);     
     }
 
     render() {
@@ -160,7 +177,7 @@ export default class DeviceCardComponent extends React.Component {
         }
 
         return (
-            <Card size="1.2">
+            <Card size="1.2" className="DeviceCard">
                 <div>
                     <img
                         className="DeviceCard--icon"

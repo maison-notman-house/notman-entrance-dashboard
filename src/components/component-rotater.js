@@ -39,22 +39,22 @@ export default class ComponentRotater extends Component {
     }
 
     render () {
-        const {children, interval} = this.props;
+        const {children, className} = this.props;
         const {displayIndex} = this.state;
-        console.log('zzzzzzz');
-
-        console.log('xxx', children);
+        const classNames='rotator' + (className?' ' + className:'');
         const childrenWithProps = Children.map([children[displayIndex]], (child, idx) => {
             return <div>{React.cloneElement(child, { key: idx})}</div>;
         });
 
         return (
-            <ReactCSSTransitionGroup
-                transitionName="slide"
+            <div className={classNames}>
+            <ReactCSSTransitionGroup                
+                transitionName="transition"
                 transitionEnterTimeout={500}
                 transitionLeaveTimeout={300}>   
                 {childrenWithProps}
-            </ReactCSSTransitionGroup>  
+            </ReactCSSTransitionGroup>
+            </div>
         );
     }
 }

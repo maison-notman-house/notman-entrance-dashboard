@@ -39,12 +39,12 @@ export default class OsmoEntranceDashboard extends React.Component {
 
                 <EventsCard lang={lang}/>
 
-                <ComponentRotator interval={10000}>
+                <ComponentRotator interval={10000} className="rotatorA">
                     <div key="Group1">
                         <DeviceCard lang={lang}/>
                         <WeatherCard lang={lang}/>
                     </div>
-                    <AnnouncementCard key="Group2"/>
+                    <AnnouncementCard key="Group2" lang={lang}/>
                 </ComponentRotator>
 
                 <STMCard lang={lang}/>
