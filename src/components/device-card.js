@@ -1,5 +1,6 @@
 import React from 'react';
 import LocalizedStrings from 'react-localization';
+import Card from './card';
 
 let strings = new LocalizedStrings({
     en: {
@@ -23,11 +24,7 @@ export default class DeviceCardComponent extends React.Component {
             // }
             idx = this.sourceIdx;
         }
-
-        var lang = 'en';
-        if (this.props.lang) {
-            lang = this.props.lang;
-        }
+        const {lang='en'} = this.props;
 
         var scope = this;
         fetch(scope.sources[this.sourceIdx].url)
@@ -36,10 +33,9 @@ export default class DeviceCardComponent extends React.Component {
                 return data;
             })
             .then(function (data) {
-                scope.setState({device: scope.sources[idx], data: data, lastUpdated: new Date(), lang: lang});
+                scope.setState({device: scope.sources[idx], data: data, lastUpdated: new Date(), lang: lang});                
             })
             .catch(function (error) {
-                
                 scope.setState({device: scope.sources[idx], data: undefined, lastUpdated: new Date(), lang: lang});
             });
 
@@ -49,9 +45,6 @@ export default class DeviceCardComponent extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         strings.setLanguage(nextProps.lang);
-        this.setState(
-            Object.assign(this.state, { lang: nextProps.lang})
-        );
     }
 
     componentWillMount() {        
@@ -79,7 +72,7 @@ export default class DeviceCardComponent extends React.Component {
                             if (devices[key] !== undefined) {
                                 var device = devices[key];
                                 // only count 'mobile' devices
-                                if(!device.fixedDevice) {
+                                if(device && !device.fixedDevice) {
                                     deviceCount++;
                                 } 
                             }
@@ -131,10 +124,13 @@ export default class DeviceCardComponent extends React.Component {
     }
 
     componentDidMount() {
-        window
-            .setInterval(function () {
-                this.setDeviceData();
-            }.bind(this), (this.refreshIntervalSeconds * 1000));
+        this.intervalTimer = setInterval(function () {
+            this.setDeviceData();
+        }.bind(this), (this.refreshIntervalSeconds * 1000));
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.intervalTimer);     
     }
 
     render() {
@@ -158,20 +154,22 @@ export default class DeviceCardComponent extends React.Component {
             deviceName = this.state.device.name;
         }
 
-        return <div className="DeviceCard Card">
-            <div>
-                <img
-                    className="DeviceCard--icon"
-                    src="images/house-emojis/hackthehouse-smiling.gif"
-                    alt="◉‿◉"/> {value}.
-                <div className="deviceVendor">
-                    {strings.providedBy}
+        return (
+            <Card size="1.2" className="DeviceCard">
+                <div>
                     <img
-                        className="vendorLogo"
-                        src={deviceLogo}
-                        alt={deviceName}/>
+                        className="DeviceCard--icon"
+                        src="images/house-emojis/hackthehouse-smiling.gif"
+                        alt="◉‿◉"/> {value}.
+                    <div className="deviceVendor">
+                        {strings.providedBy}
+                        <img
+                            className="vendorLogo"
+                            src={deviceLogo}
+                            alt={deviceName}/>
+                    </div>
                 </div>
-            </div>
-        </div>;
+            </Card>
+        );
     }
 }
