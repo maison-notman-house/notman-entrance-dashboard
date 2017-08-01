@@ -312,6 +312,19 @@ footer {
 }
 
 
+/* -- Annoucements Card --------------- */
+
+.announcements {
+    overflow: 'hidden'
+}
+
+.announcements img {
+    height: 270px;
+    float: left;
+    margin-right: 30px;
+}
+
+
 /* -- Device card --------------------- */
 
 .deviceVendor {
@@ -452,4 +465,72 @@ footer {
 
 .Card.TwitterCard {
     height: 550px;
+}
+
+
+/** ReactCSSTransitionGroup: transition: slide */
+
+.slide-container {
+    position: relative;
+    display: block;
+    height: 50px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.slide {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    top: 0;
+    position: absolute;
+}
+
+.slide-1 {
+    background-color: #ffdb99;
+}
+
+.slide-2 {
+    background-color: #99ffa8;
+}
+
+.slide-3 {
+    background-color: #99bdff;
+}
+
+.slide-4 {
+    background-color: #ff99f0;
+}
+
+.slide-5 {
+    background-color: #ffdb99;
+}
+
+.slide-enter {
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+    -webkit-transition: 0.3s -webkit-transform ease-in-out;
+    transition: 0.3s -webkit-transform ease-in-out;
+    transition: 0.3s transform ease-in-out;
+    transition: 0.3s transform ease-in-out, 0.3s -webkit-transform ease-in-out;
+}
+
+.slide-enter-active {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+}
+
+.slide-leave {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    -webkit-transition: 0.3s -webkit-transform ease-in-out;
+    transition: 0.3s -webkit-transform ease-in-out;
+    transition: 0.3s transform ease-in-out;
+    transition: 0.3s transform ease-in-out, 0.3s -webkit-transform ease-in-out;
+}
+
+.slide-leave-active {
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
 }
