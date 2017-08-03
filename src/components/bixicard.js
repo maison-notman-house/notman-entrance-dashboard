@@ -28,9 +28,9 @@ export default class BixiCard extends React.Component {
             bikesAvailable: 0,
             station: '',
             cycleCount: 0,
+            serviceSuspended: false
         };
         this.updateBixi = this.updateBixi.bind(this);
-        //this.cycleBixi = this.cycleBixi.bind(this);
     }
 
     updateBixi() {
@@ -49,7 +49,10 @@ export default class BixiCard extends React.Component {
             }).forEach(function(station){
                 stationArray.push(station);
             });
-            scope.setState({stationData: stationArray});
+            scope.setState({
+                stationData: stationArray,
+                serviceSuspended: res.schemeSuspended
+            });
             return;
         })
         .then( () => {
@@ -103,17 +106,20 @@ export default class BixiCard extends React.Component {
             message = `${bikesAvailable} ${strings.bikes}${bikesAvailable === 1?'':'s'} ${strings.available}${this.state.station}`;
         } else {
             message = 'Unable to get bike availabilty';
-            console.log('unavailable');
         }
 
-        return(
-            <div className='Card ' id='bixi-card'>
-                <img className='logo' src='images/logos/Bixi_logo.svg.png' alt='Bixi'/>
-                <div className='text'>
-                {message}
+        if (this.state.serviceSuspended) {
+            return(null);
+        } else {
+            return(
+                <div className='Card ' id='bixi-card'>
+                    <img className='logo' src='images/logos/Bixi_logo.svg.png' alt='Bixi'/>
+                    <div className='text'>
+                    {message}
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        }
     }
 
     componentWillUnmount() {
