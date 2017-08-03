@@ -74,9 +74,10 @@ export default class BixiCard extends React.Component {
         } else {
             cycleCount = 0;
         }
-        this.setState({cycleCount: cycleCount});
-        this.setState({bikesAvailable: this.state.stationData[cycleCount].ba});
-        this.setState({station: this.state.stationData[cycleCount].s});
+        this.setState({
+            cycleCount: cycleCount,
+            bikesAvailable: this.state.stationData[cycleCount].ba,
+            station: this.state.stationData[cycleCount].s});
     }
 
     componentWillMount() {
@@ -113,5 +114,9 @@ export default class BixiCard extends React.Component {
                 </div>
             </div>
         );
+    }
+
+    componentWillUnmount() {
+        this.clearInterval(this.interval);
     }
 }
