@@ -264,6 +264,36 @@ h3 {
     overflow-x: hidden;
 }
 
+.event .roomlabel.clark {
+    background: purple;
+    color: white;
+}
+
+.event .roomlabel.st-urbain {
+    background: #009688;
+    color: white;
+}
+
+.event .roomlabel.osmocafe {
+    background: #da7a21;
+    color: white;
+}
+
+.event .roomlabel.cisco {
+    background: #007fab;
+    color: white;
+}
+
+.event .roomlabel.terrace {
+    background: green;
+    color: white;
+}
+
+.event .roomlabel.videotron {
+    background: #feda52;
+    color: white;
+}
+
 
 /* -- Misc ---------------------------- */
 
