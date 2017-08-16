@@ -5,22 +5,30 @@ let strings = new LocalizedStrings({
     en: {
         'theres': 'There are',
         'bikes': ' Bixi bicycle',
-        'available': ' available at Milton/Clark'
+        'available': ' at '
     },
     fr: {
         'theres': 'Il y a',
         'bikes': 'vélo',
-        'available': ' Bixi disponible à Milton/Clark'
+        'available': ' Bixi à '
     }
 });
+
+// milton/clark station 6209
+// clark/evans station 6003
+// Ste-Famille/Sherbrooke 6202
+let stationList = ["6209", "6003", "6202"];
 
 export default class BixiCard extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            //data: [],
+            stationData: [],
             bikesAvailable: 0,
+            station: '',
+            cycleCount: 0,
+            serviceSuspended: false
         };
         this.updateBixi = this.updateBixi.bind(this);
     }
@@ -35,19 +43,44 @@ export default class BixiCard extends React.Component {
             return res.json();
         })
         .then(res => {
+            let stationArray = [];
             res.stations.filter(function(station){
-                // milton/clark station 6209
-                return station.n === "6209";
+                return stationList.indexOf(station.n) > -1;
             }).forEach(function(station){
-                // set state of bikes available
-                scope.setState({bikesAvailable: station.ba});
+                stationArray.push(station);
             });
+            scope.setState({
+                stationData: stationArray,
+                serviceSuspended: res.schemeSuspended
+            });
+            return;
+        })
+        .then( () => {
+            clearInterval(cycleInterval);
+            this.cycleBixi();
+            let cycleInterval = window.setInterval(function(){
+                this.cycleBixi();
+            }.bind(this), 20000);
         }).catch(err => {
             scope.setState({
                 bikesAvailable: -1
             });
             console.log('Bixi error '+err);
         });
+    }
+
+    cycleBixi() {
+        let cycleCount = this.state.cycleCount;
+        let stationData = this.state.stationData;
+        if (cycleCount+1 < stationData.length){
+            ++cycleCount;
+        } else {
+            cycleCount = 0;
+        }
+        this.setState({
+            cycleCount: cycleCount,
+            bikesAvailable: this.state.stationData[cycleCount].ba,
+            station: this.state.stationData[cycleCount].s});
     }
 
     componentWillMount() {
@@ -70,18 +103,26 @@ export default class BixiCard extends React.Component {
         let message = '';
 
         if (bikesAvailable > -1) {
-            message = `${bikesAvailable} ${strings.bikes}${bikesAvailable === 1?'':'s'} ${strings.available}`;
+            message = `${bikesAvailable} ${strings.bikes}${bikesAvailable === 1?'':'s'} ${strings.available}${this.state.station}`;
         } else {
             message = 'Unable to get bike availabilty';
         }
 
-        return(
-            <div className='Card ' id='bixi-card'>
-                <img className='logo' src='images/logos/Bixi_logo.svg.png' alt='Bixi'/>
-                <div className='text'>
-                {message}
+        if (this.state.serviceSuspended) {
+            return(null);
+        } else {
+            return(
+                <div className='Card ' id='bixi-card'>
+                    <img className='logo' src='images/logos/Bixi_logo.svg.png' alt='Bixi'/>
+                    <div className='text'>
+                    {message}
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        }
+    }
+
+    componentWillUnmount() {
+        this.clearInterval(this.interval);
     }
 }
