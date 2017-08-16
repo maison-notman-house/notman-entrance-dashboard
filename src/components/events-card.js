@@ -44,6 +44,29 @@ let strings = new LocalizedStrings({
     }
 });
 
+const roomToKey = {
+    'glass door room': 'st-urbain',
+    'glass door': 'st-urbain',
+    'glassdoor': 'st-urbain',
+    'saint-urbain': 'st-urbain',
+    'st-urbain': 'st-urbain',
+    'st-urbain room': 'st-urbain',
+    'bigroom': 'clark',
+    'big room': 'clark',
+    'clark room': 'clark',
+    'clark': 'clark',
+    'osmocafe': 'osmocafe',
+    'osmo cafe': 'osmocafe',
+    'cafe': 'osmocafe',
+    'café': 'osmocafe',
+    '3rd floor': 'floor3',
+    'bdc': 'bdc',
+    'terrace': 'terrace',
+    'cisco': 'cisco',
+    'ciscoroom': 'cisco',
+    'cisco room': 'cisco',
+    'videotron': 'videotron'
+};
 export default class EventsCardComponent extends React.Component {
 
     constructor(props) {
@@ -83,24 +106,27 @@ export default class EventsCardComponent extends React.Component {
         return room;
     }
 
-    createDay(e) {
-        let items = e
+    createDay(day) {
+        let items = day
             .items
-            .map((e, idx) => {
-                return <div className="event" key={e.date + '-' + idx}>
+            .map((event, idx) => {
+                var roomRef = roomToKey[event.room];
+                if (!roomRef && event.room) {
+                    roomRef = event.room.replace(' ', '');
+                }
+                return <div className="event" key={event.date + '-' + idx}>
                     <span
-                        className={"roomlabel " + e
-                        .tags
-                        .join(', ')
-                        .replace(' ', '')}>{this.locationForDisplay(e.tags.join(', '))}</span>
-                    <span className="eventtime">{e.start}</span>
-                    <span className="eventname">{e.title}</span>
+                        className={'roomlabel ' + roomRef}>
+                        {this.locationForDisplay(event.tags.join(', '))}
+                    </span>
+                    <span className="eventtime">{event.start}</span>
+                    <span className="eventname">{event.title}</span>
                 </div>;
             });
 
-        return <div className="EventsCard-day" key={e.date}>
+        return <div className="EventsCard-day" key={day.date}>
             <div className="EventsCard-day-name">
-                {strings[e.day]}
+                {strings[day.day]}
             </div>
 
             {items}
@@ -134,8 +160,8 @@ export default class EventsCardComponent extends React.Component {
         }
 
         return <div className="EventsCard Card">
-            {events.map(e => {
-                return this.createDay(e);
+            {events.map(day => {
+                return this.createDay(day);
             })}
         </div>;
     }
