@@ -6,6 +6,16 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&subset=latin" rel="stylesheet">
     <link rel="stylesheet" href="%PUBLIC_URL%/styles/style.css" />
     <meta http-equiv="refresh" content="10800" />
+    
+    <script language="javascript">
+    
+    var searchParams = new URLSearchParams(document.location.search);
+    var locParamValue = searchParams.get('location');
+    if (!locParamValue || locParamValue === 'entrance') {
+        document.location.href = 'startup-open-house/index.html';
+    }
+    
+    </script>
 </head>
 
 <body>
