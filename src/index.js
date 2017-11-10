@@ -6,9 +6,9 @@ import MessageClient from './message-client';
 import { Router, Route, browserHistory } from 'react-router';
 
 if (window.location.protocol.startsWith('https')) {
-  new MessageClient('wss://notman.herokuapp.com/socket');
+    new MessageClient('wss://notman.herokuapp.com/socket');
 } else {
-  new MessageClient('ws://notman.herokuapp.com/socket');
+    new MessageClient('ws://notman.herokuapp.com/socket');
 }
 
 ReactDOM.render(( //<Dashboard/>
