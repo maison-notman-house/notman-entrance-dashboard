@@ -56,9 +56,9 @@ export default class BixiCard extends React.Component {
             return;
         })
         .then( () => {
-            clearInterval(cycleInterval);
+            clearInterval(scope.cycleInterval);
             this.cycleBixi();
-            let cycleInterval = window.setInterval(function(){
+            scope.cycleInterval = window.setInterval(function(){
                 this.cycleBixi();
             }.bind(this), 20000);
         }).catch(err => {
