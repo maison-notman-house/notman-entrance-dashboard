@@ -38,13 +38,13 @@ body.campus-1 #timenow {
 }
 
 body.campus-1 {
-    background: url(https://screens.notman.org/backgrounds/campus-1/default.jpg);
+    background: url(https://screens.notman.org/locations/campus-1/backgrounds/default.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 body.campus-2 {
-    background: url(https://screens.notman.org/backgrounds/campus-2/default.jpg);
+    background: url(https://screens.notman.org/locations/campus-2/backgrounds/default.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -61,7 +61,7 @@ body.campus-2 #timenow {
 }
 
 body.entrance {
-    background-image: url(https://screens.notman.org/backgrounds/cafe-entrance/default.jpg);
+    background-image: url(https://screens.notman.org/locations/cafe-entrance/backgrounds/default.jpg);
 }
 
 body.entrance #timenow {
