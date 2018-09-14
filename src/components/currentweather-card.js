@@ -12,7 +12,7 @@ export default class CurrentWeatherCardComponent extends React.Component {
     }
 
     displayData(data) {
-        var imageUri = 'http://openweathermap.org/img/w/' + data.weather[0].icon + '.png';
+        var imageUri = '://openweathermap.org/img/w/' + data.weather[0].icon + '.png';
         var imageDesc = data.weather[0].description;
         var temp = Math.round(data.main.temp);
 
@@ -32,7 +32,7 @@ export default class CurrentWeatherCardComponent extends React.Component {
     }
 
     componentWillMount() {
-        this.fetchUrl = 'http://api.openweathermap.org/data/2.5/weather?id=6077243&APPID=dc252e41ccdd53d0' +
+        this.fetchUrl = '://api.openweathermap.org/data/2.5/weather?id=6077243&APPID=dc252e41ccdd53d0' +
                 '6d044cde8f15dedb&units=metric&lang=en';
         this.updateWeatherData();
         this.refreshIntervalMinutes = 15;
