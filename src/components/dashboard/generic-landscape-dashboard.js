@@ -6,11 +6,11 @@ import DirectoryCard from '../directory-component';
 import Columns from '../columns';
 import TwitterCard from '../twitter-card';
 
-export default function render({location, floor, building, lang='en'}) {
+export default function render({location, locationId, floor, building, lang='en'}) {
     return (
         <div lang={lang}>
 
-            <LogoHeader mode="white"/>
+            <LogoHeader mode="white" screenId={locationId}/>
 
             <Columns>
                 <div className="screenLeft">

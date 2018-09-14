@@ -16,7 +16,7 @@ export default function render({lang='en'}) {
     return (
         <div lang={lang}>
 
-            <LogoHeader lang={lang}/>
+            <LogoHeader lang={lang} screenId="cafe-entrance"/>
 
             <Panel id="date-panel">
                 <CurrentDate lang={lang}/>

@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import LocalizedStrings from 'react-localization';
+import {getCurrentWeather, getForecastWeather} from './weather-utils';
 
 let strings = new LocalizedStrings({
     en: {
@@ -25,9 +26,9 @@ let strings = new LocalizedStrings({
     }
 });
 
-import Card from './card';
+import Card from '../card';
 
-const MINUTE = 60000;
+const UPDATE_INTERVAL_MINUTES = 10 * 60 * 1000;
 const PRECIPITATION_TYPES = new Set(['Rain', 'Snow', 'Thunderstorm', 'Drizzle']);
 
 export default class ForecastWeatherCard extends React.Component {
@@ -37,13 +38,11 @@ export default class ForecastWeatherCard extends React.Component {
             lang: props.lang
         };
 
-        strings.setLanguage(props.lang);        
-        
+        strings.setLanguage(props.lang);                
     }
 
     componentDidMount() {
         this.updateWeatherData('en');
-        setInterval(this.updateWeatherData.bind(this), 60 * MINUTE);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -53,24 +52,23 @@ export default class ForecastWeatherCard extends React.Component {
     }
 
     updateWeatherData(lang) {
-        var currentWeatherResponse;
-        fetch('http://api.openweathermap.org/data/2.5/weather?id=6077243&APPID=dc252e41ccdd53d0' +
-                    '6d044cde8f15dedb&units=metric&lang=' + lang)
-            .then(response => response.json())
-            .then(jsonResponse => {
-                currentWeatherResponse = jsonResponse;
+        var currentWeather;
+
+        getCurrentWeather(lang, UPDATE_INTERVAL_MINUTES)
+            .then(weather => {
+                currentWeather = weather;
             })
             .then(() => {
-                return fetch(
-                    'http://api.openweathermap.org/data/2.5/forecast?id=6077243&units=metric' +
-                    '&lang=' + lang +
-                    '&appid=dc' +
-                    '252e41ccdd53d06d044cde8f15dedb');
+                return getForecastWeather(lang, UPDATE_INTERVAL_MINUTES);
             })
-            .then(response => response.json())
-            .then(jsonResponse => {
-                this.setState({currentWeather: currentWeatherResponse, forecastWeather: jsonResponse});
+            .then(forecastWeather => {
+                this.setState({
+                    currentWeather: currentWeather,
+                    forecastWeather: forecastWeather
+                });
             });
+        
+        
     }
 
     renderCurrentCondition(currentWeather) {
