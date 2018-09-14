@@ -10,7 +10,7 @@ export default function render({location, floor, building, lang='en'}) {
     return (
         <div lang={lang}>
 
-            <LogoHeader/>
+            <LogoHeader mode="white"/>
 
             <Columns>
                 <div className="screenLeft">
