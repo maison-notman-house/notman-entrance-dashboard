@@ -7,7 +7,7 @@ import TwitterCard from '../twitter-card';
 export default function render({lang='en'}) {
     return (
         <div lang={lang}>
-            <LogoHeader/>
+            <LogoHeader screenId="fronthouse"/>
             <SponsorsPanel lang={lang}/>
             <TwitterCard height="500"/>
         </div>
