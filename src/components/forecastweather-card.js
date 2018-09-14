@@ -17,7 +17,7 @@ export default function ForecastWeatherCard({weatherData}) {
 }
 
 function displayData(data) {
-    var imageUri = 'http://openweathermap.org/img/w/' + data.weather[0].icon + '.png';
+    var imageUri = '://openweathermap.org/img/w/' + data.weather[0].icon + '.png';
     var imageDesc = data.weather[0].description;
     var date = Moment(data.dt_txt).locale('en').calendar();
     var temp = Math.round(data.main.temp);
