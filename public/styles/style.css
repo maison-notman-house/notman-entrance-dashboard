@@ -24,12 +24,18 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     position: relative;
+    
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;    
+    background-image: url('../images/notman-logo-graphic.png');
 }
 
 body.landscape {
     width: 1920px;
     height: 1080px;
     overflow: hidden;
+    background-size: cover;
 }
 
 body.campus-1 #timenow {
@@ -62,6 +68,7 @@ body.campus-2 #timenow {
 
 body.entrance {
     background-image: url(https://screens.notman.org/locations/cafe-entrance/backgrounds/default.jpg);
+    background-size: cover;
 }
 
 body.entrance #timenow {
@@ -102,7 +109,7 @@ body.portrait {
 }
 
 .LogoHeader img {
-    max-height: 90px;
+    max-height: 95px;
 }
 
 
@@ -299,7 +306,7 @@ h3 {
 
 #timenow {
     position: absolute;
-    top: -10px;
+    top: 5px;
     right: 20px;
     padding: 0px 50px;
     font-size: 80px;
