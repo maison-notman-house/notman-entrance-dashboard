@@ -331,7 +331,7 @@ footer {
     bottom: 0px;
     padding: 5px 12px;
     font-size: 30px;
-    color: #d3d3d3;
+    color: #4e4e4e;
 }
 
 
@@ -587,4 +587,11 @@ footer {
     font-size: 50%;
     display: inline-block;
     vertical-align: middle;
+}
+
+.weather .source {
+    position: absolute;
+    font-size: 18px;
+    right: 5px;
+    bottom: 5px;
 }
