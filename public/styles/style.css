@@ -571,3 +571,20 @@ footer {
     -webkit-transform: translateX(-100%);
     transform: translateX(-100%);
 }
+
+
+.weather > div {
+    font-size: 200%;
+    padding: 10px;
+}
+
+.weather .temperature {
+    margin: 0 30px 0 30px;
+    display: inline-block;
+}
+
+.weather .feelslike {
+    font-size: 50%;
+    display: inline-block;
+    vertical-align: middle;
+}
