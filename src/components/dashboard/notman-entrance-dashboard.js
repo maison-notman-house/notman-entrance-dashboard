@@ -4,12 +4,11 @@ import Panel from '../panel';
 import LogoHeader from '../logo-header';
 import EventsCard from '../events-card';
 import WeatherCard from '../weather-card';
-import DeviceCard from '../device-card';
+// import DeviceCard from '../device-card';
 import SponsorsPanel from '../sponsors-panel';
 import CurrentDate from '../current-date';
-import STMCard from '../stm-card';
-import BixiCard from '../bixicard';
-import ComponentRotator from '../component-rotater';
+// import BixiCard from '../bixicard';
+// import ComponentRotator from '../component-rotater';
 import AnnouncementCard from '../announcement-card';
 
 export default function render({lang='en'}) {
@@ -23,17 +22,11 @@ export default function render({lang='en'}) {
             </Panel>
 
             <EventsCard lang={lang}/>
+            
+            <AnnouncementCard key="Group2" lang={lang}/>
 
-            <ComponentRotator interval={10000} className="rotatorA">
-                <div key="Group1">
-                    <DeviceCard lang={lang}/>
-                    <WeatherCard lang={lang}/>
-                </div>
-                <AnnouncementCard key="Group2" lang={lang}/>
-            </ComponentRotator>
+            <WeatherCard lang={lang}/>
 
-            <STMCard lang={lang}/>
-            <BixiCard lang={lang} />
             <SponsorsPanel lang={lang}/>
 
         </div>
