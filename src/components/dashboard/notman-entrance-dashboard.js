@@ -7,7 +7,6 @@ import WeatherCard from '../weather-card';
 import DeviceCard from '../device-card';
 import SponsorsPanel from '../sponsors-panel';
 import CurrentDate from '../current-date';
-import STMCard from '../stm-card';
 import BixiCard from '../bixicard';
 import ComponentRotator from '../component-rotater';
 import AnnouncementCard from '../announcement-card';
@@ -32,7 +31,6 @@ export default function render({lang='en'}) {
                 <AnnouncementCard key="Group2" lang={lang}/>
             </ComponentRotator>
 
-            <STMCard lang={lang}/>
             <BixiCard lang={lang} />
             <SponsorsPanel lang={lang}/>
 
