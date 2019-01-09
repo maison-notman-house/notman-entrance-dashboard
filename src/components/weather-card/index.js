@@ -142,7 +142,7 @@ export default class ForecastWeatherCard extends React.Component {
             </Card>
             );
         }
-
+        const source = 'source: openweathermap.org';
         const currentWeather = this.state.currentWeather;
         let icon = '';
 
@@ -163,6 +163,7 @@ export default class ForecastWeatherCard extends React.Component {
                 &nbsp;<span className="temperature">{temperature}ºC</span>
                 &nbsp;{feelsLike}
             </div>
+            <div className="source">{source}</div>
         </Card>;
     }
 }
