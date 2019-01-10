@@ -113,7 +113,8 @@ export default class ForecastWeatherCard extends React.Component {
 
     windChill(weather) {
         const temperature = weather.main.temp;
-        const windSpeed = weather.wind.speed;
+        // wind speed is in m/s
+        const windSpeed = weather.wind.speed / 0.2778;
 
         if (( windSpeed >= 6) && ( temperature > -50 ) && ( temperature <= 5)) {
             return 13.2 + (0.6215 * temperature) - (11.27 * Math.pow(windSpeed, 0.16)) + (0.3965 * temperature * Math.pow(windSpeed, 0.16));
