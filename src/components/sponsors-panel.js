@@ -5,7 +5,7 @@ const SPONSORS = [
   ['5000.png', [5038,950]],
   ['1000.png',[3983,800]],
   ['caisse.png', [1756,438]],
-  ['videotron-service.png', [1626,317]],
+  ['videotron.svg', [879,190]],
   ['password_box.png', [1193,1199]],
   ['dan_robichaud.png', [1074,300]],
   ['government.png', [4066,800]],
