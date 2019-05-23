@@ -21,6 +21,9 @@ const SPONSORS = [
 
 const INTERVAL = 3500;
 
+/**
+ * Card/Panel for displaying the sponsors
+ */
 export default class SponsorsPanel extends React.Component {
     constructor() {
         super();
