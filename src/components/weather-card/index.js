@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import LocalizedStrings from 'react-localization';
 import {getCurrentWeather, getForecastWeather} from './weather-utils';
+import WeatherIcon from 'react-icons-weather';
 
 let strings = new LocalizedStrings({
     en: {
@@ -12,7 +13,8 @@ let strings = new LocalizedStrings({
         Rain: 'Rain',
         Snow: 'Snow',
         Thunderstorm: 'Thunderstorm',
-        Drizzle: 'Drizzle'
+        Drizzle: 'Drizzle',
+        'feels like': 'Feels like'
     },
     fr: {
         title: 'Meteo',
@@ -22,7 +24,8 @@ let strings = new LocalizedStrings({
         Rain: 'Pluie',
         Snow: 'Neige',
         Thunderstorm: 'Orage',
-        Drizzle: 'Bruine'
+        Drizzle: 'Bruine',
+        'feels like': 'Ressenti'
     }
 });
 
@@ -66,9 +69,7 @@ export default class ForecastWeatherCard extends React.Component {
                     currentWeather: currentWeather,
                     forecastWeather: forecastWeather
                 });
-            });
-        
-        
+            });        
     }
 
     renderCurrentCondition(currentWeather) {
@@ -106,32 +107,77 @@ export default class ForecastWeatherCard extends React.Component {
         return precipitationDisplay;
     }
 
+    summerFeelsLike(weather) {
+        return null;
+    }
+
+    windChill(weather) {
+        const temperature = weather.main.temp;
+        // wind speed is in m/s
+        const windSpeed = weather.wind.speed / 0.2778;
+
+        if (( windSpeed >= 6) && ( temperature > -50 ) && ( temperature <= 5)) {
+            return 13.2 + (0.6215 * temperature) - (11.27 * Math.pow(windSpeed, 0.16)) + (0.3965 * temperature * Math.pow(windSpeed, 0.16));
+        } else {
+            return temperature +((-1.59+0.1345 *temperature)/5)*windSpeed;
+        }
+    }
+
+    feelsLike(weather) {
+        // https://en.wikipedia.org/wiki/Apparent_temperature
+        const temperature = weather.main.temp;
+        if (temperature > 27) {
+            return this.summerFeelsLike(weather);
+        } else if (temperature < 6) {
+            return this.windChill(weather);
+        } else {
+            return temperature;
+        }
+    }
+
     render() {
         if (!this.state.currentWeather) {
-            return null;
+            return (
+            <Card size="1.5">
+               <span>Forecast unavailable</span>
+            </Card>
+            );
+        }
+        const source = 'source: openweathermap.org';
+        const currentWeather = this.state.currentWeather;
+        let icon = '';
+
+        if (currentWeather.weather && currentWeather.weather.length > 0) {
+            const iconId = currentWeather.weather[0].id + '';
+            icon = (<WeatherIcon name="owm" iconId={iconId} flip="horizontal" rotate="0" />);
         }
 
-        const currentConditionDisplay = this.renderCurrentCondition(this.state.currentWeather);
-        const currentCondition = this.state.currentWeather.main.temp;
-        const precipitations = findPrecipitations(currentCondition, this.state.forecastWeather.list);
-        const precipitationDisplay = this.renderPrecipitationDisplay(precipitations, currentCondition);
-
-        return <Card size="1.5">
-            <span className="WeatherCard-title">{strings.title}</span>&nbsp;
-            <span>{currentConditionDisplay}&nbsp;{precipitationDisplay}</span>
+        const temperature = Math.round(currentWeather.main.temp);
+        let feelsLike = this.feelsLike(currentWeather);
+        if (feelsLike) {
+            feelsLike = (<span className="feelslike">{strings['feels like']} {Math.round(feelsLike)}</span>);
+        }
+        
+        return <Card size="1.5" className="weather">
+            <div>
+                {icon}                
+                &nbsp;<span className="temperature">{temperature}ºC</span>
+                &nbsp;{feelsLike}
+            </div>
+            <div className="source">{source}</div>
         </Card>;
     }
 }
 
-function findPrecipitations(currentCondition, weatherPoints) {
-    const seenPrecipitations = new Set();
-    var result = [];
-    weatherPoints.forEach(weatherPoint => {
-        const condition = weatherPoint.weather[0].main;
-        if (currentCondition !== condition && PRECIPITATION_TYPES.has(condition) && !seenPrecipitations.has(condition)) {
-            seenPrecipitations.add(condition);
-            result.push(weatherPoint);
-        }
-    });
-    return result;
-}
+// function findPrecipitations(currentCondition, weatherPoints) {
+//     const seenPrecipitations = new Set();
+//     var result = [];
+//     weatherPoints.forEach(weatherPoint => {
+//         const condition = weatherPoint.weather[0].main;
+//         if (currentCondition !== condition && PRECIPITATION_TYPES.has(condition) && !seenPrecipitations.has(condition)) {
+//             seenPrecipitations.add(condition);
+//             result.push(weatherPoint);
+//         }
+//     });
+//     return result;
+// }
